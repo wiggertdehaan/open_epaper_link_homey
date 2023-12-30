@@ -4,6 +4,7 @@
 
 const Homey = require('homey');
 const axios = require('axios');
+const WebSocket = require('ws');
 const qs = require('qs');
 
 class MyApp extends Homey.App {
@@ -16,7 +17,8 @@ class MyApp extends Homey.App {
     this.log(this.homey.settings.get('gateway'));
    // this.log(Homey.devices.getDevices());
     
-    this.deviceUpdater();
+    //this.deviceUpdater();
+    this.WebSocketReader();
 
     const card = this.homey.flow.getActionCard('writemessage');
     const cardShowCurrentDate = this.homey.flow.getActionCard('show-current-date');
@@ -168,6 +170,37 @@ class MyApp extends Homey.App {
         }
     }, 10000); // 10 seconden interval
 
+}
+
+WebSocketReader() {
+  this.log("Starting WebsocketReader");
+  const socket = new WebSocket('ws://192.168.0.16/ws');
+
+  socket.on('open', () => {
+      this.log('websocket connected');
+  });
+
+  socket.on('message', (data) => {
+    const messageString = data.toString();
+
+    // Probeer het bericht te parsen als JSON
+    try {
+        const messageJSON = JSON.parse(messageString);
+        this.log(messageJSON);
+    } catch (error) {
+        this.log('Error parsing JSON:', error);
+        this.log('Received data:', messageString);
+    }
+  });
+
+  socket.on('close', () => {
+      this.log('websocket disconnected, attempting to reconnect');
+      setTimeout(() => this.WebSocketReader(), 5000); // Aangepast om de functie correct opnieuw aan te roepen
+  });
+
+  socket.on('error', (error) => {
+      this.log('WebSocket error:', error);
+  });
 }
 
   
