@@ -23,12 +23,8 @@
       <legend class="homey-form-legend">My Settings</legend>
 
       <div class="homey-form-group">
-        <label class="homey-form-label" for="gateway">gateway (include http:// or https://)</label>
+        <label class="homey-form-label" for="gateway">ip gateway (do not include http:// or https://)</label>
         <input class="homey-form-input" id="gateway" type="text" value="" />
-      </div>
-      <div class="homey-form-group">
-        <label class="homey-form-label" for="poll-interval">poll-interval: Get label data every x minutes</label>
-        <input class="homey-form-input" id="poll-interval" type="number" value="60" />
       </div>
     </fieldset>
 
@@ -41,7 +37,6 @@
         Homey.ready();
 
         var gatewayElement = document.getElementById("gateway");
-        var pollIntervalElement = document.getElementById("poll-interval");
 
         var saveElement = document.getElementById("save");
 
@@ -52,16 +47,7 @@
         gatewayElement.value = gatewayValue;
         });
 
-        // Ophalen van de opgeslagen waarde van 'poll-interval'
-        Homey.get("pollInterval", function (err, pollIntervalValue) {
-          if (err) return Homey.alert(err);
 
-          if (!pollIntervalValue || isNaN(pollIntervalValue) || pollIntervalValue <= 0) {
-              pollIntervalValue = 60;
-          }
-
-          pollIntervalElement.value = pollIntervalValue;
-        });
 
 
         saveElement.addEventListener("click", function (e) {

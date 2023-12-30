@@ -40,5 +40,24 @@
   "author": {
     "name": "Wiggert De haan",
     "email": "wiggert@wiggert.nl"
-  }
+  },
+  "tags": {
+    "en": [
+      "e-paper"
+    ]
+  },
+  "source": "https://github.com/wiggertdehaan/open_epaper_link_homey",
+  "support": "https://github.com/wiggertdehaan/open_epaper_link_homey/issues",
+  "homepage": "https://github.com/wiggertdehaan/open_epaper_link_homey/wiki",
+  "bugs": {
+    "url": "https://github.com/wiggertdehaan/open_epaper_link_homey/issues"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Wiggert de Haan"
+      }
+    ]
+  },
+  "brandColor": "#9b9b9b"
 }

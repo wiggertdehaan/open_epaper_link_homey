@@ -1,20 +1,20 @@
 {
   "title": {
-    "en": "Show Current Weather"
+    "en": "WeatherForecast"
   },
   "titleFormatted": { 
-    "en": "Counts current weather in [[Location]] in [[Units]] " 
-  }, 
+    "en": "Shows the weather forecast in [[Location]] in [[Units]]" 
+  },  
   "hint": {
-    "en": "Show the current weather in a certain place"
+    "en": "Weather forecast for the next five days. Weather data by Open-Meteo.com"
   },
   "args": [
     {
       "type": "device",
       "name": "Id",
-      "filter": "driver_id=solum-29|solum-154",  
+      "filter": "driver_id=solum-29",      
       "placeholder": {
-        "en": "0000000000000000"
+        "en": "Select Your Device"
       }
     },
     {

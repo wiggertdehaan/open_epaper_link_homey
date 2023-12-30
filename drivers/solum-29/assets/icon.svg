@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg width="84" height="42" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <title>2.9&quot; EPaper Tag</title>
+ <g class="layer">
+  <title>Layer 1</title>
+  <rect fill="#ffffff" height="41" id="svg_1" rx="2" ry="2" stroke="#000000" transform="matrix(1 0 0 1 0 0)" width="83" x="1" y="1"/>
+  <rect fill="#ffffff" height="30" id="svg_2" stroke="#000000" transform="matrix(1 0 0 1 0 0)" width="68" x="13" y="7"/>
+  <rect fill="#7f7f7f" height="30" id="svg_4" stroke="#000000" width="5" x="4.5" y="7"/>
+ </g>
+</svg>

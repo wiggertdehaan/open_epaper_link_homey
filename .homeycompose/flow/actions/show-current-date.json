@@ -2,6 +2,9 @@
   "title": {
     "en": "Show Current Date"
   },
+  "titleFormatted": { 
+    "en": "Shows current date" 
+  }, 
   "hint": {
     "en": "Shows the current date on your e-tag"
   },
@@ -9,8 +12,9 @@
     {
       "type": "device",
       "name": "Id",
+      "filter": "driver_id=solum-29|solum-154",     
       "placeholder": {
-        "en": "0000000000000000"
+        "en": "Select the e-tag"
       }
     }
   ]

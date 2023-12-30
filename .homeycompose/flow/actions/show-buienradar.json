@@ -1,0 +1,28 @@
+{
+  "title": {
+    "en": "Buienradar"
+  },
+  "titleFormatted": { 
+    "en": "Show rain prediction in [[Location]] " 
+  },
+  "hint": {
+    "en": "Dutch rain predictions for the next two hours. Only works for locations in the Netherlands and Belgium."
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "filter": "driver_id=solum-29",  
+      "placeholder": {
+        "en": "0000000000000000"
+      }
+    },
+    {
+      "type": "text",
+      "name": "Location",
+      "placeholder": {
+        "en": "Show the current weather in this city"
+      }
+    }
+  ]
+}

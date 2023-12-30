@@ -42,11 +42,146 @@
     "name": "Wiggert De haan",
     "email": "wiggert@wiggert.nl"
   },
+  "tags": {
+    "en": [
+      "e-paper"
+    ]
+  },
+  "source": "https://github.com/wiggertdehaan/open_epaper_link_homey",
+  "support": "https://github.com/wiggertdehaan/open_epaper_link_homey/issues",
+  "homepage": "https://github.com/wiggertdehaan/open_epaper_link_homey/wiki",
+  "bugs": {
+    "url": "https://github.com/wiggertdehaan/open_epaper_link_homey/issues"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Wiggert de Haan"
+      }
+    ]
+  },
+  "brandColor": "#9b9b9b",
   "flow": {
     "actions": [
       {
         "title": {
+          "en": "Buienradar"
+        },
+        "titleFormatted": {
+          "en": "Show rain prediction in [[Location]] "
+        },
+        "hint": {
+          "en": "Dutch rain predictions for the next two hours. Only works for locations in the Netherlands and Belgium."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "filter": "driver_id=solum-29",
+            "placeholder": {
+              "en": "0000000000000000"
+            }
+          },
+          {
+            "type": "text",
+            "name": "Location",
+            "placeholder": {
+              "en": "Show the current weather in this city"
+            }
+          }
+        ],
+        "id": "show-buienradar"
+      },
+      {
+        "title": {
+          "en": "Count Days"
+        },
+        "titleFormatted": {
+          "en": "Counts days, starting with [[Counter]] with a treshold on [[Threshold]] days."
+        },
+        "hint": {
+          "en": "Counts days, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "filter": "driver_id=solum-29|solum-154",
+            "placeholder": {
+              "en": "Select the e-tag"
+            }
+          },
+          {
+            "type": "number",
+            "name": "Counter",
+            "placeholder": {
+              "en": "Number of days"
+            },
+            "min": 1,
+            "max": 1000,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "Threshold",
+            "placeholder": {
+              "en": "Threshold to show the number in red"
+            },
+            "min": 1,
+            "max": 999,
+            "step": 1
+          }
+        ],
+        "id": "show-count-days"
+      },
+      {
+        "title": {
+          "en": "Count Hours"
+        },
+        "titleFormatted": {
+          "en": "Counts hours, starting with [[Counter]] with a treshold on [[Threshold]] hours"
+        },
+        "hint": {
+          "en": "Counts hours, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "filter": "driver_id=solum-29|solum-154",
+            "placeholder": {
+              "en": "Select the e-tag"
+            }
+          },
+          {
+            "type": "number",
+            "name": "Counter",
+            "placeholder": {
+              "en": "Number of hours"
+            },
+            "min": 1,
+            "max": 240,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "Threshold",
+            "placeholder": {
+              "en": "Threshold to show the number in red"
+            },
+            "min": 1,
+            "max": 240,
+            "step": 1
+          }
+        ],
+        "id": "show-count-hours"
+      },
+      {
+        "title": {
           "en": "Show Current Date"
+        },
+        "titleFormatted": {
+          "en": "Shows current date"
         },
         "hint": {
           "en": "Shows the current date on your e-tag"
@@ -55,8 +190,9 @@
           {
             "type": "device",
             "name": "Id",
+            "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "0000000000000000"
+              "en": "Select the e-tag"
             }
           }
         ],
@@ -64,7 +200,10 @@
       },
       {
         "title": {
-          "en": "show-current-weather"
+          "en": "Show Current Weather"
+        },
+        "titleFormatted": {
+          "en": "Counts current weather in [[Location]] in [[Units]] "
         },
         "hint": {
           "en": "Show the current weather in a certain place"
@@ -73,6 +212,7 @@
           {
             "type": "device",
             "name": "Id",
+            "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
               "en": "0000000000000000"
             }
@@ -110,28 +250,174 @@
       },
       {
         "title": {
-          "en": "WriteMessage"
+          "en": "Image"
+        },
+        "titleFormatted": {
+          "en": "Fetches an image from [[URL]] every [[Interval]] minutes"
         },
         "hint": {
-          "en": "With this Flow Card you can write a simple message to a EPaper Device"
+          "en": "Gets an external image and displays it"
         },
         "args": [
           {
             "type": "device",
             "name": "Id",
+            "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "0000000000000000"
+              "en": "The tag to show the feed on"
             }
           },
           {
             "type": "text",
-            "name": "Message",
+            "name": "URL",
             "placeholder": {
-              "en": "Hello World"
+              "en": "Full URL of exact right size image"
+            }
+          },
+          {
+            "type": "number",
+            "name": "Interval",
+            "placeholder": {
+              "en": "How often (in minutes) the image is being fetched. Minimum is 3 minutes."
+            },
+            "min": 3,
+            "max": 180,
+            "step": 1
+          }
+        ],
+        "id": "show-image"
+      },
+      {
+        "title": {
+          "en": "QR Code"
+        },
+        "titleFormatted": {
+          "en": "Shows a QR code with value [[QRContent]] and title [[Title]]"
+        },
+        "hint": {
+          "en": "Displays a full-screen QR Code"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "filter": "driver_id=solum-29|solum-154",
+            "placeholder": {
+              "en": "The tag to show the feed on"
+            }
+          },
+          {
+            "type": "text",
+            "name": "Title",
+            "placeholder": {
+              "en": "Displayed title"
+            }
+          },
+          {
+            "type": "text",
+            "name": "QRContent",
+            "placeholder": {
+              "en": "Any content that can be coded into a QR Code"
             }
           }
         ],
-        "id": "writemessage"
+        "id": "show-qr-code"
+      },
+      {
+        "title": {
+          "en": "RSS Feed"
+        },
+        "titleFormatted": {
+          "en": "Shows the RSS feed from [[Title]] url [[URL]] and refreshes it every [[Interval]] minutes"
+        },
+        "hint": {
+          "en": "Gets an RSS feed, and display the first few lines of it"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "filter": "driver_id=solum-29",
+            "placeholder": {
+              "en": "The tag to show the feed on"
+            }
+          },
+          {
+            "type": "text",
+            "name": "Title",
+            "placeholder": {
+              "en": "Displayed title"
+            }
+          },
+          {
+            "type": "text",
+            "name": "URL",
+            "placeholder": {
+              "en": "Full URL of the RSS feed"
+            }
+          },
+          {
+            "type": "number",
+            "name": "Interval",
+            "placeholder": {
+              "en": "How often (in minutes) the feed is being refreshed"
+            },
+            "min": 5,
+            "max": 60,
+            "step": 5
+          }
+        ],
+        "id": "show-rss-feed"
+      },
+      {
+        "title": {
+          "en": "WeatherForecast"
+        },
+        "titleFormatted": {
+          "en": "Shows the weather forecast in [[Location]] in [[Units]]"
+        },
+        "hint": {
+          "en": "Weather forecast for the next five days. Weather data by Open-Meteo.com"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "filter": "driver_id=solum-29",
+            "placeholder": {
+              "en": "Select Your Device"
+            }
+          },
+          {
+            "type": "text",
+            "name": "Location",
+            "placeholder": {
+              "en": "Show the current weather in this city"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "Units",
+            "placeholder": {
+              "en": "Metric / Imperial"
+            },
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "Celcius / Beaufort / millimeters"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Fahrenheit / mph / millimeters"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "show-weather-forecast"
       }
     ]
   },
@@ -176,7 +462,20 @@
           "template": "add_devices"
         }
       ],
-      "id": "solum-154"
+      "id": "solum-154",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -219,7 +518,20 @@
           "template": "add_devices"
         }
       ],
-      "id": "solum-29"
+      "id": "solum-29",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
     }
   ]
 }

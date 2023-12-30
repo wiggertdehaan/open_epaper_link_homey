@@ -1,0 +1,38 @@
+{
+  "title": {
+    "en": "Image"
+  },
+  "titleFormatted": { 
+    "en": "Fetches an image from [[URL]] every [[Interval]] minutes" 
+  },
+  "hint": {
+    "en": "Gets an external image and displays it"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "filter": "driver_id=solum-29|solum-154",  
+      "placeholder": {
+        "en": "The tag to show the feed on"
+      }
+    },
+    {
+      "type": "text",
+      "name": "URL",
+      "placeholder": {
+        "en": "Full URL of exact right size image"
+      }
+    },
+    {
+      "type": "number",
+      "name": "Interval",
+      "placeholder": {
+        "en": "How often (in minutes) the image is being fetched. Minimum is 3 minutes."
+      },
+      "min": 3,
+      "max": 180,
+      "step": 1
+    }
+  ]
+}
