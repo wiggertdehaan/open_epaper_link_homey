@@ -1,0 +1,44 @@
+{
+  "id": "nl.wiggert.OpenEPaperLink",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "OpenEPaperLink"
+  },
+  "settings": [
+    {
+      "id": "serverAddress",
+      "type": "text",
+      "label": {
+        "en": "Server Address"
+      },
+      "title": {
+        "en": "Server Address"
+      },
+      "hint": {
+        "en": "Enter the server address here"
+      },
+      "value": "192.168.0.16"
+    }
+  ],
+  "description": {
+    "en": "Support for the OpenEPaperLink Gateway "
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Wiggert De haan",
+    "email": "wiggert@wiggert.nl"
+  }
+}

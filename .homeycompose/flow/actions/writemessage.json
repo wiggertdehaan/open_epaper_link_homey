@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en": "WriteMessage"
+  },
+  "hint": {
+    "en": "With this Flow Card you can write a simple message to a EPaper Device"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "placeholder": {
+        "en": "0000000000000000"
+      }
+    },
+    {
+      "type": "text",
+      "name": "Message",
+      "placeholder": {
+        "en": "Hello World"
+      }
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "nl.wiggert.OpenEPaperLink",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "OpenEPaperLink"
+  },
+  "settings": [
+    {
+      "id": "serverAddress",
+      "type": "text",
+      "label": {
+        "en": "Server Address"
+      },
+      "title": {
+        "en": "Server Address"
+      },
+      "hint": {
+        "en": "Enter the server address here"
+      },
+      "value": "192.168.0.16"
+    }
+  ],
+  "description": {
+    "en": "Support for the OpenEPaperLink Gateway "
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Wiggert De haan",
+    "email": "wiggert@wiggert.nl"
+  },
+  "flow": {
+    "actions": [
+      {
+        "title": {
+          "en": "Show Current Date"
+        },
+        "hint": {
+          "en": "Shows the current date on your e-tag"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "placeholder": {
+              "en": "0000000000000000"
+            }
+          }
+        ],
+        "id": "show-current-date"
+      },
+      {
+        "title": {
+          "en": "show-current-weather"
+        },
+        "hint": {
+          "en": "Show the current weather in a certain place"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "placeholder": {
+              "en": "0000000000000000"
+            }
+          },
+          {
+            "type": "text",
+            "name": "Location",
+            "placeholder": {
+              "en": "Show the current weather in this city"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "Units",
+            "placeholder": {
+              "en": "Metric / Imperial"
+            },
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "Celcius / Beaufort / millimeters"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Fahrenheit / mph / millimeters"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "show-current-weather"
+      },
+      {
+        "title": {
+          "en": "WriteMessage"
+        },
+        "hint": {
+          "en": "With this Flow Card you can write a simple message to a EPaper Device"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "placeholder": {
+              "en": "0000000000000000"
+            }
+          },
+          {
+            "type": "text",
+            "name": "Message",
+            "placeholder": {
+              "en": "Hello World"
+            }
+          }
+        ],
+        "id": "writemessage"
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Solum 1.54"
+      },
+      "class": "other",
+      "capabilities": [
+        "measure_battery",
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/solum-154/assets/images/small.png",
+        "large": "/drivers/solum-154/assets/images/large.png",
+        "xlarge": "/drivers/solum-154/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "solum-154"
+    },
+    {
+      "name": {
+        "en": "Solum 2.9"
+      },
+      "class": "other",
+      "capabilities": [
+        "measure_battery",
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/solum-29/assets/images/small.png",
+        "large": "/drivers/solum-29/assets/images/large.png",
+        "xlarge": "/drivers/solum-29/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "solum-29"
+    }
+  ]
+}

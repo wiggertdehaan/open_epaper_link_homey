@@ -1,0 +1,17 @@
+{
+  "title": {
+    "en": "Show Current Date"
+  },
+  "hint": {
+    "en": "Shows the current date on your e-tag"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "placeholder": {
+        "en": "0000000000000000"
+      }
+    }
+  ]
+}

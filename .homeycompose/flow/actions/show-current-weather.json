@@ -1,0 +1,45 @@
+{
+  "title": {
+    "en": "show-current-weather"
+  },
+  "hint": {
+    "en": "Show the current weather in a certain place"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "placeholder": {
+        "en": "0000000000000000"
+      }
+    },
+    {
+      "type": "text",
+      "name": "Location",
+      "placeholder": {
+        "en": "Show the current weather in this city"
+      }
+    },
+    {
+      "type": "dropdown",
+      "name": "Units",
+      "placeholder": {
+        "en": "Metric / Imperial"
+      }, 
+      "values": [
+        {
+          "id": "0",
+          "label": {
+            "en": "Celcius / Beaufort / millimeters"
+          }
+        },
+        {
+          "id": "1",
+          "label": {
+            "en": "Fahrenheit / mph / millimeters"
+          }
+        }
+      ]
+    }
+  ]
+}
