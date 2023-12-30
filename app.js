@@ -220,7 +220,55 @@ updateHomeyRouter(sys)
 
 updateHomeyTag(tag)
 {
-  this.log('updating Tag'+tag[0].mac);
+  this.log('updating Tag '+tag[0].mac);
+  let drivers = this.homey.drivers.getDrivers();
+  Object.keys(drivers).forEach((id) => {
+    let driver = drivers[id];
+    let devices = driver.getDevices();
+    
+    Object.keys(devices).forEach((id)=>{
+      let device = devices[id];
+      let { id: deviceId } = device.getData();
+      if (tag[0].mac==deviceId)
+      {
+        device.setCapabilityValue("measure_temperature",tag[0].temperature)
+        .then(() => {
+          //this.log('Capability bijgewerkt');
+        })
+        .catch(error => {
+          this.log('Fout bij het bijwerken van capability:', error);
+        });
+
+        device.setCapabilityValue("measure_battery",((tag[0].batteryMv/1000)-2.20)*250)
+        .then(() => {
+          //this.log('Capability bijgewerkt');
+        })
+        .catch(error => {
+          this.log('Fout bij het bijwerken van capability:', error);
+        });
+
+        device.setCapabilityValue("measure_voltage",tag[0].batteryMv/1000)
+        .then(() => {
+          //this.log('Capability bijgewerkt');
+        })
+        .catch(error => {
+          this.log('Fout bij het bijwerken van capability:', error);
+        });
+
+        /*device.setCapabilityValue("alarm_battery",tag[0].temperature)
+        .then(() => {
+          this.log('Capability bijgewerkt');
+        })
+        .catch(error => {
+          this.log('Fout bij het bijwerken van capability:', error);
+        });  */
+
+      }
+    });
+
+  });
+
+
 }
 
 
