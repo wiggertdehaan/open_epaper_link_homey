@@ -98,7 +98,7 @@ class MyApp extends Homey.App {
         return;
         }
         
-        axios.post(gateway+'/jsonupload', qs.stringify(data), {
+        axios.post('http://'+gateway+'/jsonupload', qs.stringify(data), {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -113,7 +113,7 @@ class MyApp extends Homey.App {
   }
 
   async SaveConfig(gateway, data){
-        axios.post(gateway+'/save_cfg', data, {
+        axios.post('http://'+gateway+'/save_cfg', data, {
             headers: {
                 'Content-Type': 'multipart/form-data;'
             }
@@ -143,7 +143,7 @@ class MyApp extends Homey.App {
       return;
       }
       // Voer de GET-aanvraag uit
-      const response = await axios.get(gateway+'/get_db'); 
+      const response = await axios.get('http://'+gateway+'/get_db'); 
   
 
       if (response.data && response.data.tags) {
@@ -174,7 +174,7 @@ class MyApp extends Homey.App {
 
 WebSocketReader() {
   this.log("Starting WebsocketReader");
-  const socket = new WebSocket('ws://192.168.0.16/ws');
+  const socket = new WebSocket('ws://'+this.homey.settings.get('gateway')+'/ws');
 
   socket.on('open', () => {
       this.log('websocket connected');
