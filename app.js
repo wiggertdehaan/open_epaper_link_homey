@@ -128,9 +128,8 @@ class MyApp extends Homey.App {
   }
 
    extractName(str) {
-    // Split de string bij de eerste opening haakje '(' en neem het eerste deel
     let parts = str.split(' (');
-    return parts[0].trim(); // Verwijder eventuele spaties aan het einde
+    return parts[0].trim(); 
   }
 
 
@@ -142,7 +141,6 @@ class MyApp extends Homey.App {
       this.log('gateway has not been configured.');
       return;
       }
-      // Voer de GET-aanvraag uit
       const response = await axios.get('http://'+gateway+'/get_db'); 
   
 
@@ -153,7 +151,7 @@ class MyApp extends Homey.App {
       }
     } catch (error) {
       console.error('Fout bij het ophalen van de tags:', error);
-      throw error; // Of handel de fout af zoals gewenst
+      throw error; // 
     }
   }
 
@@ -186,7 +184,19 @@ WebSocketReader() {
     // Probeer het bericht te parsen als JSON
     try {
         const messageJSON = JSON.parse(messageString);
-        this.log(messageJSON);
+        // check if messageJSON starts with msg.tags
+        if (messageJSON.tags)
+        {
+          this.log("tags!");
+          this.updateHomeyTag(messageJSON.tags);
+        }
+        if (messageJSON.sys)
+        {
+          this.updateHomeyRouter(messageJSON.sys);
+        }
+        
+
+        //this.log(messageJSON);
     } catch (error) {
         this.log('Error parsing JSON:', error);
         this.log('Received data:', messageString);
@@ -202,6 +212,17 @@ WebSocketReader() {
       this.log('WebSocket error:', error);
   });
 }
+
+updateHomeyRouter(sys)
+{
+  this.log('updating Router');
+}
+
+updateHomeyTag(tag)
+{
+  this.log('updating Tag'+tag[0].mac);
+}
+
 
   
 }
