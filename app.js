@@ -7,6 +7,7 @@ const axios = require('axios');
 const WebSocket = require('ws');
 const Jimp = require('jimp');
 const qs = require('qs');
+const { Readable } = require('stream'); 
 
 class MyApp extends Homey.App {
 
@@ -17,115 +18,14 @@ class MyApp extends Homey.App {
     this.log('MyApp has been initialized');
     this.tagTypeCache = {};
     
-    //this.deviceUpdater();
     this.WebSocketReader();
 
     const card = this.homey.flow.getActionCard('writemessage');
     const cardShowCurrentDate = this.homey.flow.getActionCard('show-current-date');
     const cardShowCurrentWeather = this.homey.flow.getActionCard('show-current-weather');
-
-    cardShowCurrentWeather.registerRunListener(async (args, state) =>{
-  
-        
-        let aliasName = this.extractName(args.Id.getName());
-        let deviceData = args.Id.getData();
-        let deviceId = deviceData.id;
-        let jsonData =  {"location":args.Location,"units":args.Units};
-        const data = {
-            alias: aliasName,
-            mac: deviceId,
-            contentmode: 4,
-            modecfgjson: JSON.stringify(jsonData),
-            rotate: 0,
-            lut:0,
-            invert:0
-        };
-        this.log(data);
-        const gateway = this.homey.settings.get('gateway');
-        if (!gateway) {
-        this.log('gateway has not been configured.');
-        return;
-        }
-        
-        this.SaveConfig(gateway, data);
-
-
-    })
-
-    cardShowCurrentDate.registerRunListener(async (args, state)=>{
-
-        let deviceData = args.Id.getData();
-        let deviceId = deviceData.id;
-        const data = {
-          //  alias: "fenno",
-            mac: deviceId,
-            contentmode: 1,
-            rotate: 0,
-            lut:0,
-            invert:0
-        };
-        const gateway = this.homey.settings.get('gateway');
-        if (!gateway) {
-        this.log('gateway has not been configured.');
-        return;
-        }
-        
-        this.SaveConfig(gateway, data);
-
-    })
-
-    card.registerRunListener(async (args, state) =>{
-      // Run 
-      
-      
-        let deviceData = args.Id.getData();
-        let deviceId = deviceData.id;
-        this.log(deviceId);
-
-      const jsonData = [
-        { "text": [5, 5, args.Message, "fonts/bahnschrift20", 1] }
-        ];
-
-        // Stel de POST-data samen
-        const data = {
-            mac: deviceId,
-            json: JSON.stringify(jsonData)
-        };
-
-        const gateway = this.homey.settings.get('gateway');
-        if (!gateway) {
-        this.log('gateway has not been configured.');
-        return;
-        }
-        
-        axios.post('http://'+gateway+'/jsonupload', qs.stringify(data), {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-            })
-            .then(response => {
-                this.log('Succes:', response.data);
-            })
-            .catch(error => {
-                this.error('Fout tijdens de POST-aanvraag:', error);
-              }); 
-    })
   }
 
-  async SaveConfig(gateway, data){
-        axios.post('http://'+gateway+'/save_cfg', data, {
-            headers: {
-                'Content-Type': 'multipart/form-data;'
-            }
-            })
-            .then(response => {
-                this.log('Succes:', response.data);
-            })
-            .catch(error => {
-                this.error('Fout tijdens de POST-aanvraag:', error);
-              }); 
-       
-  }
+
 
    extractName(str) {
     let parts = str.split(' (');
@@ -156,19 +56,6 @@ class MyApp extends Homey.App {
   }
 
 
-  deviceUpdater() {
-    setInterval(async () => {
-        try {
-            this.log("DeviceUpdatr");
-            let tags = await this.fetchTags();
-      
-
-        } catch (error) {
-            this.log('Fout bij het ophalen van tags:', error);
-        }
-    }, 10000); // 10 seconden interval
-
-}
 
 WebSocketReader() {
   this.log("Starting WebsocketReader");
@@ -187,7 +74,6 @@ WebSocketReader() {
         // check if messageJSON starts with msg.tags
         if (messageJSON.tags)
         {
-          this.log("tags!");
           this.updateHomeyTag(messageJSON.tags);
         }
         if (messageJSON.sys)
@@ -219,50 +105,6 @@ updateHomeyRouter(sys)
 }
 
 
- convertRawToImage(rawData, width, height) {
-  const image = new Jimp(width, height);
-
-  for (let i = 0; i < width * height; i++) {
-      const dataIndex = i * 2; // Assuming 16-bit data per pixel
-      const rgb16 = (rawData[dataIndex] << 8) | rawData[dataIndex + 1];
-
-      const r = ((rgb16 >> 11) & 0x1F) << 3;
-      const g = ((rgb16 >> 5) & 0x3F) << 2;
-      const b = (rgb16 & 0x1F) << 3;
-
-      const color = Jimp.rgbaToInt(r, g, b, 255);
-      image.setPixelColor(color, i % width, Math.floor(i / width));
-  }
-
-  return image;
-}
-
-downloadRawData(url) {
-  return axios.get(url, { responseType: 'arraybuffer' })
-      .then(response => response.data)
-      .catch(error => {
-          console.error('Error bij het downloaden van de raw data:', error);
-          throw error; // Of verwerk de fout op een andere manier
-      });
-}
-
-convertRawToPNG(rawData, width, height, colorTable) {
-  const image = new Jimp(width, height);
-
-  for (let i = 0; i < width * height; i++) {
-      // Aannemend dat je raw data in een specifiek formaat is, bijvoorbeeld 16-bit kleurwaarden
-      const dataIndex = i * 2; // Voorbeeld voor 16-bit data
-      const rgb = (rawData[dataIndex] << 8) | rawData[dataIndex + 1];
-
-      // Omzetten van raw data naar kleurwaarden, vergelijkbaar met je browsercode
-      // ...
-
-      image.setPixelColor(Jimp.rgbaToInt(r, g, b, 255), i % width, Math.floor(i / height));
-  }
-
-  return image.getBufferAsync(Jimp.MIME_PNG);
-}
-
 
 updateHomeyTag(tag)
 {
@@ -277,6 +119,11 @@ updateHomeyTag(tag)
       let { id: deviceId } = device.getData();
       if (tag[0].mac==deviceId)
       {
+        device.updateFromRouter(tag[0])
+        .then(() => {
+          //this.log('Device bijgewerkt');
+        })
+
         device.setCapabilityValue("measure_temperature",tag[0].temperature)
         .then(() => {
           //this.log('Capability bijgewerkt');
@@ -323,43 +170,25 @@ updateHomeyTag(tag)
 
 
 
-        if (deviceId=="0000021C69433B1E")
-        {
-            const url = 'http://192.168.0.16/current/0000021C69433B1E.raw?e39b4cdc996f94fe37e35965cb57c910';
-            const myImage = await this.homey.images.createImage();
-            myImage.setStream(async (stream) => {
-              const res = await fetch(url);
-              if (!res.ok) {
-                  throw new Error('Invalid Response');
-              }
-
-              const pngBuffer = this.convertRawToPNG(new Uint8ClampedArray(rawData), width, height, colorTable);
-
-
-              return res.body.pipe(stream);
-          });
-
-          this.log('Image gedownload:', myImage);
-          // Stel nu de camera-afbeelding in met het Image-object
-          // Vervang 'myDevice' met je specifieke Homey-apparaat en 'unique-id' & 'Image Title' met de relevante waarden
-          try {
-              await device.setCameraImage('unique-id', 'Image Title', myImage);
-              console.log('Camera Image ingesteld in Homey');
-          } catch (error) {
-              console.error('Fout bij het instellen van Camera Image in Homey:', error);
-          }
-        }
-        
-
-
 
       }
     });
 
   });
 
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 async getTagTypeData(hwtype) {
@@ -380,7 +209,6 @@ async getTagTypeData(hwtype) {
 
       // Save the fetched data in the cache
       this.tagTypeCache[hwtype] = data;
-      this.log('Tagtype data fetched from gateway:', data);
       return data;
   } catch (error) {
       console.error(error);
@@ -392,3 +220,5 @@ async getTagTypeData(hwtype) {
 }
 
 module.exports = MyApp;
+
+

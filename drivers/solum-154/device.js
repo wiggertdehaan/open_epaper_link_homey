@@ -11,6 +11,11 @@ class MyDevice extends Device {
     this.log('MyDevice has been initialized');
   }
 
+  async updateFromRouter(tag) {
+    this.log('MyDevice has been updated');
+    this.log('updating Tag '+tag.mac);
+  }
+
   /**
    * onAdded is called when the user adds the device, called just after pairing.
    */
