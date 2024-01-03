@@ -74,7 +74,7 @@ WebSocketReader() {
         // check if messageJSON starts with msg.tags
         if (messageJSON.tags)
         {
-          this.updateHomeyTag(messageJSON.tags);
+          this.updateHomeyTags(messageJSON.tags);
         }
         if (messageJSON.sys)
         {
@@ -104,6 +104,14 @@ updateHomeyRouter(sys)
   this.log('updating Router');
 }
 
+
+updateHomeyTags(tags)
+{
+  this.log('updating Tags');
+  tags.forEach(tag => {
+    this.updateHomeyTag([tag]);
+  }); 
+}
 
 
 updateHomeyTag(tag)
