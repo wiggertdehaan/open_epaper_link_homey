@@ -1,6 +1,6 @@
 'use strict';
 
-//import { json } from 'stream/consumers';
+const Tag = require('./tag');
 
 const Homey = require('homey');
 const axios = require('axios');
@@ -16,6 +16,8 @@ class MyApp extends Homey.App {
    */
   async onInit() {
     this.log('MyApp has been initialized');
+    
+    this.tag = new Tag(this);
     this.tagTypeCache = {};
     
     this.WebSocketReader();
@@ -116,6 +118,7 @@ updateHomeyTags(tags)
 
 updateHomeyTag(tag)
 {
+  
   this.log('updating Tag '+tag[0].mac);
   let drivers = this.homey.drivers.getDrivers();
   Object.keys(drivers).forEach((id) => {
@@ -226,6 +229,8 @@ async getTagTypeData(hwtype) {
 
   
 }
+
+
 
 module.exports = MyApp;
 
