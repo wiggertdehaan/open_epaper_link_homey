@@ -8,6 +8,9 @@ class Tag {
         this.homey.log('Tag constructor');     
         //this.log('Tag constructor');
     }
+    
+
+
 
 
 }

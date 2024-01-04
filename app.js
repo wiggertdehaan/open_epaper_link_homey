@@ -1,6 +1,6 @@
 'use strict';
 
-const Tag = require('./tag');
+const TagManager = require('./tagManager');
 
 const Homey = require('homey');
 const axios = require('axios');
@@ -17,7 +17,7 @@ class MyApp extends Homey.App {
   async onInit() {
     this.log('MyApp has been initialized');
     
-    this.tag = new Tag(this);
+    this.tagManager = new TagManager(this);
     this.tagTypeCache = {};
     
     this.WebSocketReader();
@@ -77,6 +77,7 @@ WebSocketReader() {
         if (messageJSON.tags)
         {
           this.updateHomeyTags(messageJSON.tags);
+          this.tagManager.updateTags(messageJSON.tags);
         }
         if (messageJSON.sys)
         {
