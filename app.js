@@ -78,8 +78,9 @@ WebSocketReader() {
         // check if messageJSON starts with msg.tags
         if (messageJSON.tags)
         {
-          this.updateHomeyTags(messageJSON.tags);
-          this.tagManager.updateTags(messageJSON.tags);
+        //  this.updateHomeyTags(messageJSON.tags);
+          let drivers = this.homey.drivers.getDrivers();
+          this.tagManager.updateTags(messageJSON.tags, drivers);
         }
         if (messageJSON.sys)
         {
@@ -102,95 +103,6 @@ WebSocketReader() {
       this.log('WebSocket error:', error);
   });
 }
-
-updateHomeyTags(tags)
-{
-  this.log('updating Tags');
-  tags.forEach(tag => {
-    this.updateHomeyTag([tag]);
-  }); 
-}
-
-
-updateHomeyTag(tag)
-{
-  
-  this.log('updating Tag '+tag[0].mac);
-  let drivers = this.homey.drivers.getDrivers();
-  Object.keys(drivers).forEach((id) => {
-    let driver = drivers[id];
-    let devices = driver.getDevices();
-    
-    Object.keys(devices).forEach(async (id)=>{
-      let device = devices[id];
-      let { id: deviceId } = device.getData();
-      if (tag[0].mac==deviceId)
-      {
-        device.updateFromRouter(tag[0])
-        .then(() => {
-          //this.log('Device bijgewerkt');
-        })
-
-        device.setCapabilityValue("measure_temperature",tag[0].temperature)
-        .then(() => {
-          //this.log('Capability bijgewerkt');
-        })
-        .catch(error => {
-          this.log('Fout bij het bijwerken van capability:', error);
-        });
-
-        device.setCapabilityValue("measure_battery",((tag[0].batteryMv/1000)-2.20)*250)
-        .then(() => {
-          //this.log('Capability bijgewerkt');
-        })
-        .catch(error => {
-          this.log('Fout bij het bijwerken van capability:', error);
-        });
-
-
-        // set alarm_battery to true if && (batteryMv >= 2400 || batteryMv == 0 || batteryMv == 1337)) show = false;
-        if(tag[0].batteryMv <= 2400 || tag[0].batteryMv == 0 || tag[0].batteryMv == 1337)
-        {
-          device.setCapabilityValue("alarm_battery",true)
-          .then(() => {
-            //this.log('Capability bijgewerkt');
-          })
-          .catch(error => {
-            this.log('Fout bij het bijwerken van capability:', error);
-          }
-          );
-        }
-        else
-        {
-          device.setCapabilityValue("alarm_battery",false)
-          .then(() => {
-            //this.log('Capability bijgewerkt');
-            })
-          .catch(error => {
-            this.log('Fout bij het bijwerken van capability:', error);
-          }
-          );
-        }
-
-
-        let data = await this.getTagTypeData(tag[0].hwType);
-
-
-
-
-      }
-    });
-
-  });
-
-}
-
-
-
-
-
-
-
 
 
 
