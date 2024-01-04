@@ -14,7 +14,7 @@ class TagManager {
     {
         tags.forEach(tag => {
             //this.updateHomeyTag([tag]);
-            this.homey.log('updating Tag '+tag[0].mac);
+            this.homey.log('updating Tag '+tag.mac);
         }); 
     }
 
@@ -23,4 +23,4 @@ class TagManager {
 
 }
 
-module.exports = Tag;
+module.exports = TagManager;

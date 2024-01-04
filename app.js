@@ -1,6 +1,7 @@
 'use strict';
 
 const TagManager = require('./tagManager');
+const APManager = require('./apManager');
 
 const Homey = require('homey');
 const axios = require('axios');
@@ -18,6 +19,7 @@ class MyApp extends Homey.App {
     this.log('MyApp has been initialized');
     
     this.tagManager = new TagManager(this);
+    this.APManager = new APManager(this);
     this.tagTypeCache = {};
     
     this.WebSocketReader();
@@ -81,9 +83,8 @@ WebSocketReader() {
         }
         if (messageJSON.sys)
         {
-          this.updateHomeyRouter(messageJSON.sys);
+          this.APManager.updateAPs(messageJSON.sys);
         }
-        
 
         //this.log(messageJSON);
     } catch (error) {
@@ -101,12 +102,6 @@ WebSocketReader() {
       this.log('WebSocket error:', error);
   });
 }
-
-updateHomeyRouter(sys)
-{
-  this.log('updating Router');
-}
-
 
 updateHomeyTags(tags)
 {
