@@ -44,7 +44,7 @@ class TagManager {
     updateDeviceCapability(device, capability, value) {
         device.setCapabilityValue(capability, value)
             .then(() => {
-                // Capability updated
+                device.setCapabilityValue(capability,value);
             })
             .catch(error => {
                 this.homey.log('Error updating capability:', error);
@@ -97,23 +97,37 @@ class TagManager {
                                 image.bitmap.data[pixelIndex * 4 + 3] = 255;
                             }
                         }
-                        this.homey.log('image.bitmap.data.length:' + image.bitmap.data.length);
-                        try {
-                            const buffer = await image.getBufferAsync(Jimp.MIME_PNG);
-                            const stream = new Readable();
-                            stream.push(buffer);
-                            stream.push(null);
-                
-                            await homeyImage.setStream(() => stream);
-                            this.homey.log('Image setStream successful');
-                            await device.setCameraImage(tag.mac, tag.mac, homeyImage);
-                        } catch (error) {
-                            this.homey.log('Error processing image:', error);
-                        }
-                    }
                         
 
+                    }
+                    this.homey.log('image.bitmap.data.length:' + image.bitmap.data.length);
+                    try {
+                        const buffer = await image.getBufferAsync(Jimp.MIME_PNG);
+                        const stream = new Readable();
+                        stream.push(buffer);
+                        stream.push(null);
+            
+                        image.writeAsync('/tmp/scr_'+tag.mac+'.png')
+                        .catch(error => {
+                            this.homey.log('Error writing image:', error);
+                        });
 
+
+                        homeyImage.setPath('/tmp/scr_'+tag.mac+'.png');
+                        device.setCameraImage(tag.mac, tag.mac, homeyImage)
+                            .then(() => {
+                                this.homey.log('Image updated for tag:', tag.mac);
+                            }
+                            )
+                            .catch(error => {
+                                this.homey.log('Error updating image:', error);
+                            }
+                            );
+
+                    } catch (error) {
+                        this.homey.log('Error processing image:', error);
+                    }    
+                 
 
                     }
                 })
@@ -121,6 +135,24 @@ class TagManager {
                 console.error('Error while downloading raw data:', error);
                 // Handle the error here
             });
+    }
+
+    streamFunction(stream) {
+        this.console.log('streamFunction');
+        image.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+            if (err) {
+                this.homey.log('Error getting buffer:', err);
+            } else {
+                const readableStream = new Readable({
+                    read() {
+                        this.push(buffer);
+                        this.push(null); // Signals the end of the stream
+                    }
+                });
+                this.homey.log('streamFunction');
+                readableStream.pipe(stream);
+            }
+        });
     }
 
     async downloadRawImage(tag) {
