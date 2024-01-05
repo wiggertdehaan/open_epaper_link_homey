@@ -162,7 +162,7 @@ class TagManager {
         this.homey.log('downloadRawImage');
         let cachetag = tag.hash;
         if (tag.hash == '00000000000000000000000000000000') cachetag = Math.random();
-        const url = 'http://192.168.0.16/current/' + tag.mac + '.raw?' + cachetag;
+        const url = 'http://'+this.homey.settings.get('gateway')+'/current/' + tag.mac + '.raw?' + cachetag;
         this.homey.log('Fetching raw image from gateway:', url);
         try {
             const response = await axios.get(url, { responseType: 'arraybuffer' });
