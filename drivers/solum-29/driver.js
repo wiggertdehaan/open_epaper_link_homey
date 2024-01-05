@@ -3,6 +3,7 @@
 const { Driver } = require('homey');
 const axios = require('axios');
 
+
 class MyDriver extends Driver {
 
   /**
@@ -22,7 +23,7 @@ class MyDriver extends Driver {
       return;
       }
       // Voer de GET-aanvraag uit
-      const response = await axios.get(gateway+'/get_db'); 
+      const response = await axios.get('http://'+gateway+'/get_db'); 
   
 
       if (response.data && response.data.tags) {
@@ -45,7 +46,7 @@ class MyDriver extends Driver {
   
     // Formatteer de overgebleven objecten
     let formattedDevices = filteredDevices.map(device => ({
-        name: `${device.alias} (${device.mac})`,
+        name: `${device.alias}`,
         data: {
             id: device.mac,
         }

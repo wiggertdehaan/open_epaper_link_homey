@@ -7,8 +7,8 @@ class TagManager {
     constructor(homey,gateway)
     {
         this.homey = homey; 
-        this.homey.log('TagManager constructor');
         this.gateway = gateway;
+        this.homey.log('TagManager constructor gateway: '+this.gateway);
     }
 
     // update tags
@@ -31,7 +31,7 @@ class TagManager {
                 if (tag.mac == deviceId) {
                     this.updateDeviceCapability(device, "measure_temperature", tag.temperature);
                     this.updateDeviceCapability(device, "measure_battery", ((tag.batteryMv / 1000) - 2.20) * 250);
-
+                    this.updateDeviceCapability(device, "measure_voltage", (tag.batteryMv / 1000)) ;
                     let alarm_battery = tag.batteryMv <= 2400 || tag.batteryMv == 0 || tag.batteryMv == 1337;
                     this.updateDeviceCapability(device, "alarm_battery", alarm_battery);
 
@@ -102,14 +102,7 @@ class TagManager {
                     }
                     try {
                         const squareImage = this.createSquareImage(image);
-                        squareImage.write('/tmp/scr_'+tag.mac+'.png'); // Sla de vierkante afbeelding op
-
-
-                        // image.writeAsync('/tmp/scr_'+tag.mac+'.png')
-                        // .catch(error => {
-                        //     this.homey.log('Error writing image:', error);
-                        // });
-
+                        squareImage.write('/tmp/scr_'+tag.mac+'.png'); 
 
                         homeyImage.setPath('/tmp/scr_'+tag.mac+'.png');
                         device.setCameraImage(tag.mac, tag.mac, homeyImage)
@@ -147,7 +140,7 @@ class TagManager {
     
         const squareSize = Math.max(width, height);
     
-        const squareImage = new Jimp(squareSize, squareSize, '#000000');
+        const squareImage = new Jimp(squareSize, squareSize, 0x00000000);
     
         const x = (squareSize - width) / 2;
         const y = (squareSize - height) / 2;

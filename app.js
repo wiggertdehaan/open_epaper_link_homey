@@ -33,7 +33,9 @@ class MyApp extends Homey.App {
   async fetchTags() {
     try {
 
+      
       const gateway = this.homey.settings.get('gateway');
+      this.log('Fetching tags from gateway'+gateway);
       if (!gateway) {
       this.log('gateway has not been configured.');
       return;
