@@ -176,7 +176,20 @@
           "template": "add_devices"
         }
       ],
-      "id": "solum-154"
+      "id": "solum-154",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -219,7 +232,20 @@
           "template": "add_devices"
         }
       ],
-      "id": "solum-29"
+      "id": "solum-29",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
     }
   ]
 }

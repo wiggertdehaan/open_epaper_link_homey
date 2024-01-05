@@ -36,6 +36,11 @@ class TagManager {
                     this.updateDeviceCapability(device, "alarm_battery", alarm_battery);
 
                     this.UpdateTagImage(device, tag, tagtype, homeyImage);
+
+                    await device.setSettings({
+                        MACAddress: tag.mac,
+                      });
+
                 }
             });
         });
