@@ -138,26 +138,20 @@ class TagManager {
     createSquareImage(originalImage) {
         let imageToProcess = originalImage;
 
-        // Controleer of de hoogte groter is dan de breedte
         if (originalImage.bitmap.height > originalImage.bitmap.width) {
-            // Roteer de afbeelding 90 graden
             imageToProcess = originalImage.rotate(-90);
         }
     
         const width = imageToProcess.bitmap.width;
         const height = imageToProcess.bitmap.height;
     
-        // Bepaal de grootte van de nieuwe afbeelding (het grootste van breedte of hoogte)
         const squareSize = Math.max(width, height);
     
-        // Maak een nieuwe lege (standaard zwarte) afbeelding met de grootte van squareSize
         const squareImage = new Jimp(squareSize, squareSize, '#000000');
     
-        // Bereken de positie om de oorspronkelijke (of geroteerde) afbeelding te centreren
         const x = (squareSize - width) / 2;
         const y = (squareSize - height) / 2;
     
-        // Voeg de oorspronkelijke (of geroteerde) afbeelding toe aan de nieuwe afbeelding
         squareImage.composite(imageToProcess, x, y);
     
         return squareImage;
