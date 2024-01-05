@@ -3,12 +3,12 @@ const axios = require('axios');
 const { Readable } = require('stream');
 
 class TagManager {
-
     // constructor
-    constructor(homey)
+    constructor(homey,gateway)
     {
         this.homey = homey; 
-        this.homey.log('TagManager constructor');     
+        this.homey.log('TagManager constructor');
+        this.gateway = gateway;
     }
 
     // update tags
@@ -162,7 +162,7 @@ class TagManager {
         this.homey.log('downloadRawImage');
         let cachetag = tag.hash;
         if (tag.hash == '00000000000000000000000000000000') cachetag = Math.random();
-        const url = 'http://'+this.homey.settings.get('gateway')+'/current/' + tag.mac + '.raw?' + cachetag;
+        const url = 'http://'+this.gateway+'/current/' + tag.mac + '.raw?' + cachetag;
         this.homey.log('Fetching raw image from gateway:', url);
         try {
             const response = await axios.get(url, { responseType: 'arraybuffer' });

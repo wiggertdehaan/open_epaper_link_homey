@@ -18,7 +18,7 @@ class MyApp extends Homey.App {
   async onInit() {
     this.log('MyApp has been initialized');
     
-    this.tagManager = new TagManager(this);
+    this.tagManager = new TagManager(this, this.homey.settings.get('gateway'));
     this.APManager = new APManager(this);
     this.tagTypeCache = {};
     
@@ -27,13 +27,6 @@ class MyApp extends Homey.App {
     const card = this.homey.flow.getActionCard('writemessage');
     const cardShowCurrentDate = this.homey.flow.getActionCard('show-current-date');
     const cardShowCurrentWeather = this.homey.flow.getActionCard('show-current-weather');
-  }
-
-
-
-   extractName(str) {
-    let parts = str.split(' (');
-    return parts[0].trim(); 
   }
 
 
