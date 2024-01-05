@@ -69,7 +69,7 @@ WebSocketReader() {
       this.log('websocket connected');
   });
 
-  socket.on('message', (data) => {
+  socket.on('message', async (data) => {
     const messageString = data.toString();
 
     // Probeer het bericht te parsen als JSON
@@ -78,9 +78,11 @@ WebSocketReader() {
         // check if messageJSON starts with msg.tags
         if (messageJSON.tags)
         {
-        //  this.updateHomeyTags(messageJSON.tags);
+          // call getTagTypeData async
+          let tagType = await this.getTagTypeData(messageJSON.tags[0].hwType);
+          let homeyImage = await this.homey.images.createImage();
           let drivers = this.homey.drivers.getDrivers();
-          this.tagManager.updateTags(messageJSON.tags, drivers);
+          this.tagManager.updateTags(messageJSON.tags, drivers, tagType,homeyImage);
         }
         if (messageJSON.sys)
         {
