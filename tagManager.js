@@ -100,17 +100,15 @@ class TagManager {
                         
 
                     }
-                    this.homey.log('image.bitmap.data.length:' + image.bitmap.data.length);
                     try {
-                        const buffer = await image.getBufferAsync(Jimp.MIME_PNG);
-                        const stream = new Readable();
-                        stream.push(buffer);
-                        stream.push(null);
-            
-                        image.writeAsync('/tmp/scr_'+tag.mac+'.png')
-                        .catch(error => {
-                            this.homey.log('Error writing image:', error);
-                        });
+                        const squareImage = this.createSquareImage(image);
+                        squareImage.write('/tmp/scr_'+tag.mac+'.png'); // Sla de vierkante afbeelding op
+
+
+                        // image.writeAsync('/tmp/scr_'+tag.mac+'.png')
+                        // .catch(error => {
+                        //     this.homey.log('Error writing image:', error);
+                        // });
 
 
                         homeyImage.setPath('/tmp/scr_'+tag.mac+'.png');
@@ -137,23 +135,34 @@ class TagManager {
             });
     }
 
-    streamFunction(stream) {
-        this.console.log('streamFunction');
-        image.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
-            if (err) {
-                this.homey.log('Error getting buffer:', err);
-            } else {
-                const readableStream = new Readable({
-                    read() {
-                        this.push(buffer);
-                        this.push(null); // Signals the end of the stream
-                    }
-                });
-                this.homey.log('streamFunction');
-                readableStream.pipe(stream);
-            }
-        });
+    createSquareImage(originalImage) {
+        let imageToProcess = originalImage;
+
+        // Controleer of de hoogte groter is dan de breedte
+        if (originalImage.bitmap.height > originalImage.bitmap.width) {
+            // Roteer de afbeelding 90 graden
+            imageToProcess = originalImage.rotate(-90);
+        }
+    
+        const width = imageToProcess.bitmap.width;
+        const height = imageToProcess.bitmap.height;
+    
+        // Bepaal de grootte van de nieuwe afbeelding (het grootste van breedte of hoogte)
+        const squareSize = Math.max(width, height);
+    
+        // Maak een nieuwe lege (standaard zwarte) afbeelding met de grootte van squareSize
+        const squareImage = new Jimp(squareSize, squareSize, '#000000');
+    
+        // Bereken de positie om de oorspronkelijke (of geroteerde) afbeelding te centreren
+        const x = (squareSize - width) / 2;
+        const y = (squareSize - height) / 2;
+    
+        // Voeg de oorspronkelijke (of geroteerde) afbeelding toe aan de nieuwe afbeelding
+        squareImage.composite(imageToProcess, x, y);
+    
+        return squareImage;
     }
+
 
     async downloadRawImage(tag) {
         this.homey.log('downloadRawImage');
