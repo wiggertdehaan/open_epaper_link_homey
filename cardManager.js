@@ -247,6 +247,74 @@ class CardManager {
         }
 
 
+        // {
+        //     "id": 8,
+        //     "name": "Weather forecast",
+        //     "desc": "Weather forecast for the next five days. Weather data by Open-Meteo.com",
+        //     "hwtype": [
+        //       1,
+        //       2,
+        //       5,
+        //       49,
+        //       51,
+        //       17
+        //     ],
+        //     "param": [
+        //       {
+        //         "key": "location",
+        //         "name": "Location",
+        //         "desc": "Name of the city. This is used to lookup the lat/long data, and to display as the title",
+        //         "type": "text"
+        //       },
+        //       {
+        //         "key": "#lat",
+        //         "name": "Lat",
+        //         "desc": "Latitude (set automatic when generating image)",
+        //         "type": "ro"
+        //       },
+        //       {
+        //         "key": "#lon",
+        //         "name": "Lon",
+        //         "desc": "Longitude (set automatic when generating image)",
+        //         "type": "ro"
+        //       },
+        //       {
+        //         "key": "units",
+        //         "name": "Units",
+        //         "desc": "Celcius or Fahrenheit?",
+        //         "type": "select",
+        //         "options": {
+        //           "0": "-Celcius / Beaufort / millimeters",
+        //           "1": "Fahrenheit / mph / millimeters"
+        //         }
+        //       }
+        //     ]
+        //   },
+
+
+        async cardShowWeatherForecast(args, state){
+            
+            this.homey.log('CardManager: cardShowWeatherForecast');
+            this.homey.log('Parameters: '+args.Location+' '+args.Units);
+            let deviceData = args.Id.getData();
+            let deviceId = deviceData.id;
+    
+            let tags = await this.fetchTag(deviceId);
+            const FormData = require('form-data');
+            let data = new FormData();
+            data.append('mac', deviceId);
+            data.append('alias', tags[0].alias);
+            data.append('contentmode', '8');
+            data.append('rotate', '0');
+            data.append('lut', '0');
+            data.append('invert', '0');
+            data.append('modecfgjson', '{"location":"'+args.Location+'","units":"'+args.Units+'"}');
+            this.homey.log(' before SaveConfig');
+            this.SaveConfig(data);
+    
+        }
+
+
 
 
 
