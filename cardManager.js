@@ -240,9 +240,7 @@ class CardManager {
             data.append('rotate', '0');
             data.append('lut', '0');
             data.append('invert', '0');
-            data.append('modecfgjson', '{}');
-            data.append('location', args.Location);
-            data.append('units', args.Units);
+            data.append('modecfgjson', '{"location":"'+args.Location+'","units":"'+args.Units+'"}');
             this.homey.log(' before SaveConfig');
             this.SaveConfig(data);
     
@@ -255,6 +253,8 @@ class CardManager {
 
     async SaveConfig(data){
         const axios = require('axios');
+
+        //this.homey.log('CardManager: SaveConfig' + JSON.stringify(data));
 
         let config = {
         method: 'post',
