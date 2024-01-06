@@ -1,0 +1,41 @@
+{
+  "title": {
+    "en": "RSS Feed"
+  },
+  "hint": {
+    "en": "Gets an RSS feed, and display the first few lines of it"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "placeholder": {
+        "en": "The tag to show the feed on"
+      }
+    },
+    {
+      "type": "text",
+      "name": "Title",
+      "placeholder": {
+        "en": "Displayed title"
+      }
+    },
+    {
+      "type": "text",
+      "name": "URL",
+      "placeholder": {
+        "en": "Full URL of the RSS feed"
+      }
+    },
+    {
+      "type": "number",
+      "name": "Interval",
+      "placeholder": {
+        "en": "How often (in minutes) the feed is being refreshed"
+      },
+      "min": 5,
+      "max": 60,
+      "step": 5
+    }
+  ]
+}

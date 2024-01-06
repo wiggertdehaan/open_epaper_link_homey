@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en": "QR Code"
+  },
+  "hint": {
+    "en": "Displays a full-screen QR Code"
+  },
+  "args": [
+    {
+      "type": "text",
+      "name": "Title4",
+      "placeholder": {
+        "en": "Displayed title"
+      }
+    },
+    {
+      "type": "text",
+      "name": "QRContent",
+      "placeholder": {
+        "en": "Any content that can be coded into a QR Code"
+      }
+    }
+  ]
+}

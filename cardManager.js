@@ -365,6 +365,110 @@ class CardManager {
         }
 
 
+    // {
+    //     "id": 9,
+    //     "name": "RSS feed",
+    //     "desc": "Gets an RSS feed, and display the first few lines of it",
+    //     "hwtype": [
+    //       1,
+    //       2,
+    //       5,
+    //       49,
+    //       51,
+    //       17
+    //     ],
+    //     "param": [
+    //       {
+    //         "key": "title",
+    //         "name": "Title",
+    //         "desc": "Displayed title",
+    //         "type": "text"
+    //       },
+    //       {
+    //         "key": "url",
+    //         "name": "URL",
+    //         "desc": "Full URL of the RSS feed",
+    //         "type": "text"
+    //       },
+    //       {
+    //         "key": "interval",
+    //         "name": "Interval",
+    //         "desc": "How often (in minutes) the feed is being refreshed",
+    //         "type": "int"
+    //       }
+    //     ]
+    //   },
+    // too many RSS feeds makes the AP unstable. Diabling for now
+    async cardShowRSSFeed(args, state){
+
+        this.homey.log('CardManager: cardShowRSSFeed');
+        this.homey.log('Parameters: '+args.Title+' '+args.URL+' '+args.Interval);
+        let deviceData = args.Id.getData();
+        let deviceId = deviceData.id;
+
+        let tags = await this.fetchTag(deviceId);
+        const FormData = require('form-data');
+        let data = new FormData();
+        data.append('mac', deviceId);
+        data.append('alias', tags[0].alias);
+        data.append('contentmode', '9');
+        data.append('rotate', '0');
+        data.append('lut', '0');
+        data.append('invert', '0');
+        data.append('modecfgjson', '{"title":"'+args.Title+'","url":"'+args.URL+'","interval":"'+args.Interval+'"}');
+        this.homey.log(' before SaveConfig');
+        this.SaveConfig(data);
+    }
+
+    // {
+    //     "id": 10,
+    //     "name": "QR code",
+    //     "desc": "Displayes a full screen QR code",
+    //     "hwtype": [
+    //       0,
+    //       1,
+    //       2,
+    //       5,
+    //       17,
+    //       49,
+    //       51
+    //     ],
+    //     "param": [
+    //       {
+    //         "key": "title",
+    //         "name": "Title",
+    //         "desc": "Displayed title",
+    //         "type": "text"
+    //       },
+    //       {
+    //         "key": "qr-content",
+    //         "name": "QR content",
+    //         "desc": "Any content that can be coded into a QR code",
+    //         "type": "text"
+    //       }
+    //     ]
+    //   },
+    
+    async cardShowQRCode(args, state){
+
+        this.homey.log('CardManager: cardShowRSSFeed');
+        this.homey.log('Parameters: '+args.Title+' '+args.QRContent);
+        let deviceData = args.Id.getData();
+        let deviceId = deviceData.id;
+
+        let tags = await this.fetchTag(deviceId);
+        const FormData = require('form-data');
+        let data = new FormData();
+        data.append('mac', deviceId);
+        data.append('alias', tags[0].alias);
+        data.append('contentmode', '10');
+        data.append('rotate', '0');
+        data.append('lut', '0');
+        data.append('invert', '0');
+        data.append('modecfgjson', '{"title":"'+args.Title+'","qr-content":"'+args.QRContent+'"}');
+        this.homey.log(' before SaveConfig');
+        this.SaveConfig(data);
+    }
 
 
 
