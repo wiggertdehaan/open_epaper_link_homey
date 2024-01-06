@@ -42,6 +42,11 @@
     "name": "Wiggert De haan",
     "email": "wiggert@wiggert.nl"
   },
+  "tags": {
+    "en": [
+      "e-paper"
+    ]
+  },
   "flow": {
     "actions": [
       {
@@ -364,31 +369,6 @@
           }
         ],
         "id": "show-weather-forecast"
-      },
-      {
-        "title": {
-          "en": "WriteMessage"
-        },
-        "hint": {
-          "en": "With this Flow Card you can write a simple message to a EPaper Device"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "Id",
-            "placeholder": {
-              "en": "0000000000000000"
-            }
-          },
-          {
-            "type": "text",
-            "name": "Message",
-            "placeholder": {
-              "en": "Hello World"
-            }
-          }
-        ],
-        "id": "writemessage"
       }
     ]
   },

@@ -26,7 +26,6 @@ class MyApp extends Homey.App {
     
     this.WebSocketReader();
 
-    const card = this.homey.flow.getActionCard('writemessage');
     const cardShowCurrentDate = this.homey.flow.getActionCard('show-current-date');
     const cardShowCountDays = this.homey.flow.getActionCard('show-count-days');
     const cardShowCountHours = this.homey.flow.getActionCard('show-count-hours');

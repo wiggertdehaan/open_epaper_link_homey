@@ -40,5 +40,10 @@
   "author": {
     "name": "Wiggert De haan",
     "email": "wiggert@wiggert.nl"
+  },
+  "tags": {
+    "en": [
+      "e-paper"
+    ]
   }
 }
