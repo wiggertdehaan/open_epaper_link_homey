@@ -2,6 +2,9 @@
   "title": {
     "en": "Image"
   },
+  "titleFormatted": { 
+    "en": "Fetches an image from [[URL]] every [[Interval]] minutes and shows it on device [[Id]]" 
+  },
   "hint": {
     "en": "Gets an external image and displays it"
   },

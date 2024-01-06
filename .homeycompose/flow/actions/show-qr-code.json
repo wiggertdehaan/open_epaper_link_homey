@@ -2,6 +2,9 @@
   "title": {
     "en": "QR Code"
   },
+  "titleFormatted": { 
+    "en": "Shows a QR code with value [[QRContent]] and title [[Title]] on device [[Id]]" 
+  },
   "hint": {
     "en": "Displays a full-screen QR Code"
   },
