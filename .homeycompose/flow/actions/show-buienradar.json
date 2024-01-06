@@ -1,0 +1,24 @@
+{
+  "title": {
+    "en": "Buienradar"
+  },
+  "hint": {
+    "en": "Dutch rain predictions for the next two hours. Only works for locations in the Netherlands and Belgium."
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "placeholder": {
+        "en": "0000000000000000"
+      }
+    },
+    {
+      "type": "text",
+      "name": "Location",
+      "placeholder": {
+        "en": "Show the current weather in this city"
+      }
+    }
+  ]
+}
