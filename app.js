@@ -28,12 +28,24 @@ class MyApp extends Homey.App {
 
     const card = this.homey.flow.getActionCard('writemessage');
     const cardShowCurrentDate = this.homey.flow.getActionCard('show-current-date');
+    const cardShowCountDays = this.homey.flow.getActionCard('show-count-days');
+    const cardShowCountHours = this.homey.flow.getActionCard('show-count-hours');
+
     const cardShowCurrentWeather = this.homey.flow.getActionCard('show-current-weather');
 
 
     cardShowCurrentDate.registerRunListener(async (args, state)=>{
-      this.cardManager.cardShowCurrentDate(args, state,);
+      this.cardManager.cardShowCurrentDate(args, state);
     })
+
+    cardShowCountDays.registerRunListener(async (args, state)=>{
+      this.cardManager.cardShowCountDays(args, state);
+    })
+
+    cardShowCountHours.registerRunListener(async (args, state)=>{
+      this.cardManager.cardShowCountHours(args, state);
+    })
+
 
   }
 

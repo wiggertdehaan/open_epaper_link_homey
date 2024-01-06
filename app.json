@@ -46,6 +46,82 @@
     "actions": [
       {
         "title": {
+          "en": "Count Days"
+        },
+        "hint": {
+          "en": "Counts days, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "placeholder": {
+              "en": "Select the e-tag"
+            }
+          },
+          {
+            "type": "number",
+            "name": "Counter",
+            "placeholder": {
+              "en": "Number of days"
+            },
+            "min": 1,
+            "max": 1000,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "Threshold",
+            "placeholder": {
+              "en": "Threshold to show the number in red"
+            },
+            "min": 1,
+            "max": 999,
+            "step": 1
+          }
+        ],
+        "id": "show-count-days"
+      },
+      {
+        "title": {
+          "en": "Count Hours"
+        },
+        "hint": {
+          "en": "Counts hours, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "placeholder": {
+              "en": "Select the e-tag"
+            }
+          },
+          {
+            "type": "number",
+            "name": "Counter",
+            "placeholder": {
+              "en": "Number of hours"
+            },
+            "min": 1,
+            "max": 240,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "Threshold",
+            "placeholder": {
+              "en": "Threshold to show the number in red"
+            },
+            "min": 1,
+            "max": 240,
+            "step": 1
+          }
+        ],
+        "id": "show-count-hours"
+      },
+      {
+        "title": {
           "en": "Show Current Date"
         },
         "hint": {
@@ -56,7 +132,7 @@
             "type": "device",
             "name": "Id",
             "placeholder": {
-              "en": "0000000000000000"
+              "en": "Select the e-tag"
             }
           }
         ],

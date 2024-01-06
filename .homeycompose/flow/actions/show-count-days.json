@@ -1,0 +1,37 @@
+{
+  "title": {
+    "en": "Count Days"
+  },
+  "hint": {
+    "en": "Counts days, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "placeholder": {
+        "en": "Select the e-tag"
+      }
+    },    
+    {
+      "type": "number",
+      "name": "Counter",
+      "placeholder": {
+        "en": "Number of days"
+      },
+      "min": 1,
+      "max": 1000,
+      "step": 1
+    },
+    {
+      "type": "number",
+      "name": "Threshold",
+      "placeholder": {
+        "en": "Threshold to show the number in red"
+      },
+      "min": 1,
+      "max": 999,
+      "step": 1
+    }
+  ]
+}

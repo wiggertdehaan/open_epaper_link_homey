@@ -10,7 +10,7 @@
       "type": "device",
       "name": "Id",
       "placeholder": {
-        "en": "0000000000000000"
+        "en": "Select the e-tag"
       }
     }
   ]
