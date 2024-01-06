@@ -2,6 +2,9 @@
   "title": {
     "en": "Count Hours"
   },
+  "titleFormatted": { 
+    "en": "Counts hours, starting with [[Counter]] with a treshold on [[Threshold]] on device [[Id]]" 
+  },
   "hint": {
     "en": "Counts hours, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
   },

@@ -2,6 +2,9 @@
   "title": {
     "en": "Show Current Date"
   },
+  "titleFormatted": { 
+    "en": "Shows current date on device [[Id]]" 
+  }, 
   "hint": {
     "en": "Shows the current date on your e-tag"
   },

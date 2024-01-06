@@ -2,6 +2,9 @@
   "title": {
     "en": "Show Current Weather"
   },
+  "titleFormatted": { 
+    "en": "Counts current weather in [[Location]] in [[Units]] on device [[Id]]" 
+  }, 
   "hint": {
     "en": "Show the current weather in a certain place"
   },
