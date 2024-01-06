@@ -178,6 +178,81 @@ class CardManager {
 
 
 
+    // {
+    //     "id": 4,
+    //     "name": "Current weather",
+    //     "desc": "Current weather. Weather data by Open-Meteo.com",
+    //     "hwtype": [
+    //       0,
+    //       1,
+    //       2,
+    //       5,
+    //       17,
+    //       49,
+    //       51,
+    //       240
+    //     ],
+    //     "param": [
+    //       {
+    //         "key": "location",
+    //         "name": "Location",
+    //         "desc": "Name of the city. This is used to lookup the lat/long data, and to display as the title",
+    //         "type": "text"
+    //       },
+    //       {
+    //         "key": "#lat",
+    //         "name": "Lat",
+    //         "desc": "Latitude (set automatic when generating image)",
+    //         "type": "ro"
+    //       },
+    //       {
+    //         "key": "#lon",
+    //         "name": "Lon",
+    //         "desc": "Longitude (set automatic when generating image)",
+    //         "type": "ro"
+    //       },
+    //       {
+    //         "key": "units",
+    //         "name": "Units",
+    //         "desc": "Celcius or Fahrenheit?",
+    //         "type": "select",
+    //         "options": {
+    //           "0": "-Celcius / Beaufort / millimeters",
+    //           "1": "Fahrenheit / mph / millimeters"
+    //         }
+    //       }
+    //     ]
+    //   },
+
+    async cardShowCurrentWeather(args, state){
+            
+            this.homey.log('CardManager: cardShowCurrentWeather');
+            this.homey.log('Parameters: '+args.Location+' '+args.Units);
+            let deviceData = args.Id.getData();
+            let deviceId = deviceData.id;
+    
+            let tags = await this.fetchTag(deviceId);
+            const FormData = require('form-data');
+            let data = new FormData();
+            data.append('mac', deviceId);
+            data.append('alias', tags[0].alias);
+            data.append('contentmode', '4');
+            data.append('rotate', '0');
+            data.append('lut', '0');
+            data.append('invert', '0');
+            data.append('modecfgjson', '{}');
+            data.append('location', args.Location);
+            data.append('units', args.Units);
+            this.homey.log(' before SaveConfig');
+            this.SaveConfig(data);
+    
+        }
+
+
+
+
+
+
     async SaveConfig(data){
         const axios = require('axios');
 

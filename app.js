@@ -30,7 +30,6 @@ class MyApp extends Homey.App {
     const cardShowCurrentDate = this.homey.flow.getActionCard('show-current-date');
     const cardShowCountDays = this.homey.flow.getActionCard('show-count-days');
     const cardShowCountHours = this.homey.flow.getActionCard('show-count-hours');
-
     const cardShowCurrentWeather = this.homey.flow.getActionCard('show-current-weather');
 
 
@@ -46,6 +45,9 @@ class MyApp extends Homey.App {
       this.cardManager.cardShowCountHours(args, state);
     })
 
+    cardShowCurrentWeather.registerRunListener(async (args, state)=>{
+      this.cardManager.cardShowCurrentWeather(args, state);
+    })
 
   }
 
