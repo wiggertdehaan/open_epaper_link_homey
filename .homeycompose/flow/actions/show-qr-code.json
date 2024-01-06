@@ -7,8 +7,15 @@
   },
   "args": [
     {
+      "type": "device",
+      "name": "Id",
+      "placeholder": {
+        "en": "The tag to show the feed on"
+      }
+    },
+    {
       "type": "text",
-      "name": "Title4",
+      "name": "Title",
       "placeholder": {
         "en": "Displayed title"
       }

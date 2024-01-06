@@ -211,6 +211,38 @@
       },
       {
         "title": {
+          "en": "QR Code"
+        },
+        "hint": {
+          "en": "Displays a full-screen QR Code"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "placeholder": {
+              "en": "The tag to show the feed on"
+            }
+          },
+          {
+            "type": "text",
+            "name": "Title",
+            "placeholder": {
+              "en": "Displayed title"
+            }
+          },
+          {
+            "type": "text",
+            "name": "QRContent",
+            "placeholder": {
+              "en": "Any content that can be coded into a QR Code"
+            }
+          }
+        ],
+        "id": "show-qr-code"
+      },
+      {
+        "title": {
           "en": "RSS Feed"
         },
         "hint": {
