@@ -2,6 +2,7 @@
 
 const TagManager = require('./tagManager');
 const APManager = require('./apManager');
+const CardManager = require('./cardManager');
 
 const Homey = require('homey');
 const axios = require('axios');
@@ -19,7 +20,8 @@ class MyApp extends Homey.App {
     this.log('MyApp has been initialized');
     
     this.tagManager = new TagManager(this, this.homey.settings.get('gateway'));
-    this.APManager = new APManager(this);
+    this.APManager = new APManager(this,this.homey.settings.get('gateway'));
+    this.cardManager = new CardManager(this,this.homey.settings.get('gateway'));
     this.tagTypeCache = {};
     
     this.WebSocketReader();
@@ -27,6 +29,12 @@ class MyApp extends Homey.App {
     const card = this.homey.flow.getActionCard('writemessage');
     const cardShowCurrentDate = this.homey.flow.getActionCard('show-current-date');
     const cardShowCurrentWeather = this.homey.flow.getActionCard('show-current-weather');
+
+
+    cardShowCurrentDate.registerRunListener(async (args, state)=>{
+      this.cardManager.cardShowCurrentDate(args, state,);
+    })
+
   }
 
 
@@ -102,8 +110,7 @@ WebSocketReader() {
 }
 
 
-
-
+/**** CARDs */
 
 
 
