@@ -1,14 +1,12 @@
-<?xml version="1.0"?>
-<svg width="80" height="50" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
- <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
- <title>OpenEpaperLinkAP</title>
- <g class="layer">
-  <title>Layer 1</title>
-  <rect fill="#000000" height="48" id="svg_1" rx="2" ry="2" stroke="#000000" width="78" x="1" y="1"/>
-  <circle cx="15" cy="7" fill="#ff7f00" id="svg_2" r="2" stroke="#000000"/>
-  <circle cx="15" cy="15" fill="#ff7f00" id="svg_3" r="2" stroke="#000000" transform="matrix(1 0 0 1 0 0)"/>
-  <circle cx="15" cy="23" fill="#ff7f00" id="svg_4" r="2" stroke="#000000"/>
-  <rect fill="#3f3f3f" height="18" id="svg_5" stroke="#000000" width="33" x="38" y="7"/>
-  <circle cx="40" cy="30.75" fill="#00ff00" id="svg_6" r="2" stroke="#000000"/>
- </g>
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120" version="1.1">
+  <style>
+    .cls-1{fill:#fff;}
+    .cls-2{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px;}
+</style>
+  <rect x="1" y="1" width="198" height="118" rx="10" ry="10" class_="cls-2"/>
+  <rect x="10" y="15" width="180" height="20" class_="cls-1"/>
+  <rect x="10" y="95" width="180" height="20" class_="cls-1"/>
+  <text x="20" y="30" style="fill:black;font-size:12px;">HEADER</text>
+  <text x="20" y="110" style="fill:black;font-size:12px;">FOOTER</text>
 </svg>
