@@ -470,6 +470,61 @@ class CardManager {
         this.SaveConfig(data);
     }
 
+    // {
+    //     "id": 7,
+    //     "name": "Image URL",
+    //     "desc": "Gets an external image and displays it",
+    //     "hwtype": [
+    //       0,
+    //       1,
+    //       2,
+    //       5,
+    //       49,
+    //       51,
+    //       17
+    //     ],
+    //     "param": [
+    //       {
+    //         "key": "url",
+    //         "name": "URL",
+    //         "desc": "Full URL of the image. Image should be in jpeg format (non-progressive), and with exactly the right resolution for the screen (eg 128x296 or 152x152). Will be auto-rotated. Colors will be dithered",
+    //         "type": "text"
+    //       },
+    //       {
+    //         "key": "interval",
+    //         "name": "Interval",
+    //         "desc": "How often (in minutes) the image is being fetched. Minimum is 3 minutes.",
+    //         "type": "int"
+    //       }
+    //     ]
+    //   },
+
+    async cardShowImage(args, state){
+
+        this.homey.log('CardManager: cardShowImage');
+        this.homey.log('Parameters: '+args.URL+' '+args.Interval);
+        let deviceData = args.Id.getData();
+        let deviceId = deviceData.id;
+
+        let tags = await this.fetchTag(deviceId);
+        const FormData = require('form-data');
+        let data = new FormData();
+        data.append('mac', deviceId);
+        data.append('alias', tags[0].alias);
+        data.append('contentmode', '7');
+        data.append('rotate', '0');
+        data.append('lut', '0');
+        data.append('invert', '0');
+        data.append('modecfgjson', '{"url":"'+args.URL+'","Interval":"'+args.Interval+'"}');
+        this.homey.log(' before SaveConfig');
+        this.SaveConfig(data);
+    }
+
+
+
+
+
+
 
 
     async SaveConfig(data){

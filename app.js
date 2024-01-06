@@ -35,6 +35,7 @@ class MyApp extends Homey.App {
     const cardShowBuienradar = this.homey.flow.getActionCard('show-buienradar');
     //const cardShowRSSFeed = this.homey.flow.getActionCard('show-rss-feed');
     const cardShowQRCode = this.homey.flow.getActionCard('show-qr-code');
+    const cardShowImage = this.homey.flow.getActionCard('show-image');
 
 
     cardShowCurrentDate.registerRunListener(async (args, state)=>{
@@ -69,6 +70,11 @@ class MyApp extends Homey.App {
     cardShowQRCode.registerRunListener(async (args, state)=>{
       this.cardManager.cardShowQRCode(args, state);
     })
+
+    cardShowImage.registerRunListener(async (args, state)=>{
+      this.cardManager.cardShowImage(args, state);
+    })
+
 
 
   }

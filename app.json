@@ -211,6 +211,41 @@
       },
       {
         "title": {
+          "en": "Image"
+        },
+        "hint": {
+          "en": "Gets an external image and displays it"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "placeholder": {
+              "en": "The tag to show the feed on"
+            }
+          },
+          {
+            "type": "text",
+            "name": "URL",
+            "placeholder": {
+              "en": "Full URL of exact right size image"
+            }
+          },
+          {
+            "type": "number",
+            "name": "Interval",
+            "placeholder": {
+              "en": "How often (in minutes) the image is being fetched. Minimum is 3 minutes."
+            },
+            "min": 3,
+            "max": 180,
+            "step": 1
+          }
+        ],
+        "id": "show-image"
+      },
+      {
+        "title": {
           "en": "QR Code"
         },
         "hint": {
