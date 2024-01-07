@@ -61,6 +61,25 @@
     ]
   },
   "brandColor": "#9b9b9b",
+  "tags": {
+    "en": [
+      "e-paper"
+    ]
+  },
+  "source": "https://github.com/wiggertdehaan/open_epaper_link_homey",
+  "support": "https://github.com/wiggertdehaan/open_epaper_link_homey/issues",
+  "homepage": "https://github.com/wiggertdehaan/open_epaper_link_homey/wiki",
+  "bugs": {
+    "url": "https://github.com/wiggertdehaan/open_epaper_link_homey/issues"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Wiggert de Haan"
+      }
+    ]
+  },
+  "brandColor": "#9b9b9b",
   "flow": {
     "actions": [
       {
@@ -193,6 +212,7 @@
             "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
               "en": "Select the e-tag"
+              "en": "Select the e-tag"
             }
           }
         ],
@@ -297,6 +317,10 @@
         "hint": {
           "en": "Displays a full-screen QR Code"
         },
+        "hint": {
+          "en": "Weather forecast for the next five days. Weather data by Open-Meteo.com"
+        },
+        "filter": "driver_id=solum-29",
         "args": [
           {
             "type": "device",
@@ -476,6 +500,20 @@
           }
         }
       ]
+      "id": "solum-154",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -518,6 +556,20 @@
           "template": "add_devices"
         }
       ],
+      "id": "solum-29",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
       "id": "solum-29",
       "settings": [
         {
