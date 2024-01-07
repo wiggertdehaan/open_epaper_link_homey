@@ -581,6 +581,21 @@ class CardManager {
         this.SaveJSON(data);
     }
     
+    // fetch local JSON and display it on the tag
+    async cardShowLocalJSON(args, state){
+        this.homey.log('CardManager: cardShowLocalJSON');
+        let deviceData = args.Id.getData();
+        let deviceId = deviceData.id;
+
+        const data = {
+            mac: deviceId,
+            json: args.JSON
+        };
+        this.SaveJSON(data);
+    }
+
+
+
 
     async SaveJSON(data){
 
