@@ -381,7 +381,7 @@
             "type": "text",
             "name": "JSON",
             "placeholder": {
-              "en": "[{ \"text\": [ 5, 5, \"Hello, Homey\", \"bahnschrift20\", 1, 0, 0 ] }]"
+              "en": "[{ \"text\": [ 5, 5, \"Hello!, Homey\", \"bahnschrift20\", 1, 0, 0 ] }]"
             }
           }
         ],
