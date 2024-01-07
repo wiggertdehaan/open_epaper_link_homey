@@ -1,5 +1,8 @@
 {
   "1.0.0": {
     "en": "First version with support for the 1.54\" and 2.9\" tags"
+  },
+  "1.1.0": {
+    "en": "We've added support for Remote and Local templates to customize the tags exactly the way you want it!"
   }
 }
