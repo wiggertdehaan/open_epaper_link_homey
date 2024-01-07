@@ -13,7 +13,7 @@ class APManager {
     // update APs
     updateAPs(sys)
     {
-        this.homey.log('updating APs');
+        //this.homey.log('updating APs');
     }
 
 

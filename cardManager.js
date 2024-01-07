@@ -1,4 +1,5 @@
 const axios = require('axios');
+const qs = require('qs');
 
 class CardManager {
 
@@ -521,8 +522,54 @@ class CardManager {
     }
 
 
+    // Show 3 lines of text on  HW01 type tag
+    async cardHW01Show3Lines(args, state){
+        this.homey.log('CardManager: cardHW01Show3Lines');
+        let deviceData = args.Id.getData();
+        let deviceId = deviceData.id;
 
+          const jsonData =         [
+            { "text": [ 5, 5, args.Title, "bahnschrift20", 1, 0, 0 ] },
+            { "text": [ 5, 50, args.Key1, "t0_14b_tf", 1, 0, 0 ] },
+            { "text": [ 120, 50, args.Value1, "t0_14b_tf", 1, 0, 0 ] },
+            { "text": [ 5, 70, args.Key2, "t0_14b_tf", 1, 0, 0 ] },
+            { "text": [ 120, 70, args.Value2, "t0_14b_tf", 1, 0, 0 ] },
+            { "text": [ 5, 90, args.Key3, "t0_14b_tf", 1, 0, 0 ] },
+            { "text": [ 120, 90, args.Value3, "t0_14b_tf", 1, 0, 0 ] }
+        ];
+  
+        // Stel de POST-data samen
+        const data = {
+            mac: deviceId,
+            json: JSON.stringify(jsonData)
+        };
+        this.SaveJSON(data);
+    }
 
+    
+
+    async SaveJSON(data){
+
+        this.homey.log('CardManager: SaveJSON');
+        const gateway = this.gateway;
+        if (!gateway) {
+        this.log('gateway has not been configured.');
+        return;
+        }
+        this.homey.log('CardManager: SaveJSON: '+JSON.stringify(data));
+        
+        axios.post('http://'+gateway+'/jsonupload', qs.stringify(data), {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            })
+            .then(response => {
+              //  this.homey.log('Succes:', response.data);
+            })
+            .catch(error => {
+                this.homey.log('Fout tijdens de POST-aanvraag:', error);
+              }); 
+    }
 
 
 
