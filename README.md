@@ -1,6 +1,7 @@
 # OpenEPaperLink
 
-Support for the OpenEPaperLink Gateway
+Support for the OpenEPaperLink Gateway of @jjwbruijn
+
 
 Update 07 Jan 2024
 - App is under review at Homey.
