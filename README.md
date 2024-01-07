@@ -1,6 +1,6 @@
 # OpenEPaperLink
 
-Support for the OpenEPaperLink Gateway of @jjwbruijn
+Support for the OpenEPaperLink Gateway of @jjwbruijn / https://github.com/jjwbruijn/OpenEPaperLink
 
 
 Update 07 Jan 2024
