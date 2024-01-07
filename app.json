@@ -47,6 +47,20 @@
       "e-paper"
     ]
   },
+  "source": "https://github.com/wiggertdehaan/open_epaper_link_homey",
+  "support": "https://github.com/wiggertdehaan/open_epaper_link_homey/issues",
+  "homepage": "https://github.com/wiggertdehaan/open_epaper_link_homey/wiki",
+  "bugs": {
+    "url": "https://github.com/wiggertdehaan/open_epaper_link_homey/issues"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Wiggert de Haan"
+      }
+    ]
+  },
+  "brandColor": "#9b9b9b",
   "flow": {
     "actions": [
       {
@@ -122,6 +136,9 @@
         "title": {
           "en": "Count Hours"
         },
+        "titleFormatted": {
+          "en": "Counts hours, starting with [[Counter]] with a treshold on [[Threshold]] on device [[Id]]"
+        },
         "hint": {
           "en": "Counts hours, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
         },
@@ -160,6 +177,9 @@
         "title": {
           "en": "Show Current Date"
         },
+        "titleFormatted": {
+          "en": "Shows current date on device [[Id]]"
+        },
         "hint": {
           "en": "Shows the current date on your e-tag"
         },
@@ -177,6 +197,9 @@
       {
         "title": {
           "en": "Show Current Weather"
+        },
+        "titleFormatted": {
+          "en": "Counts current weather in [[Location]] in [[Units]] on device [[Id]]"
         },
         "hint": {
           "en": "Show the current weather in a certain place"
