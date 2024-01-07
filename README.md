@@ -2,6 +2,12 @@
 
 Support for the OpenEPaperLink Gateway
 
+Update 07 Jan 2024
+- App is under review at Homey.
+
+
+
+
 **Supported Devices**
 - ST‐GR29000 2.9"
 - ST‐GR16000 1.54"
@@ -22,5 +28,4 @@ Support for the OpenEPaperLink Gateway
 
 
 
-Update 07 Jan 2024
-- App is under review at Homey. 
+
