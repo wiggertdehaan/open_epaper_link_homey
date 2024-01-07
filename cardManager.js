@@ -531,11 +531,11 @@ class CardManager {
           const jsonData =         [
             { "text": [ 5, 5, args.Title, "bahnschrift20", 1, 0, 0 ] },
             { "text": [ 5, 50, args.Key1, "t0_14b_tf", 1, 0, 0 ] },
-            { "text": [ 120, 50, args.Value1, "t0_14b_tf", 1, 0, 0 ] },
+            { "text": [ 150, 50, args.Value1, "t0_14b_tf", 1, 0, 0 ] },
             { "text": [ 5, 70, args.Key2, "t0_14b_tf", 1, 0, 0 ] },
-            { "text": [ 120, 70, args.Value2, "t0_14b_tf", 1, 0, 0 ] },
+            { "text": [ 150, 70, args.Value2, "t0_14b_tf", 1, 0, 0 ] },
             { "text": [ 5, 90, args.Key3, "t0_14b_tf", 1, 0, 0 ] },
-            { "text": [ 120, 90, args.Value3, "t0_14b_tf", 1, 0, 0 ] }
+            { "text": [ 150, 90, args.Value3, "t0_14b_tf", 1, 0, 0 ] }
         ];
   
         // Stel de POST-data samen
@@ -546,6 +546,40 @@ class CardManager {
         this.SaveJSON(data);
     }
 
+    // fetches the remote JSON
+    async fetchRemoteJSON(url) {
+        this.homey.log('CardManager: fetchRemoteJSON URL: '+url);
+        try {
+          const response = await axios.get(url);
+          if (response.data) {
+            return response.data;
+          } else {
+            this.homey.log('Geen JSON gevonden in de respons');
+           // throw new Error('Geen JSON gevonden in de respons');
+          }
+        } catch (error) {
+          //console.error('Fout bij het ophalen van de JSON:', error);
+          this.homey.log('Fout bij het ophalen van de JSON:', error);
+          //throw error; // 
+        }
+      }
+
+
+    // fetch remote JSON and display it on the tag
+    async cardShowRemoteJSON(args, state){
+        this.homey.log('CardManager: cardShowRemoteJSON');
+        let deviceData = args.Id.getData();
+        let deviceId = deviceData.id;
+
+        const jsonData = await this.fetchRemoteJSON(args.RemoteURL);
+        this.homey.log('CardManager: cardShowRemoteJSON: '+JSON.stringify(jsonData));
+        // Stel de POST-data samen
+        const data = {
+            mac: deviceId,
+            json: JSON.stringify(jsonData)
+        };
+        this.SaveJSON(data);
+    }
     
 
     async SaveJSON(data){

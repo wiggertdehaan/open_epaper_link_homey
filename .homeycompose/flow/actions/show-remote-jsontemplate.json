@@ -1,0 +1,28 @@
+{
+  "title": {
+    "en": "Use your own JSON template"
+  },
+  "titleFormatted": { 
+    "en": "Shows the my template hosted on  [[RemoteURL]] " 
+  }, 
+  "hint": {
+    "en": "For this flow to work you need to host your JSON file yourself. This flow will fetch it and show it on your favorite tag!"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "filter": "driver_id=solum-29|solum-154",  
+      "placeholder": {
+        "en": "Your device"
+      }
+    },    
+    {
+      "type": "text",
+      "name": "RemoteURL",
+      "placeholder": {
+        "en": "Full URL (including http/https) to your template"
+      }
+    }
+  ]
+}

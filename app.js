@@ -26,6 +26,7 @@ class MyApp extends Homey.App {
     
     this.WebSocketReader();
 
+    const cardShowRemoteJSON = this.homey.flow.getActionCard('show-remote-jsontemplate');
     const cardShowCurrentDate = this.homey.flow.getActionCard('show-current-date');
     const cardShowCountDays = this.homey.flow.getActionCard('show-count-days');
     const cardShowCountHours = this.homey.flow.getActionCard('show-count-hours');
@@ -77,6 +78,10 @@ class MyApp extends Homey.App {
 
     cardHW01Show3Lines.registerRunListener(async (args, state)=>{
       this.cardManager.cardHW01Show3Lines(args, state);
+    })
+
+    cardShowRemoteJSON.registerRunListener(async (args, state)=>{
+      this.cardManager.cardShowRemoteJSON(args, state);
     })
 
 
