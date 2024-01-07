@@ -1,4 +1,4 @@
-# OpenEPaperLink
+# OpenEPaperLink plugin for Homey (Pro)
 
 Support for the OpenEPaperLink Gateway of @jjwbruijn / https://github.com/jjwbruijn/OpenEPaperLink
 
