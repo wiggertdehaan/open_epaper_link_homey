@@ -13,7 +13,9 @@
     "local"
   ],
   "energy": {
-    "batteries": ["CR2450"]
+    "batteries": [
+      "CR2450"
+    ]
   },
   "connectivity": [
     "lan"
@@ -23,17 +25,17 @@
     "large": "{{driverAssetsPath}}/images/large.png",
     "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
   },
-  "pair":[
+  "pair": [
     {
-    "id":"list_devices",
-    "template":"list_devices",
-    "navigation":{
-      "next":"add_devices"
-    }
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
     },
     {
-    "id":"add_devices",
-    "template":"add_devices"
+      "id": "add_devices",
+      "template": "add_devices"
     }
   ]
 }
