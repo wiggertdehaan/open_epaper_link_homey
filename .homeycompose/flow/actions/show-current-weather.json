@@ -3,7 +3,7 @@
     "en": "Show Current Weather"
   },
   "titleFormatted": { 
-    "en": "Counts current weather in [[Location]] in [[Units]] " 
+    "en": "Shows current weather in [[Location]] in [[Units]] " 
   }, 
   "hint": {
     "en": "Show the current weather in a certain place"
