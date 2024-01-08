@@ -30,7 +30,6 @@ class TagManager {
                 let { id: deviceId } = device.getData();
                 if (tag.mac == deviceId) {
                     this.updateDeviceCapability(device, "measure_temperature", tag.temperature);
-                    this.updateDeviceCapability(device, "measure_battery", ((tag.batteryMv / 1000) - 2.20) * 250);
                     this.updateDeviceCapability(device, "measure_voltage", (tag.batteryMv / 1000)) ;
                     let alarm_battery = tag.batteryMv <= 2400 || tag.batteryMv == 0 || tag.batteryMv == 1337;
                     this.updateDeviceCapability(device, "alarm_battery", alarm_battery);
