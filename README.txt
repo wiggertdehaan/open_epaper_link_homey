@@ -1,3 +1,3 @@
-Empower Your Home: 
-Imagine waking up to an e-paper tag that greets you with the day's forecast, or a tag in the kitchen that displays your favorite recipes. With OpenEPaperLink, your home adapts to your life, not the other way around!
+Welcome to OpenEPaperLink, where your home becomes a canvas of convenience. This app revolutionizes the way you interact with your space by integrating e-paper tags with Homey. Imagine having essential information displayed where you need it most - a compact e-paper tag in the living room showcasing the day's schedule, or one in the kitchen highlighting a quick recipe for dinner.
 
+OpenEPaperLink is designed for simplicity and utility. It's perfect for small displays, ensuring that only the most pertinent information is shown, free from clutter. This integration isn't just about adding smart features to your home; it's about enhancing your daily life with a touch of elegance and efficiency. With OpenEPaperLink, your home not only becomes smarter but also more attuned to your personal needs and lifestyle.
