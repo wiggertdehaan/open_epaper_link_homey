@@ -1,9 +1,9 @@
 {
   "title": {
-    "en": "Show 3 lines with title"
+    "en": "Display 3 lines of text"
   },
   "titleFormatted": { 
-    "en": "Shows card with [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] " 
+    "en": "Display [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] " 
   },  
   "hint": {
     "en": "This card lets you show you custom text on the e-tag (3 Lines with a Title)"

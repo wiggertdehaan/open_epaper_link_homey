@@ -1,9 +1,9 @@
 {
   "title": {
-    "en": "Count Days"
+    "en": "Display days counter"
   },
   "titleFormatted": { 
-    "en": "Counts days, starting with [[Counter]] with a treshold on [[Threshold]] days." 
+    "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] days." 
   },
   "hint": {
     "en": "Counts days, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"

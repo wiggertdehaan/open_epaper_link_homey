@@ -1,9 +1,9 @@
 {
   "title": {
-    "en": "Buienradar"
+    "en": "Display rain prediction (Buienradar)"
   },
   "titleFormatted": { 
-    "en": "Show rain prediction in [[Location]] " 
+    "en": "Display rain prediction in [[Location]] " 
   },
   "hint": {
     "en": "Dutch rain predictions for the next two hours. Only works for locations in the Netherlands and Belgium."

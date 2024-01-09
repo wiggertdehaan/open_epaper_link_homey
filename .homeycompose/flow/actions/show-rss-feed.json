@@ -1,9 +1,9 @@
 {
   "title": {
-    "en": "RSS Feed"
+    "en": "Display an RSS Feed"
   },
   "titleFormatted": { 
-    "en": "Shows the RSS feed from [[Title]] url [[URL]] and refreshes it every [[Interval]] minutes" 
+    "en": "Display the RSS feed from [[Title]] url [[URL]] and refreshes it every [[Interval]] minutes" 
   },
   "hint": {
     "en": "Gets an RSS feed, and display the first few lines of it"
