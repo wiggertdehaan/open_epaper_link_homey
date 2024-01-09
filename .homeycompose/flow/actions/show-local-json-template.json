@@ -1,9 +1,9 @@
 {
   "title": {
-    "en": "(Advanced) Show local JSON template"
+    "en": "(Advanced) Display JSON template"
   },
   "titleFormatted": { 
-    "en": "Shows the parsed version of: [[JSON]] " 
+    "en": "Display parsed version of: [[JSON]] " 
   },   
   "hint": {
     "en": "Sends the JSON you put in the parameter to the tag"

@@ -1,9 +1,9 @@
 {
   "title": {
-    "en": "Show Current Date"
+    "en": "Display current date"
   },
   "titleFormatted": { 
-    "en": "Shows current date" 
+    "en": "Display current date" 
   }, 
   "hint": {
     "en": "Shows the current date on your e-tag"

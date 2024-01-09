@@ -1,9 +1,9 @@
 {
   "title": {
-    "en": "Use your own JSON template"
+    "en": "(Advanced) Display your remote JSON template"
   },
   "titleFormatted": { 
-    "en": "Shows the my template hosted on  [[RemoteURL]] " 
+    "en": "Display the template hosted on [[RemoteURL]] " 
   }, 
   "hint": {
     "en": "For this flow to work you need to host your JSON file yourself. This flow will fetch it and show it on your favorite tag!"

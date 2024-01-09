@@ -1,9 +1,9 @@
 {
   "title": {
-    "en": "WeatherForecast"
+    "en": "Display weather forecast"
   },
   "titleFormatted": { 
-    "en": "Shows the weather forecast in [[Location]] in [[Units]]" 
+    "en": "Display weather forecast for [[Location]] in [[Units]]" 
   },  
   "hint": {
     "en": "Weather forecast for the next five days. Weather data by Open-Meteo.com"

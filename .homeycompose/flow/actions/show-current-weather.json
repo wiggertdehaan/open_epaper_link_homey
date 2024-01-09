@@ -1,9 +1,9 @@
 {
   "title": {
-    "en": "Show Current Weather"
+    "en": "Display current weather"
   },
   "titleFormatted": { 
-    "en": "Shows current weather in [[Location]] in [[Units]] " 
+    "en": "Display weather in [[Location]] in [[Units]] " 
   }, 
   "hint": {
     "en": "Show the current weather in a certain place"
