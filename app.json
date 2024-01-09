@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.wiggert.OpenEPaperLink",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -27,7 +27,7 @@
     }
   ],
   "description": {
-    "en": "Support for the OpenEPaperLink Gateway "
+    "en": "Effortlessly Customize Your Space with E-Paper Magic"
   },
   "category": [
     "tools"
@@ -65,10 +65,10 @@
     "actions": [
       {
         "title": {
-          "en": "Show 3 lines with title"
+          "en": "Display 3 lines of text"
         },
         "titleFormatted": {
-          "en": "Shows card with [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] "
+          "en": "Display [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] "
         },
         "hint": {
           "en": "This card lets you show you custom text on the e-tag (3 Lines with a Title)"
@@ -136,10 +136,10 @@
       },
       {
         "title": {
-          "en": "Buienradar"
+          "en": "Display rain prediction (Buienradar)"
         },
         "titleFormatted": {
-          "en": "Show rain prediction in [[Location]] "
+          "en": "Display rain prediction in [[Location]] "
         },
         "hint": {
           "en": "Dutch rain predictions for the next two hours. Only works for locations in the Netherlands and Belgium."
@@ -165,10 +165,10 @@
       },
       {
         "title": {
-          "en": "Count Days"
+          "en": "Display days counter"
         },
         "titleFormatted": {
-          "en": "Counts days, starting with [[Counter]] with a treshold on [[Threshold]] days."
+          "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] days."
         },
         "hint": {
           "en": "Counts days, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
@@ -207,10 +207,10 @@
       },
       {
         "title": {
-          "en": "Count Hours"
+          "en": "Display hours counter"
         },
         "titleFormatted": {
-          "en": "Counts hours, starting with [[Counter]] with a treshold on [[Threshold]] hours"
+          "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] hours"
         },
         "hint": {
           "en": "Counts hours, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
@@ -249,10 +249,10 @@
       },
       {
         "title": {
-          "en": "Show Current Date"
+          "en": "Display current date"
         },
         "titleFormatted": {
-          "en": "Shows current date"
+          "en": "Display current date"
         },
         "hint": {
           "en": "Shows the current date on your e-tag"
@@ -271,10 +271,10 @@
       },
       {
         "title": {
-          "en": "Show Current Weather"
+          "en": "Display current weather"
         },
         "titleFormatted": {
-          "en": "Counts current weather in [[Location]] in [[Units]] "
+          "en": "Display weather in [[Location]] in [[Units]] "
         },
         "hint": {
           "en": "Show the current weather in a certain place"
@@ -321,10 +321,10 @@
       },
       {
         "title": {
-          "en": "Image"
+          "en": "Display an image"
         },
         "titleFormatted": {
-          "en": "Fetches an image from [[URL]] every [[Interval]] minutes"
+          "en": "Display an image from [[URL]] every [[Interval]] minutes"
         },
         "hint": {
           "en": "Gets an external image and displays it"
@@ -360,10 +360,10 @@
       },
       {
         "title": {
-          "en": "(Advanced) Show local JSON template"
+          "en": "(Advanced) Display JSON template"
         },
         "titleFormatted": {
-          "en": "Shows the parsed version of: [[JSON]] "
+          "en": "Display parsed version of: [[JSON]] "
         },
         "hint": {
           "en": "Sends the JSON you put in the parameter to the tag"
@@ -389,10 +389,10 @@
       },
       {
         "title": {
-          "en": "QR Code"
+          "en": "Display QR code"
         },
         "titleFormatted": {
-          "en": "Shows a QR code with value [[QRContent]] and title [[Title]]"
+          "en": "Display QR code with value [[QRContent]] and title [[Title]]"
         },
         "hint": {
           "en": "Displays a full-screen QR Code"
@@ -425,10 +425,10 @@
       },
       {
         "title": {
-          "en": "Use your own JSON template"
+          "en": "(Advanced) Display your remote JSON template"
         },
         "titleFormatted": {
-          "en": "Shows the my template hosted on  [[RemoteURL]] "
+          "en": "Display the template hosted on [[RemoteURL]] "
         },
         "hint": {
           "en": "For this flow to work you need to host your JSON file yourself. This flow will fetch it and show it on your favorite tag!"
@@ -454,10 +454,10 @@
       },
       {
         "title": {
-          "en": "RSS Feed"
+          "en": "Display an RSS Feed"
         },
         "titleFormatted": {
-          "en": "Shows the RSS feed from [[Title]] url [[URL]] and refreshes it every [[Interval]] minutes"
+          "en": "Display the RSS feed from [[Title]] url [[URL]] and refreshes it every [[Interval]] minutes"
         },
         "hint": {
           "en": "Gets an RSS feed, and display the first few lines of it"
@@ -500,10 +500,10 @@
       },
       {
         "title": {
-          "en": "WeatherForecast"
+          "en": "Display weather forecast"
         },
         "titleFormatted": {
-          "en": "Shows the weather forecast in [[Location]] in [[Units]]"
+          "en": "Display weather forecast for [[Location]] in [[Units]]"
         },
         "hint": {
           "en": "Weather forecast for the next five days. Weather data by Open-Meteo.com"
@@ -557,7 +557,6 @@
       },
       "class": "other",
       "capabilities": [
-        "measure_battery",
         "alarm_battery",
         "measure_temperature",
         "measure_voltage"
@@ -612,7 +611,6 @@
       },
       "class": "other",
       "capabilities": [
-        "measure_battery",
         "alarm_battery",
         "measure_temperature",
         "measure_voltage"
