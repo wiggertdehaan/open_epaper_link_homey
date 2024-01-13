@@ -8,7 +8,8 @@
     "local"
   ],
   "name": {
-    "en": "OpenEPaperLink"
+    "en": "OpenEPaperLink",
+    "nl": "OpenEPaperLink"
   },
   "settings": [
     {
@@ -27,7 +28,8 @@
     }
   ],
   "description": {
-    "en": "Effortlessly Customize Your Space with E-Paper Magic"
+    "en": "Effortlessly Customize Your Space with E-Paper Magic",
+    "nl": "Pas eenvoudig jouw huis aan met E-Paper Magic"
   },
   "category": [
     "tools"
@@ -45,6 +47,9 @@
   "tags": {
     "en": [
       "e-paper"
+    ],
+    "nl": [
+      "e-Paper"
     ]
   },
   "source": "https://github.com/wiggertdehaan/open_epaper_link_homey",
@@ -65,13 +70,16 @@
     "actions": [
       {
         "title": {
-          "en": "Display 3 lines of text"
+          "en": "Display 3 lines of text",
+          "nl": "Geef 3 regels tekst weer"
         },
         "titleFormatted": {
-          "en": "Display [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] "
+          "en": "Display [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] ",
+          "nl": "Geef [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] weer"
         },
         "hint": {
-          "en": "This card lets you show you custom text on the e-tag (3 Lines with a Title)"
+          "en": "This card lets you show you custom text on the e-tag (3 Lines with a Title)",
+          "nl": "Deze kaart laat je toe om 3 regels tekst weer te geven op de e-tag (met een titel)"
         },
         "args": [
           {
@@ -79,56 +87,64 @@
             "name": "Id",
             "filter": "driver_id=solum-29",
             "placeholder": {
-              "en": "Your device"
+              "en": "Your device",
+              "nl": "Jouw apparaat"
             }
           },
           {
             "type": "text",
             "name": "Title",
             "placeholder": {
-              "en": "The title of your card"
+              "en": "The title of your card",
+              "nl": "De titel van je kaart"
             }
           },
           {
             "type": "text",
             "name": "Key1",
             "placeholder": {
-              "en": "For example 'Temperature'"
+              "en": "For example 'Temperature'",
+              "nl": "Bijvoorbeeld 'Temperatuur'"
             }
           },
           {
             "type": "text",
             "name": "Value1",
             "placeholder": {
-              "en": "For example 21 degrees"
+              "en": "For example 21 degrees",
+              "nl": "Bijvoorbeeld 21 graden"
             }
           },
           {
             "type": "text",
             "name": "Key2",
             "placeholder": {
-              "en": "For example 'Temperature'"
+              "en": "For example 'Temperature'",
+              "nl": "Bijvoorbeeld 'Temperatuur'"
             }
           },
           {
             "type": "text",
             "name": "Value2",
             "placeholder": {
-              "en": "For example 21 degrees"
+              "en": "For example 21 degrees",
+              "nl": "Bijvoorbeeld 21 graden"
             }
           },
           {
             "type": "text",
             "name": "Key3",
             "placeholder": {
-              "en": "For example 'Temperature'"
+              "en": "For example 'Temperature'",
+              "nl": "Bijvoorbeeld 'Temperatuur'"
             }
           },
           {
             "type": "text",
             "name": "Value3",
             "placeholder": {
-              "en": "For example 21 degrees"
+              "en": "For example 21 degrees",
+              "nl": "Bijvoorbeeld 21 graden"
             }
           }
         ],
@@ -136,13 +152,16 @@
       },
       {
         "title": {
-          "en": "Display rain prediction (Buienradar)"
+          "en": "Display rain prediction (Buienradar)",
+          "nl": "Buienradar regen voorspelling"
         },
         "titleFormatted": {
-          "en": "Display rain prediction in [[Location]] "
+          "en": "Display rain prediction in [[Location]] ",
+          "nl": "Buienradar regen voorspelling in [[Location]]"
         },
         "hint": {
-          "en": "Dutch rain predictions for the next two hours. Only works for locations in the Netherlands and Belgium."
+          "en": "Dutch rain predictions for the next two hours. Only works for locations in the Netherlands and Belgium.",
+          "nl": "Buienradar regen voorspelling voor de komende twee uur. Werkt alleen voor locaties in Nederland en België."
         },
         "args": [
           {
@@ -150,14 +169,16 @@
             "name": "Id",
             "filter": "driver_id=solum-29",
             "placeholder": {
-              "en": "0000000000000000"
+              "en": "0000000000000000",
+              "nl": "0000000000000000"
             }
           },
           {
             "type": "text",
             "name": "Location",
             "placeholder": {
-              "en": "Show the current weather in this city"
+              "en": "Show the current prediction in this city",
+              "nl": "Toon het huidige prediction in deze stad"
             }
           }
         ],
@@ -165,13 +186,16 @@
       },
       {
         "title": {
-          "en": "Display days counter"
+          "en": "Display days counter",
+          "nl": "Toon dagen teller"
         },
         "titleFormatted": {
-          "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] days."
+          "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] days.",
+          "nl": "Toon teller die start met [[Counter]] met een drempelwaarde van [[Threshold]] dagen."
         },
         "hint": {
-          "en": "Counts days, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
+          "en": "Counts days, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black",
+          "nl": "Telt dagen, beginnend met de waarde hieronder. Als de teller hoger wordt dan de drempelwaarde, wordt het getal in rood weergegeven, anders is het zwart"
         },
         "args": [
           {
@@ -179,14 +203,16 @@
             "name": "Id",
             "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "Select the e-tag"
+              "en": "Select the e-tag",
+              "nl": "Selecteer de e-tag"
             }
           },
           {
             "type": "number",
             "name": "Counter",
             "placeholder": {
-              "en": "Number of days"
+              "en": "Number of days",
+              "nl": "Aantal dagen"
             },
             "min": 1,
             "max": 1000,
@@ -196,7 +222,8 @@
             "type": "number",
             "name": "Threshold",
             "placeholder": {
-              "en": "Threshold to show the number in red"
+              "en": "Threshold to show the number in red",
+              "nl": "Drempelwaarde om het getal in rood weer te geven"
             },
             "min": 1,
             "max": 999,
@@ -207,13 +234,16 @@
       },
       {
         "title": {
-          "en": "Display hours counter"
+          "en": "Display hours counter",
+          "nl": "Toon uren teller"
         },
         "titleFormatted": {
-          "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] hours"
+          "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] hours",
+          "nl": "Toon teller die start met [[Counter]] met een drempel op [[Threshold]] uren"
         },
         "hint": {
-          "en": "Counts hours, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
+          "en": "Counts hours, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black",
+          "nl": "Telt uren, startend met de waarde hieronder. Als de teller hoger wordt dan de drempelwaarde, wordt het getal in rood weergegeven, anders is het zwart"
         },
         "args": [
           {
@@ -221,14 +251,16 @@
             "name": "Id",
             "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "Select the e-tag"
+              "en": "Select the e-tag",
+              "nl": "Selecteer de e-tag"
             }
           },
           {
             "type": "number",
             "name": "Counter",
             "placeholder": {
-              "en": "Number of hours"
+              "en": "Number of hours",
+              "nl": "Aantal uren"
             },
             "min": 1,
             "max": 240,
@@ -238,7 +270,8 @@
             "type": "number",
             "name": "Threshold",
             "placeholder": {
-              "en": "Threshold to show the number in red"
+              "en": "Threshold to show the number in red",
+              "nl": "Drempelwaarde om het getal in rood weer te geven"
             },
             "min": 1,
             "max": 240,
@@ -249,13 +282,16 @@
       },
       {
         "title": {
-          "en": "Display current date"
+          "en": "Display current date",
+          "nl": "Toon huidige datum"
         },
         "titleFormatted": {
-          "en": "Display current date"
+          "en": "Display current date",
+          "nl": "Toon huidige datum"
         },
         "hint": {
-          "en": "Shows the current date on your e-tag"
+          "en": "Shows the current date on your e-tag",
+          "nl": "Toont de huidige datum op je e-tag"
         },
         "args": [
           {
@@ -263,7 +299,8 @@
             "name": "Id",
             "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "Select the e-tag"
+              "en": "Select the e-tag",
+              "nl": "Selecteer de e-tag"
             }
           }
         ],
@@ -271,13 +308,16 @@
       },
       {
         "title": {
-          "en": "Display current weather"
+          "en": "Display current weather",
+          "nl": "Toon huidig weer"
         },
         "titleFormatted": {
-          "en": "Display weather in [[Location]] in [[Units]] "
+          "en": "Display weather in [[Location]] in [[Units]] ",
+          "nl": "Toon weer in [[Location]] in [[Units]] "
         },
         "hint": {
-          "en": "Show the current weather in a certain place"
+          "en": "Show the current weather in a certain place",
+          "nl": "Toon het huidige weer in een bepaalde plaats"
         },
         "args": [
           {
@@ -285,33 +325,38 @@
             "name": "Id",
             "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "0000000000000000"
+              "en": "0000000000000000",
+              "nl": "0000000000000000"
             }
           },
           {
             "type": "text",
             "name": "Location",
             "placeholder": {
-              "en": "Show the current weather in this city"
+              "en": "Show the current weather in this city",
+              "nl": "Toon het huidige weer in deze stad"
             }
           },
           {
             "type": "dropdown",
             "name": "Units",
             "placeholder": {
-              "en": "Metric / Imperial"
+              "en": "Metric / Imperial",
+              "nl": "Metrisch / Imperiaal"
             },
             "values": [
               {
                 "id": "0",
                 "label": {
-                  "en": "Celcius / Beaufort / millimeters"
+                  "en": "Celcius / Beaufort / millimeters",
+                  "nl": "Celcius / Beaufort / millimeters"
                 }
               },
               {
                 "id": "1",
                 "label": {
-                  "en": "Fahrenheit / mph / millimeters"
+                  "en": "Fahrenheit / mph / millimeters",
+                  "nl": "Fahrenheit / mph / millimeters"
                 }
               }
             ]
@@ -321,13 +366,16 @@
       },
       {
         "title": {
-          "en": "Display an image"
+          "en": "Display an image",
+          "nl": "Toon een afbeelding"
         },
         "titleFormatted": {
-          "en": "Display an image from [[URL]] every [[Interval]] minutes"
+          "en": "Display an image from [[URL]] every [[Interval]] minutes",
+          "nl": "Toon een afbeelding van [[URL]] elke [[Interval]] minuten"
         },
         "hint": {
-          "en": "Gets an external image and displays it"
+          "en": "Gets an external image and displays it",
+          "nl": "Haalt een externe afbeelding op en toont deze"
         },
         "args": [
           {
@@ -335,21 +383,24 @@
             "name": "Id",
             "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "The tag to show the feed on"
+              "en": "The tag to show the feed on",
+              "nl": "De tag waarop de feed getoond moet worden"
             }
           },
           {
             "type": "text",
             "name": "URL",
             "placeholder": {
-              "en": "Full URL of exact right size image"
+              "en": "Full URL of exact right size image",
+              "nl": "Volledige URL van exact de juiste grootte afbeelding"
             }
           },
           {
             "type": "number",
             "name": "Interval",
             "placeholder": {
-              "en": "How often (in minutes) the image is being fetched. Minimum is 3 minutes."
+              "en": "How often (in minutes) the image is being fetched. Minimum is 3 minutes.",
+              "nl": "Hoe vaak (in minuten) de afbeelding wordt opgehaald. Minimum is 3 minuten."
             },
             "min": 3,
             "max": 180,
@@ -360,13 +411,16 @@
       },
       {
         "title": {
-          "en": "(Advanced) Display JSON template"
+          "en": "(Advanced) Display JSON template",
+          "nl": "(Geavanceerd) Toon JSON template"
         },
         "titleFormatted": {
-          "en": "Display parsed version of: [[JSON]] "
+          "en": "Display parsed version of: [[JSON]] ",
+          "nl": "Toon geparsed versie van: [[JSON]] "
         },
         "hint": {
-          "en": "Sends the JSON you put in the parameter to the tag"
+          "en": "Sends the JSON you put in the parameter to the tag",
+          "nl": "Stuurt de JSON die je in de parameter zet naar de tag"
         },
         "args": [
           {
@@ -374,14 +428,16 @@
             "name": "Id",
             "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "Your device"
+              "en": "Your device",
+              "nl": "Je apparaat"
             }
           },
           {
             "type": "text",
             "name": "JSON",
             "placeholder": {
-              "en": "[{ \"text\": [ 5, 5, \"Hello!, Homey\", \"bahnschrift20\", 1, 0, 0 ] }]"
+              "en": "[{ \"text\": [ 5, 5, \"Hello!, Homey\", \"bahnschrift20\", 1, 0, 0 ] }]",
+              "nl": "[{ \"text\": [ 5, 5, \"Hallo!, Homey\", \"bahnschrift20\", 1, 0, 0 ] }]"
             }
           }
         ],
@@ -389,13 +445,16 @@
       },
       {
         "title": {
-          "en": "Display QR code"
+          "en": "Display QR code",
+          "nl": "Toon QR code"
         },
         "titleFormatted": {
-          "en": "Display QR code with value [[QRContent]] and title [[Title]]"
+          "en": "Display QR code with value [[QRContent]] and title [[Title]]",
+          "nl": "Toon QR code met waarde [[QRContent]] en titel [[Title]]"
         },
         "hint": {
-          "en": "Displays a full-screen QR Code"
+          "en": "Displays a full-screen QR Code",
+          "nl": "Toont een QR code op volledig scherm"
         },
         "args": [
           {
@@ -403,21 +462,24 @@
             "name": "Id",
             "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "The tag to show the feed on"
+              "en": "The tag to show the feed on",
+              "nl": "Het tag om de feed op te tonen"
             }
           },
           {
             "type": "text",
             "name": "Title",
             "placeholder": {
-              "en": "Displayed title"
+              "en": "Displayed title",
+              "nl": "Getoonde titel"
             }
           },
           {
             "type": "text",
             "name": "QRContent",
             "placeholder": {
-              "en": "Any content that can be coded into a QR Code"
+              "en": "Any content that can be coded into a QR Code",
+              "nl": "Om het even welke inhoud die in een QR code kan worden gecodeerd"
             }
           }
         ],
@@ -425,13 +487,16 @@
       },
       {
         "title": {
-          "en": "(Advanced) Display your remote JSON template"
+          "en": "(Advanced) Display your remote JSON template",
+          "nl": "(Geavanceerd) Toon je externe JSON template"
         },
         "titleFormatted": {
-          "en": "Display the template hosted on [[RemoteURL]] "
+          "en": "Display the template hosted on [[RemoteURL]] ",
+          "nl": "Toon de template gehost op [[RemoteURL]] "
         },
         "hint": {
-          "en": "For this flow to work you need to host your JSON file yourself. This flow will fetch it and show it on your favorite tag!"
+          "en": "For this flow to work you need to host your JSON file yourself. This flow will fetch it and show it on your favorite tag!",
+          "nl": "Om deze flow te laten werken moet je je JSON bestand zelf hosten. Deze flow zal het ophalen en tonen op je favoriete tag!"
         },
         "args": [
           {
@@ -439,14 +504,16 @@
             "name": "Id",
             "filter": "driver_id=solum-29|solum-154",
             "placeholder": {
-              "en": "Your device"
+              "en": "Your device",
+              "nl": "Je apparaat"
             }
           },
           {
             "type": "text",
             "name": "RemoteURL",
             "placeholder": {
-              "en": "Full URL (including http/https) to your template"
+              "en": "Full URL (including http/https) to your template",
+              "nl": "Volledige URL (inclusief http/https) naar je template"
             }
           }
         ],
@@ -454,13 +521,16 @@
       },
       {
         "title": {
-          "en": "Display an RSS Feed"
+          "en": "Display an RSS Feed",
+          "nl": "Toon een RSS Feed"
         },
         "titleFormatted": {
-          "en": "Display the RSS feed from [[Title]] url [[URL]] and refreshes it every [[Interval]] minutes"
+          "en": "Display the RSS feed from [[Title]] url [[URL]] and refreshes it every [[Interval]] minutes",
+          "nl": "Toon de RSS feed van [[Title]] url [[URL]] en ververst deze elke [[Interval]] minuten"
         },
         "hint": {
-          "en": "Gets an RSS feed, and display the first few lines of it"
+          "en": "Gets an RSS feed, and display the first few lines of it",
+          "nl": "Haalt een RSS feed op, en toont de eerste paar regels"
         },
         "args": [
           {
@@ -468,28 +538,32 @@
             "name": "Id",
             "filter": "driver_id=solum-29",
             "placeholder": {
-              "en": "The tag to show the feed on"
+              "en": "The tag to show the feed on",
+              "nl": "De tag waarop de feed getoond moet worden"
             }
           },
           {
             "type": "text",
             "name": "Title",
             "placeholder": {
-              "en": "Displayed title"
+              "en": "Displayed title",
+              "nl": "De getoonde titel"
             }
           },
           {
             "type": "text",
             "name": "URL",
             "placeholder": {
-              "en": "Full URL of the RSS feed"
+              "en": "Full URL of the RSS feed",
+              "nl": "De volledige URL van de RSS feed"
             }
           },
           {
             "type": "number",
             "name": "Interval",
             "placeholder": {
-              "en": "How often (in minutes) the feed is being refreshed"
+              "en": "How often (in minutes) the feed is being refreshed",
+              "nl": "Hoe vaak (in minuten) de feed ververst moet worden"
             },
             "min": 5,
             "max": 60,
@@ -500,13 +574,16 @@
       },
       {
         "title": {
-          "en": "Display weather forecast"
+          "en": "Display weather forecast",
+          "nl": "Weersvoorspelling tonen"
         },
         "titleFormatted": {
-          "en": "Display weather forecast for [[Location]] in [[Units]]"
+          "en": "Display weather forecast for [[Location]] in [[Units]]",
+          "nl": "Weersvoorspelling tonen voor [[Location]] in [[Units]]"
         },
         "hint": {
-          "en": "Weather forecast for the next five days. Weather data by Open-Meteo.com"
+          "en": "Weather forecast for the next five days. Weather data by Open-Meteo.com",
+          "nl": "Weersvoorspelling voor de komende vijf dagen. Weergegevens door Open-Meteo.com"
         },
         "args": [
           {
@@ -514,33 +591,38 @@
             "name": "Id",
             "filter": "driver_id=solum-29",
             "placeholder": {
-              "en": "Select Your Device"
+              "en": "Select Your Device",
+              "nl": "Selecteer uw apparaat"
             }
           },
           {
             "type": "text",
             "name": "Location",
             "placeholder": {
-              "en": "Show the current weather in this city"
+              "en": "Show the current weather in this city",
+              "nl": "Toon het huidige weer in deze stad"
             }
           },
           {
             "type": "dropdown",
             "name": "Units",
             "placeholder": {
-              "en": "Metric / Imperial"
+              "en": "Metric / Imperial",
+              "nl": "Metrisch / Imperiaal"
             },
             "values": [
               {
                 "id": "0",
                 "label": {
-                  "en": "Celcius / Beaufort / millimeters"
+                  "en": "Celcius / Beaufort / millimeters",
+                  "nl": "Celcius / Beaufort / millimeters"
                 }
               },
               {
                 "id": "1",
                 "label": {
-                  "en": "Fahrenheit / mph / millimeters"
+                  "en": "Fahrenheit / mph / millimeters",
+                  "nl": "Fahrenheit / mph / millimeters"
                 }
               }
             ]
@@ -553,7 +635,8 @@
   "drivers": [
     {
       "name": {
-        "en": "Solum 1.54"
+        "en": "Solum 1.54",
+        "nl": "Solum 1.54"
       },
       "class": "other",
       "capabilities": [
@@ -607,7 +690,8 @@
     },
     {
       "name": {
-        "en": "Solum 2.9"
+        "en": "Solum 2.9",
+        "nl": "Solum 2.9"
       },
       "class": "other",
       "capabilities": [
