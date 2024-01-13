@@ -103,13 +103,17 @@ class MyApp extends Homey.App {
       this.log('gateway has not been configured.');
       return;
       }
-      const response = await axios.get('http://'+gateway+'/get_db'); 
-  
+      try {
+        const response = await axios.get('http://'+gateway+'/get_db'); 
 
-      if (response.data && response.data.tags) {
-        return response.data.tags;
-      } else {
-        throw new Error('Geen tags gevonden in de respons');
+        if (response.data && response.data.tags) {
+          return response.data.tags;
+        } else {
+          throw new Error('Geen tags gevonden in de respons');
+        }
+      } catch (error) {
+        console.error('Fout bij het ophalen van de tags:', error);
+        throw error; // 
       }
     } catch (error) {
       console.error('Fout bij het ophalen van de tags:', error);
@@ -179,15 +183,18 @@ async getTagTypeData(hwtype) {
   try {
       const url = 'http://'+this.homey.settings.get('gateway')+'/tagtypes/'+hwtype.toString(16).padStart(2, '0').toUpperCase()+'.json';
       this.log('Fetching tagtype data from gateway:', url);
-      const response = await fetch(url);
-      if (!response.ok) {
-          throw new Error(`Error fetching tagtype data for hwtype ${hwtype}`);
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+           throw new Error(`Error fetching tagtype data for hwtype ${hwtype}`);
+        }
+        const data = await response.json();
+        this.tagTypeCache[hwtype] = data;
+        return data;
+      } catch (error) {
+        console.error('Error while fetching tagtype data:', error);
+        throw error; // 
       }
-      const data = await response.json();
-
-      // Save the fetched data in the cache
-      this.tagTypeCache[hwtype] = data;
-      return data;
   } catch (error) {
       console.error(error);
       // Optionally handle the error, e.g., return default values

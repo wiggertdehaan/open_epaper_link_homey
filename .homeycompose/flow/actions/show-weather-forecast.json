@@ -1,12 +1,15 @@
 {
   "title": {
-    "en": "Display weather forecast"
+    "en": "Display weather forecast",
+    "nl": "Weersvoorspelling tonen"
   },
   "titleFormatted": { 
-    "en": "Display weather forecast for [[Location]] in [[Units]]" 
+    "en": "Display weather forecast for [[Location]] in [[Units]]",
+    "nl": "Weersvoorspelling tonen voor [[Location]] in [[Units]]" 
   },  
   "hint": {
-    "en": "Weather forecast for the next five days. Weather data by Open-Meteo.com"
+    "en": "Weather forecast for the next five days. Weather data by Open-Meteo.com",
+    "nl": "Weersvoorspelling voor de komende vijf dagen. Weergegevens door Open-Meteo.com"
   },
   "args": [
     {
@@ -14,33 +17,38 @@
       "name": "Id",
       "filter": "driver_id=solum-29",      
       "placeholder": {
-        "en": "Select Your Device"
+        "en": "Select Your Device",
+        "nl": "Selecteer uw apparaat"
       }
     },
     {
       "type": "text",
       "name": "Location",
       "placeholder": {
-        "en": "Show the current weather in this city"
+        "en": "Show the current weather in this city",
+        "nl": "Toon het huidige weer in deze stad"
       }
     },
     {
       "type": "dropdown",
       "name": "Units",
       "placeholder": {
-        "en": "Metric / Imperial"
+        "en": "Metric / Imperial",
+        "nl": "Metrisch / Imperiaal"
       }, 
       "values": [
         {
           "id": "0",
           "label": {
-            "en": "Celcius / Beaufort / millimeters"
+            "en": "Celcius / Beaufort / millimeters",
+            "nl": "Celcius / Beaufort / millimeters"
           }
         },
         {
           "id": "1",
           "label": {
-            "en": "Fahrenheit / mph / millimeters"
+            "en": "Fahrenheit / mph / millimeters",
+            "nl": "Fahrenheit / mph / millimeters"
           }
         }
       ]

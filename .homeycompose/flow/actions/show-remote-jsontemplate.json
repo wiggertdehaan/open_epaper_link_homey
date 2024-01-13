@@ -1,12 +1,15 @@
 {
   "title": {
-    "en": "(Advanced) Display your remote JSON template"
+    "en": "(Advanced) Display your remote JSON template",
+    "nl": "(Geavanceerd) Toon je externe JSON template"
   },
   "titleFormatted": { 
-    "en": "Display the template hosted on [[RemoteURL]] " 
+    "en": "Display the template hosted on [[RemoteURL]] ",
+    "nl": "Toon de template gehost op [[RemoteURL]] " 
   }, 
   "hint": {
-    "en": "For this flow to work you need to host your JSON file yourself. This flow will fetch it and show it on your favorite tag!"
+    "en": "For this flow to work you need to host your JSON file yourself. This flow will fetch it and show it on your favorite tag!",
+    "nl": "Om deze flow te laten werken moet je je JSON bestand zelf hosten. Deze flow zal het ophalen en tonen op je favoriete tag!"
   },
   "args": [
     {
@@ -14,14 +17,16 @@
       "name": "Id",
       "filter": "driver_id=solum-29|solum-154",  
       "placeholder": {
-        "en": "Your device"
+        "en": "Your device",
+        "nl": "Je apparaat"
       }
     },    
     {
       "type": "text",
       "name": "RemoteURL",
       "placeholder": {
-        "en": "Full URL (including http/https) to your template"
+        "en": "Full URL (including http/https) to your template",
+        "nl": "Volledige URL (inclusief http/https) naar je template"
       }
     }
   ]

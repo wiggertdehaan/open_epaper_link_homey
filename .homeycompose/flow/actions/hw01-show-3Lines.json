@@ -1,12 +1,15 @@
 {
   "title": {
-    "en": "Display 3 lines of text"
+    "en": "Display 3 lines of text",
+    "nl": "Geef 3 regels tekst weer"
   },
   "titleFormatted": { 
-    "en": "Display [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] " 
+    "en": "Display [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] ",
+    "nl": "Geef [[Title]], [[Key1]]: [[Value1]], [[Key2]]: [[Value2]], [[Key3]]: [[Value3]] weer" 
   },  
   "hint": {
-    "en": "This card lets you show you custom text on the e-tag (3 Lines with a Title)"
+    "en": "This card lets you show you custom text on the e-tag (3 Lines with a Title)",
+    "nl": "Deze kaart laat je toe om 3 regels tekst weer te geven op de e-tag (met een titel)"
   },
   "args": [
     {
@@ -14,56 +17,64 @@
       "name": "Id",
       "filter": "driver_id=solum-29",  
       "placeholder": {
-        "en": "Your device"
+        "en": "Your device",
+        "nl": "Jouw apparaat"
       }
     },
     {
       "type": "text",
       "name": "Title",
       "placeholder": {
-        "en": "The title of your card"
+        "en": "The title of your card",
+        "nl": "De titel van je kaart"
       }
     },    
     {
       "type": "text",
       "name": "Key1",
       "placeholder": {
-        "en": "For example 'Temperature'"
+        "en": "For example 'Temperature'",
+        "nl": "Bijvoorbeeld 'Temperatuur'"
       }
     },
     {
       "type": "text",
       "name": "Value1",
       "placeholder": {
-        "en": "For example 21 degrees"
+        "en": "For example 21 degrees",
+        "nl": "Bijvoorbeeld 21 graden"
       }
     },   
     {
       "type": "text",
       "name": "Key2",
       "placeholder": {
-        "en": "For example 'Temperature'"
+        "en": "For example 'Temperature'",
+        "nl": "Bijvoorbeeld 'Temperatuur'"
       }
     },
     {
       "type": "text",
       "name": "Value2",
       "placeholder": {
-        "en": "For example 21 degrees"
+        "en": "For example 21 degrees",
+        "nl": "Bijvoorbeeld 21 graden"
       }
     }, 
     {
       "type": "text",
       "name": "Key3",
       "placeholder": {
-        "en": "For example 'Temperature'"
+        "en": "For example 'Temperature'",
+        "nl": "Bijvoorbeeld 'Temperatuur'"
       }
     },
     {
       "type": "text",
       "name": "Value3",
       "placeholder": {
-        "en": "For example 21 degrees"
+        "en": "For example 21 degrees",
+        "nl": "Bijvoorbeeld 21 graden"
       }
     }          
   ]

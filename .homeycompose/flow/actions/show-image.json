@@ -1,12 +1,15 @@
 {
   "title": {
-    "en": "Display an image"
+    "en": "Display an image",
+    "nl": "Toon een afbeelding"
   },
   "titleFormatted": { 
-    "en": "Display an image from [[URL]] every [[Interval]] minutes" 
+    "en": "Display an image from [[URL]] every [[Interval]] minutes",
+    "nl": "Toon een afbeelding van [[URL]] elke [[Interval]] minuten" 
   },
   "hint": {
-    "en": "Gets an external image and displays it"
+    "en": "Gets an external image and displays it",
+    "nl": "Haalt een externe afbeelding op en toont deze"
   },
   "args": [
     {
@@ -14,21 +17,24 @@
       "name": "Id",
       "filter": "driver_id=solum-29|solum-154",  
       "placeholder": {
-        "en": "The tag to show the feed on"
+        "en": "The tag to show the feed on",
+        "nl": "De tag waarop de feed getoond moet worden"
       }
     },
     {
       "type": "text",
       "name": "URL",
       "placeholder": {
-        "en": "Full URL of exact right size image"
+        "en": "Full URL of exact right size image",
+        "nl": "Volledige URL van exact de juiste grootte afbeelding"
       }
     },
     {
       "type": "number",
       "name": "Interval",
       "placeholder": {
-        "en": "How often (in minutes) the image is being fetched. Minimum is 3 minutes."
+        "en": "How often (in minutes) the image is being fetched. Minimum is 3 minutes.",
+        "nl": "Hoe vaak (in minuten) de afbeelding wordt opgehaald. Minimum is 3 minuten."
       },
       "min": 3,
       "max": 180,

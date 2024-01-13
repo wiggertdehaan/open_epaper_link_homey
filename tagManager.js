@@ -166,7 +166,8 @@ class TagManager {
             return response.data;
         } catch (error) {
             console.error('Error while downloading the raw data:', error);
-            throw error; // Or handle the error in a different way
+            return null;
+            //throw error; // Or handle the error in a different way
         }
     }
     

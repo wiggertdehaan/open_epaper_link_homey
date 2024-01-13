@@ -1,12 +1,15 @@
 {
   "title": {
-    "en": "Display days counter"
+    "en": "Display days counter",
+    "nl": "Toon dagen teller"
   },
   "titleFormatted": { 
-    "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] days." 
+    "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] days.",
+    "nl": "Toon teller die start met [[Counter]] met een drempelwaarde van [[Threshold]] dagen." 
   },
   "hint": {
-    "en": "Counts days, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black"
+    "en": "Counts days, starting with the value below. If the count value gets higher than the threshold, the number is displayed in red, otherwise it's black",
+    "nl": "Telt dagen, beginnend met de waarde hieronder. Als de teller hoger wordt dan de drempelwaarde, wordt het getal in rood weergegeven, anders is het zwart"
   },
   "args": [
     {
@@ -14,14 +17,16 @@
       "name": "Id",
       "filter": "driver_id=solum-29|solum-154",     
       "placeholder": {
-        "en": "Select the e-tag"
+        "en": "Select the e-tag",
+        "nl": "Selecteer de e-tag"
       }
     },    
     {
       "type": "number",
       "name": "Counter",
       "placeholder": {
-        "en": "Number of days"
+        "en": "Number of days",
+        "nl": "Aantal dagen"
       },
       "min": 1,
       "max": 1000,
@@ -31,7 +36,8 @@
       "type": "number",
       "name": "Threshold",
       "placeholder": {
-        "en": "Threshold to show the number in red"
+        "en": "Threshold to show the number in red",
+        "nl": "Drempelwaarde om het getal in rood weer te geven"
       },
       "min": 1,
       "max": 999,

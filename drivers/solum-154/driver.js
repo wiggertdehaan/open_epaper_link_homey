@@ -28,7 +28,8 @@ class MyDriver extends Driver {
       if (response.data && response.data.tags) {
         return response.data.tags;
       } else {
-        throw new Error('Geen tags gevonden in de respons');
+        return null; 
+        //throw new Error('Geen tags gevonden in de respons');
       }
     } catch (error) {
       console.error('Fout bij het ophalen van de tags:', error);

@@ -1,12 +1,15 @@
 {
   "title": {
-    "en": "Display an RSS Feed"
+    "en": "Display an RSS Feed",
+    "nl": "Toon een RSS Feed"
   },
   "titleFormatted": { 
-    "en": "Display the RSS feed from [[Title]] url [[URL]] and refreshes it every [[Interval]] minutes" 
+    "en": "Display the RSS feed from [[Title]] url [[URL]] and refreshes it every [[Interval]] minutes" ,
+    "nl": "Toon de RSS feed van [[Title]] url [[URL]] en ververst deze elke [[Interval]] minuten"
   },
   "hint": {
-    "en": "Gets an RSS feed, and display the first few lines of it"
+    "en": "Gets an RSS feed, and display the first few lines of it",
+    "nl": "Haalt een RSS feed op, en toont de eerste paar regels"
   },
   "args": [
     {
@@ -14,28 +17,32 @@
       "name": "Id",
       "filter": "driver_id=solum-29",  
       "placeholder": {
-        "en": "The tag to show the feed on"
+        "en": "The tag to show the feed on",
+        "nl": "De tag waarop de feed getoond moet worden"
       }
     },
     {
       "type": "text",
       "name": "Title",
       "placeholder": {
-        "en": "Displayed title"
+        "en": "Displayed title",
+        "nl": "De getoonde titel"
       }
     },
     {
       "type": "text",
       "name": "URL",
       "placeholder": {
-        "en": "Full URL of the RSS feed"
+        "en": "Full URL of the RSS feed",
+        "nl": "De volledige URL van de RSS feed"
       }
     },
     {
       "type": "number",
       "name": "Interval",
       "placeholder": {
-        "en": "How often (in minutes) the feed is being refreshed"
+        "en": "How often (in minutes) the feed is being refreshed",
+        "nl": "Hoe vaak (in minuten) de feed ververst moet worden"
       },
       "min": 5,
       "max": 60,

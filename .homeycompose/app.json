@@ -7,7 +7,8 @@
     "local"
   ],
   "name": {
-    "en": "OpenEPaperLink"
+    "en": "OpenEPaperLink",
+    "nl": "OpenEPaperLink"
   },
   "settings": [
     {
@@ -26,7 +27,8 @@
     }
   ],
   "description": {
-    "en": "Effortlessly Customize Your Space with E-Paper Magic"
+    "en": "Effortlessly Customize Your Space with E-Paper Magic",
+    "nl": "Pas eenvoudig jouw huis aan met E-Paper Magic"
   },
   "category": [
     "tools"
@@ -44,6 +46,9 @@
   "tags": {
     "en": [
       "e-paper"
+    ],
+    "nl": [
+      "e-Paper"
     ]
   },
   "source": "https://github.com/wiggertdehaan/open_epaper_link_homey",

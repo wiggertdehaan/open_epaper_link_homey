@@ -1,12 +1,15 @@
 {
   "title": {
-    "en": "(Advanced) Display JSON template"
+    "en": "(Advanced) Display JSON template",
+    "nl": "(Geavanceerd) Toon JSON template"
   },
   "titleFormatted": { 
-    "en": "Display parsed version of: [[JSON]] " 
+    "en": "Display parsed version of: [[JSON]] " ,
+    "nl": "Toon geparsed versie van: [[JSON]] "
   },   
   "hint": {
-    "en": "Sends the JSON you put in the parameter to the tag"
+    "en": "Sends the JSON you put in the parameter to the tag",
+    "nl": "Stuurt de JSON die je in de parameter zet naar de tag"
   },
   "args": [
     {
@@ -14,14 +17,16 @@
       "name": "Id",
       "filter": "driver_id=solum-29|solum-154",  
       "placeholder": {
-        "en": "Your device"
+        "en": "Your device",
+        "nl": "Je apparaat"
       }
     },     
     {
       "type": "text",
       "name": "JSON",
       "placeholder": {
-        "en": "[{ \"text\": [ 5, 5, \"Hello!, Homey\", \"bahnschrift20\", 1, 0, 0 ] }]"
+        "en": "[{ \"text\": [ 5, 5, \"Hello!, Homey\", \"bahnschrift20\", 1, 0, 0 ] }]",
+        "nl": "[{ \"text\": [ 5, 5, \"Hallo!, Homey\", \"bahnschrift20\", 1, 0, 0 ] }]"
       }
     }
   ]

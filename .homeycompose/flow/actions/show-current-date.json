@@ -1,12 +1,15 @@
 {
   "title": {
-    "en": "Display current date"
+    "en": "Display current date",
+    "nl": "Toon huidige datum"
   },
   "titleFormatted": { 
-    "en": "Display current date" 
+    "en": "Display current date",
+    "nl": "Toon huidige datum" 
   }, 
   "hint": {
-    "en": "Shows the current date on your e-tag"
+    "en": "Shows the current date on your e-tag",
+    "nl": "Toont de huidige datum op je e-tag"
   },
   "args": [
     {
@@ -14,7 +17,8 @@
       "name": "Id",
       "filter": "driver_id=solum-29|solum-154",     
       "placeholder": {
-        "en": "Select the e-tag"
+        "en": "Select the e-tag",
+        "nl": "Selecteer de e-tag"
       }
     }
   ]
