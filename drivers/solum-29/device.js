@@ -10,8 +10,6 @@ class MyDevice extends Device {
   async onInit() {
     this.log('MyDevice has been initialized');
  
-   // this.setCapabilityValue('measure_battery')
-
   }
 
   async updateFromRouter(tag) {
