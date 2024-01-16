@@ -15,7 +15,7 @@
     {
       "type": "device",
       "name": "Id",
-      "filter": "driver_id=solum-29|solum-154",  
+      "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42",  
       "placeholder": {
         "en": "The tag to show the feed on",
         "nl": "De tag waarop de feed getoond moet worden"

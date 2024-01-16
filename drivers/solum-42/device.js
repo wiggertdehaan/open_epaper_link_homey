@@ -9,7 +9,6 @@ class MyDevice extends Device {
    */
   async onInit() {
     this.log('MyDevice has been initialized');
- 
   }
 
   async updateFromRouter(tag) {

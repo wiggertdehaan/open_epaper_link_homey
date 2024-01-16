@@ -15,7 +15,7 @@
     {
       "type": "device",
       "name": "Id",
-      "filter": "driver_id=solum-29",  
+      "filter": "driver_id=solum-29|newton-m3-29",  
       "placeholder": {
         "en": "0000000000000000",
         "nl": "0000000000000000"
