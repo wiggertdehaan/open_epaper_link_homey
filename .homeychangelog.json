@@ -10,5 +10,8 @@
   },
   "1.1.2": {
     "en": "Added crash-handling and added Dutch translation"
+  },
+  "1.2.0": {
+    "en": "Added support for Newton M3 2.9\" and Solum 4.2\""
   }
 }
