@@ -13,5 +13,8 @@
   },
   "1.2.0": {
     "en": "Added support for Newton M3 2.9\" and Solum 4.2\""
+  },
+  "1.3.0": {
+    "en": "Added support for m2 2.9\" (uc8151) - HwType 17"
   }
 }
