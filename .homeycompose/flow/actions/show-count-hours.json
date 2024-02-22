@@ -15,7 +15,7 @@
     {
       "type": "device",
       "name": "Id",
-      "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42",  
+      "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151",  
       "placeholder": {
         "en": "Select the e-tag",
         "nl": "Selecteer de e-tag"
