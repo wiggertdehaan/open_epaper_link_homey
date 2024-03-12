@@ -6,6 +6,9 @@ Support for the OpenEPaperLink Gateway of @jjwbruijn / https://github.com/jjwbru
 **Supported Devices**
 - ST‐GR29000 2.9"
 - ST‐GR16000 1.54"
+- M2 7.4"
+- M2 2.9"
+- Newton M2 2.9"
 
 **Supported Flows** (Mainly from the default AP functionality
 - Show rain prediction (Buienradar)

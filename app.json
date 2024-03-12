@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.wiggert.OpenEPaperLink",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -85,7 +85,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "Your device",
               "nl": "Jouw apparaat"
@@ -167,7 +167,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|newton-m3-29|m2-29-uc8151",
+            "filter": "driver_id=solum-29|newton-m3-29|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "0000000000000000",
               "nl": "0000000000000000"
@@ -201,7 +201,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "Select the e-tag",
               "nl": "Selecteer de e-tag"
@@ -249,7 +249,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "Select the e-tag",
               "nl": "Selecteer de e-tag"
@@ -297,7 +297,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "Select the e-tag",
               "nl": "Selecteer de e-tag"
@@ -323,7 +323,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "0000000000000000",
               "nl": "0000000000000000"
@@ -381,7 +381,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "The tag to show the feed on",
               "nl": "De tag waarop de feed getoond moet worden"
@@ -426,7 +426,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "Your device",
               "nl": "Je apparaat"
@@ -460,7 +460,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "The tag to show the feed on",
               "nl": "Het tag om de feed op te tonen"
@@ -502,7 +502,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|solum-154|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "Your device",
               "nl": "Je apparaat"
@@ -536,7 +536,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "The tag to show the feed on",
               "nl": "De tag waarop de feed getoond moet worden"
@@ -589,7 +589,7 @@
           {
             "type": "device",
             "name": "Id",
-            "filter": "driver_id=solum-29|newton-m3-29|solum-42|m2-29-uc8151",
+            "filter": "driver_id=solum-29|newton-m3-29|solum-42|m2-29-uc8151|m2-74",
             "placeholder": {
               "en": "Select Your Device",
               "nl": "Selecteer uw apparaat"
@@ -675,6 +675,49 @@
         }
       ],
       "id": "m2-29-uc8151"
+    },
+    {
+      "name": {
+        "en": "m2-74",
+        "nl": "m2-74"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m2-74/assets/images/small.png",
+        "large": "/drivers/m2-74/assets/images/large.png",
+        "xlarge": "/drivers/m2-74/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m2-74"
     },
     {
       "name": {
