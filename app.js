@@ -104,7 +104,7 @@ class MyApp extends Homey.App {
       return;
       }
       try {
-        const response = await axios.get('http://'+gateway+'/get_db'); 
+        const response = await axios.get('http://'+gateway+'/get_db?pos=<continu>'); 
 
         if (response.data && response.data.tags) {
           return response.data.tags;

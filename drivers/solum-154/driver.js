@@ -22,7 +22,7 @@ class MyDriver extends Driver {
       return;
       }
       // Voer de GET-aanvraag uit
-      const response = await axios.get('http://'+gateway+'/get_db'); 
+      const response = await axios.get('http://'+gateway+'/get_db?pos=<continu>'); 
   
       // Verwerk de ontvangen data
       if (response.data && response.data.tags) {
