@@ -15,27 +15,28 @@ class MyDriver extends Driver {
 
   async fetchTags() {
     try {
-
       const gateway = this.homey.settings.get('gateway');
-      if (!gateway) {
-      this.log('gateway has not been configured.');
-      return;
-      }
-      // Voer de GET-aanvraag uit
-      const response = await axios.get('http://'+gateway+'/get_db?pos=<continu>'); 
   
-      // Verwerk de ontvangen data
+      if (!gateway) {
+        this.homey.log('Gateway has not been configured.');
+        return []; // Retourneer een lege array als de gateway niet is geconfigureerd
+      }
+  
+      // Voer de GET-aanvraag uit
+      const response = await axios.get(`http://${gateway}/get_db?pos=<continu>`);
+  
       if (response.data && response.data.tags) {
         return response.data.tags;
       } else {
-        return null; 
-        //throw new Error('Geen tags gevonden in de respons');
+        this.homey.log('Geen tags gevonden in de respons');
+        return []; // Retourneer een lege array als er geen tags zijn gevonden
       }
     } catch (error) {
-      console.error('Fout bij het ophalen van de tags:', error);
-      throw error; // Of handel de fout af zoals gewenst
+      this.homey.log('Fout bij het ophalen van de tags:', error.message);
+      return []; // Retourneer een lege array bij een fout
     }
   }
+  
 
 
   async filterAndFormatDevices(tags) {

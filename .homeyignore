@@ -1,0 +1,10 @@
+node_modules/
+src/tests/
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+.git/
+coverage/
+dist/

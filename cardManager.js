@@ -597,28 +597,29 @@ class CardManager {
 
 
 
-    async SaveJSON(data){
-
-        this.homey.log('CardManager: SaveJSON');
-        const gateway = this.gateway;
-        if (!gateway) {
-        this.log('gateway has not been configured.');
+    async SaveJSON(data) {
+      this.homey.log('CardManager: SaveJSON');
+      const gateway = this.gateway;
+      if (!gateway) {
+        this.homey.log('Gateway has not been configured.');
         return;
-        }
-        this.homey.log('CardManager: SaveJSON: '+JSON.stringify(data));
+      }
+      
+      try {
+        this.homey.log('CardManager: SaveJSON: ' + JSON.stringify(data));
         
-        axios.post('http://'+gateway+'/jsonupload', qs.stringify(data), {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-            })
-            .then(response => {
-              //  this.homey.log('Succes:', response.data);
-            })
-            .catch(error => {
-                this.homey.log('Fout tijdens de POST-aanvraag:', error);
-              }); 
+        const response = await axios.post(`http://${gateway}/jsonupload`, qs.stringify(data), {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+        
+        this.homey.log('Succes:', response.data);
+      } catch (error) {
+        this.homey.log('Fout tijdens de POST-aanvraag:', error.message);
+      }
     }
+    
 
 
 
@@ -654,23 +655,26 @@ class CardManager {
     }
 
     async fetchTag(mac) {
-        try {
-          if (!this.gateway) {
-          this.log('gateway has not been configured.');
-          return;
-          }
-          const response = await axios.get('http://'+this.gateway+'/get_db?mac='+mac); 
-    
-          if (response.data && response.data.tags) {
-            return response.data.tags;
-          } else {
-            throw new Error('Geen tags gevonden in de respons');
-          }
-        } catch (error) {
-          console.error('Fout bij het ophalen van de tags:', error);
-          throw error; // 
+      try {
+        if (!this.gateway) {
+          this.homey.log('Gateway has not been configured.');
+          return []; // Retourneer een lege array als de gateway niet is geconfigureerd
         }
+    
+        const response = await axios.get(`http://${this.gateway}/get_db?mac=${mac}`);
+    
+        if (response.data && response.data.tags) {
+          return response.data.tags;
+        } else {
+          this.homey.log('Geen tags gevonden in de respons');
+          return []; // Retourneer een lege array als er geen tags zijn gevonden
+        }
+      } catch (error) {
+        this.homey.log('Fout bij het ophalen van de tags:', error.message);
+        return []; // Retourneer een lege array bij een fout
       }
+    }
+    
 
 
 

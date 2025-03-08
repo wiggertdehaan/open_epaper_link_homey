@@ -100,8 +100,8 @@ class MyApp extends Homey.App {
       const gateway = this.homey.settings.get('gateway');
       this.log('Fetching tags from gateway'+gateway);
       if (!gateway) {
-      this.log('gateway has not been configured.');
-      return;
+       this.log('gateway has not been configured.');
+       return [];
       }
       try {
         const response = await axios.get('http://'+gateway+'/get_db?pos=<continu>'); 
@@ -112,24 +112,27 @@ class MyApp extends Homey.App {
           throw new Error('Geen tags gevonden in de respons');
         }
       } catch (error) {
-        console.error('Fout bij het ophalen van de tags:', error);
-        throw error; // 
+        this.log('Geen tags gevonden in de respons');
+        return [];
       }
     } catch (error) {
-      console.error('Fout bij het ophalen van de tags:', error);
-      throw error; // 
+      console.log('Fout bij het ophalen van de tags:', error);
+      return [];
     }
   }
 
 
 
 WebSocketReader() {
-  this.log("Starting WebsocketReader");
+  if (this.socket) {
+    this.socket.close();  // Sluit de oude WebSocket-verbinding als die bestaat
+  }
+
   const socket = new WebSocket('ws://'+this.homey.settings.get('gateway')+'/ws');
 
-  socket.on('open', () => {
-      this.log('websocket connected');
-  });
+  // socket.on('open', () => {
+  //     this.log('websocket connected');
+  // });
 
   socket.on('message', async (data) => {
     const messageString = data.toString();
