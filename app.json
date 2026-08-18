@@ -635,6 +635,2131 @@
   "drivers": [
     {
       "name": {
+        "en": "ACeP 4.01",
+        "nl": "ACeP 4.01"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/acep-4-01-c1/assets/images/small.png",
+        "large": "/drivers/acep-4-01-c1/assets/images/large.png",
+        "xlarge": "/drivers/acep-4-01-c1/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "acep-4-01-c1",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "BLE EPD BWR 2.9\" Silabs",
+        "nl": "BLE EPD BWR 2.9\" Silabs"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/ble-epd-bwr-2-9-silabs-bd/assets/images/small.png",
+        "large": "/drivers/ble-epd-bwr-2-9-silabs-bd/assets/images/large.png",
+        "xlarge": "/drivers/ble-epd-bwr-2-9-silabs-bd/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "ble-epd-bwr-2-9-silabs-bd",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "BLE TFT 128x128",
+        "nl": "BLE TFT 128x128"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/ble-tft-128x128-e4/assets/images/small.png",
+        "large": "/drivers/ble-tft-128x128-e4/assets/images/large.png",
+        "xlarge": "/drivers/ble-tft-128x128-e4/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "ble-tft-128x128-e4",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "BWRY example",
+        "nl": "BWRY example"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/bwry-example-c0/assets/images/small.png",
+        "large": "/drivers/bwry-example-c0/assets/images/large.png",
+        "xlarge": "/drivers/bwry-example-c0/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "bwry-example-c0",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Chroma 7.4\"",
+        "nl": "Chroma 7.4\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/chroma-7-4-80/assets/images/small.png",
+        "large": "/drivers/chroma-7-4-80/assets/images/large.png",
+        "xlarge": "/drivers/chroma-7-4-80/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "chroma-7-4-80",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Chroma Aeon 74 7.4\"",
+        "nl": "Chroma Aeon 74 7.4\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/chroma-aeon-74-7-4-81/assets/images/small.png",
+        "large": "/drivers/chroma-aeon-74-7-4-81/assets/images/large.png",
+        "xlarge": "/drivers/chroma-aeon-74-7-4-81/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "chroma-aeon-74-7-4-81",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Chroma29 2.9\"",
+        "nl": "Chroma29 2.9\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/chroma29-2-9-82/assets/images/small.png",
+        "large": "/drivers/chroma29-2-9-82/assets/images/large.png",
+        "xlarge": "/drivers/chroma29-2-9-82/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "chroma29-2-9-82",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Chroma42 4.2\"",
+        "nl": "Chroma42 4.2\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/chroma42-4-2-83/assets/images/small.png",
+        "large": "/drivers/chroma42-4-2-83/assets/images/large.png",
+        "xlarge": "/drivers/chroma42-4-2-83/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "chroma42-4-2-83",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "GDEM1085Z51 10.85\"",
+        "nl": "GDEM1085Z51 10.85\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/gdem1085z51-10-85-e3/assets/images/small.png",
+        "large": "/drivers/gdem1085z51-10-85-e3/assets/images/large.png",
+        "xlarge": "/drivers/gdem1085z51-10-85-e3/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "gdem1085z51-10-85-e3",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Gicisky BLE EPD BW 2.13\"",
+        "nl": "Gicisky BLE EPD BW 2.13\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/gicisky-ble-epd-bw-2-13-b0/assets/images/small.png",
+        "large": "/drivers/gicisky-ble-epd-bw-2-13-b0/assets/images/large.png",
+        "xlarge": "/drivers/gicisky-ble-epd-bw-2-13-b0/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "gicisky-ble-epd-bw-2-13-b0",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Gicisky BLE EPD BW 2.9\"",
+        "nl": "Gicisky BLE EPD BW 2.9\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/gicisky-ble-epd-bw-2-9-b2/assets/images/small.png",
+        "large": "/drivers/gicisky-ble-epd-bw-2-9-b2/assets/images/large.png",
+        "xlarge": "/drivers/gicisky-ble-epd-bw-2-9-b2/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "gicisky-ble-epd-bw-2-9-b2",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Gicisky BLE EPD BWR 2.13\"",
+        "nl": "Gicisky BLE EPD BWR 2.13\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/gicisky-ble-epd-bwr-2-13-b1/assets/images/small.png",
+        "large": "/drivers/gicisky-ble-epd-bwr-2-13-b1/assets/images/large.png",
+        "xlarge": "/drivers/gicisky-ble-epd-bwr-2-13-b1/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "gicisky-ble-epd-bwr-2-13-b1",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Gicisky BLE EPD BWR 2.9\"",
+        "nl": "Gicisky BLE EPD BWR 2.9\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/gicisky-ble-epd-bwr-2-9-b3/assets/images/small.png",
+        "large": "/drivers/gicisky-ble-epd-bwr-2-9-b3/assets/images/large.png",
+        "xlarge": "/drivers/gicisky-ble-epd-bwr-2-9-b3/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "gicisky-ble-epd-bwr-2-9-b3",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Gicisky BLE EPD BWR 4.2\"",
+        "nl": "Gicisky BLE EPD BWR 4.2\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/gicisky-ble-epd-bwr-4-2-b5/assets/images/small.png",
+        "large": "/drivers/gicisky-ble-epd-bwr-4-2-b5/assets/images/large.png",
+        "xlarge": "/drivers/gicisky-ble-epd-bwr-4-2-b5/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "gicisky-ble-epd-bwr-4-2-b5",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Gicisky BLE TFT 2.13\"",
+        "nl": "Gicisky BLE TFT 2.13\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/gicisky-ble-tft-2-13-ba/assets/images/small.png",
+        "large": "/drivers/gicisky-ble-tft-2-13-ba/assets/images/large.png",
+        "xlarge": "/drivers/gicisky-ble-tft-2-13-ba/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "gicisky-ble-tft-2-13-ba",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HD150 5.83\" BWR",
+        "nl": "HD150 5.83\" BWR"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hd150-5-83-bwr-50/assets/images/small.png",
+        "large": "/drivers/hd150-5-83-bwr-50/assets/images/large.png",
+        "xlarge": "/drivers/hd150-5-83-bwr-50/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hd150-5-83-bwr-50",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS 2.00\" BWY",
+        "nl": "HS 2.00\" BWY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-2-00-bwy-67/assets/images/small.png",
+        "large": "/drivers/hs-2-00-bwy-67/assets/images/large.png",
+        "xlarge": "/drivers/hs-2-00-bwy-67/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-2-00-bwy-67",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS 2.13\" BWR High Res",
+        "nl": "HS 2.13\" BWR High Res"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-2-13-bwr-high-res-71/assets/images/small.png",
+        "large": "/drivers/hs-2-13-bwr-high-res-71/assets/images/large.png",
+        "xlarge": "/drivers/hs-2-13-bwr-high-res-71/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-2-13-bwr-high-res-71",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS 2.9\" HighRes",
+        "nl": "HS 2.9\" HighRes"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-2-9-highres-70/assets/images/small.png",
+        "large": "/drivers/hs-2-9-highres-70/assets/images/large.png",
+        "xlarge": "/drivers/hs-2-9-highres-70/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-2-9-highres-70",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BW 2.13\"",
+        "nl": "HS BW 2.13\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bw-2-13-54/assets/images/small.png",
+        "large": "/drivers/hs-bw-2-13-54/assets/images/large.png",
+        "xlarge": "/drivers/hs-bw-2-13-54/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bw-2-13-54",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BW 2.13\" LowRes",
+        "nl": "HS BW 2.13\" LowRes"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bw-2-13-lowres-5a/assets/images/small.png",
+        "large": "/drivers/hs-bw-2-13-lowres-5a/assets/images/large.png",
+        "xlarge": "/drivers/hs-bw-2-13-lowres-5a/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bw-2-13-lowres-5a",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BW 3.5\"",
+        "nl": "HS BW 3.5\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bw-3-5-62/assets/images/small.png",
+        "large": "/drivers/hs-bw-3-5-62/assets/images/large.png",
+        "xlarge": "/drivers/hs-bw-3-5-62/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bw-3-5-62",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWR 2.13\"",
+        "nl": "HS BWR 2.13\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwr-2-13-55/assets/images/small.png",
+        "large": "/drivers/hs-bwr-2-13-55/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwr-2-13-55/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwr-2-13-55",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWR 2.66\"",
+        "nl": "HS BWR 2.66\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwr-2-66-56/assets/images/small.png",
+        "large": "/drivers/hs-bwr-2-66-56/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwr-2-66-56/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwr-2-66-56",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWR 3.5\"",
+        "nl": "HS BWR 3.5\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwr-3-5-61/assets/images/small.png",
+        "large": "/drivers/hs-bwr-3-5-61/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwr-3-5-61/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwr-3-5-61",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWR 5,83\"",
+        "nl": "HS BWR 5,83\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwr-5-83-6a/assets/images/small.png",
+        "large": "/drivers/hs-bwr-5-83-6a/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwr-5-83-6a/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwr-5-83-6a",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWRY 2,00\"",
+        "nl": "HS BWRY 2,00\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwry-2-00-6c/assets/images/small.png",
+        "large": "/drivers/hs-bwry-2-00-6c/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwry-2-00-6c/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwry-2-00-6c",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWRY 2,60\"",
+        "nl": "HS BWRY 2,60\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwry-2-60-6f/assets/images/small.png",
+        "large": "/drivers/hs-bwry-2-60-6f/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwry-2-60-6f/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwry-2-60-6f",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWRY 2,9\"",
+        "nl": "HS BWRY 2,9\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwry-2-9-6e/assets/images/small.png",
+        "large": "/drivers/hs-bwry-2-9-6e/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwry-2-9-6e/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwry-2-9-6e",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWRY 3,5\"",
+        "nl": "HS BWRY 3,5\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwry-3-5-6d/assets/images/small.png",
+        "large": "/drivers/hs-bwry-3-5-6d/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwry-3-5-6d/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwry-3-5-6d",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWRY 7,5\"",
+        "nl": "HS BWRY 7,5\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwry-7-5-6b/assets/images/small.png",
+        "large": "/drivers/hs-bwry-7-5-6b/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwry-7-5-6b/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwry-7-5-6b",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWY 3.46\"",
+        "nl": "HS BWY 3.46\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwy-3-46-68/assets/images/small.png",
+        "large": "/drivers/hs-bwy-3-46-68/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwy-3-46-68/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwy-3-46-68",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWY 3.5\"",
+        "nl": "HS BWY 3.5\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwy-3-5-60/assets/images/small.png",
+        "large": "/drivers/hs-bwy-3-5-60/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwy-3-5-60/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwy-3-5-60",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "HS BWY 7,5\"",
+        "nl": "HS BWY 7,5\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/hs-bwy-7-5-66/assets/images/small.png",
+        "large": "/drivers/hs-bwy-7-5-66/assets/images/large.png",
+        "xlarge": "/drivers/hs-bwy-7-5-66/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "hs-bwy-7-5-66",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "LILYGO TPANEL 4\"",
+        "nl": "LILYGO TPANEL 4\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/lilygo-tpanel-4-e2/assets/images/small.png",
+        "large": "/drivers/lilygo-tpanel-4-e2/assets/images/large.png",
+        "xlarge": "/drivers/lilygo-tpanel-4-e2/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "lilygo-tpanel-4-e2",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M2 2.2\"",
+        "nl": "M2 2.2\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m2-2-2-03/assets/images/small.png",
+        "large": "/drivers/m2-2-2-03/assets/images/large.png",
+        "xlarge": "/drivers/m2-2-2-03/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m2-2-2-03",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M2 2.6\"",
+        "nl": "M2 2.6\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m2-2-6-04/assets/images/small.png",
+        "large": "/drivers/m2-2-6-04/assets/images/large.png",
+        "xlarge": "/drivers/m2-2-6-04/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m2-2-6-04",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M2 2.7\"",
+        "nl": "M2 2.7\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m2-2-7-22/assets/images/small.png",
+        "large": "/drivers/m2-2-7-22/assets/images/large.png",
+        "xlarge": "/drivers/m2-2-7-22/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m2-2-7-22",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
         "en": "M2 2.9\" (UC8151)",
         "nl": "M2 2.9\" (UC8151)"
       },
@@ -675,6 +2800,118 @@
         }
       ],
       "id": "m2-29-uc8151"
+    },
+    {
+      "name": {
+        "en": "M2 4.2\" UC",
+        "nl": "M2 4.2\" UC"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m2-4-2-uc-12/assets/images/small.png",
+        "large": "/drivers/m2-4-2-uc-12/assets/images/large.png",
+        "xlarge": "/drivers/m2-4-2-uc-12/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m2-4-2-uc-12",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M2 7.5\" BW",
+        "nl": "M2 7.5\" BW"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m2-7-5-bw-26/assets/images/small.png",
+        "large": "/drivers/m2-7-5-bw-26/assets/images/large.png",
+        "xlarge": "/drivers/m2-7-5-bw-26/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m2-7-5-bw-26",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -721,6 +2958,2017 @@
     },
     {
       "name": {
+        "en": "M3 1.3\" Peghook",
+        "nl": "M3 1.3\" Peghook"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-1-3-peghook-43/assets/images/small.png",
+        "large": "/drivers/m3-1-3-peghook-43/assets/images/large.png",
+        "xlarge": "/drivers/m3-1-3-peghook-43/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-1-3-peghook-43",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 1.6\" 200px BWRY (4A)",
+        "nl": "M3 1.6\" 200px BWRY (4A)"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-1-6-200px-bwry-4a/assets/images/small.png",
+        "large": "/drivers/m3-1-6-200px-bwry-4a/assets/images/large.png",
+        "xlarge": "/drivers/m3-1-6-200px-bwry-4a/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-1-6-200px-bwry-4a",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 1.6\" 200px BWRY (91)",
+        "nl": "M3 1.6\" 200px BWRY (91)"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-1-6-200px-bwry-91/assets/images/small.png",
+        "large": "/drivers/m3-1-6-200px-bwry-91/assets/images/large.png",
+        "xlarge": "/drivers/m3-1-6-200px-bwry-91/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-1-6-200px-bwry-91",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 1.6\"",
+        "nl": "M3 1.6\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-1-6-30/assets/images/small.png",
+        "large": "/drivers/m3-1-6-30/assets/images/large.png",
+        "xlarge": "/drivers/m3-1-6-30/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-1-6-30",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 1.6\" BWRY",
+        "nl": "M3 1.6\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-1-6-bwry-28/assets/images/small.png",
+        "large": "/drivers/m3-1-6-bwry-28/assets/images/large.png",
+        "xlarge": "/drivers/m3-1-6-bwry-28/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-1-6-bwry-28",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 11.6\"",
+        "nl": "M3 11.6\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-11-6-37/assets/images/small.png",
+        "large": "/drivers/m3-11-6-37/assets/images/large.png",
+        "xlarge": "/drivers/m3-11-6-37/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-11-6-37",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 11.6\" BWRY",
+        "nl": "M3 11.6\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-11-6-bwry-4d/assets/images/small.png",
+        "large": "/drivers/m3-11-6-bwry-4d/assets/images/large.png",
+        "xlarge": "/drivers/m3-11-6-bwry-4d/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-11-6-bwry-4d",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 12.2\"",
+        "nl": "M3 12.2\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-12-2-2d/assets/images/small.png",
+        "large": "/drivers/m3-12-2-2d/assets/images/large.png",
+        "xlarge": "/drivers/m3-12-2-2d/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-12-2-2d",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.2\"",
+        "nl": "M3 2.2\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-2-31/assets/images/small.png",
+        "large": "/drivers/m3-2-2-31/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-2-31/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-2-31",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.2\" BW",
+        "nl": "M3 2.2\" BW"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-2-bw-46/assets/images/small.png",
+        "large": "/drivers/m3-2-2-bw-46/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-2-bw-46/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-2-bw-46",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.2\" BWRY",
+        "nl": "M3 2.2\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-2-bwry-4b/assets/images/small.png",
+        "large": "/drivers/m3-2-2-bwry-4b/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-2-bwry-4b/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-2-bwry-4b",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.2 Lite\"",
+        "nl": "M3 2.2 Lite\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-2-lite-45/assets/images/small.png",
+        "large": "/drivers/m3-2-2-lite-45/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-2-lite-45/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-2-lite-45",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.4\" BWRY",
+        "nl": "M3 2.4\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-4-bwry-29/assets/images/small.png",
+        "large": "/drivers/m3-2-4-bwry-29/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-4-bwry-29/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-4-bwry-29",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.6\"",
+        "nl": "M3 2.6\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-6-32/assets/images/small.png",
+        "large": "/drivers/m3-2-6-32/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-6-32/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-6-32",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.6\" BW",
+        "nl": "M3 2.6\" BW"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-6-bw-4e/assets/images/small.png",
+        "large": "/drivers/m3-2-6-bw-4e/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-6-bw-4e/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-6-bw-4e",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.6\" BWRY",
+        "nl": "M3 2.6\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-6-bwry-4f/assets/images/small.png",
+        "large": "/drivers/m3-2-6-bwry-4f/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-6-bwry-4f/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-6-bwry-4f",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.7\"",
+        "nl": "M3 2.7\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-7-47/assets/images/small.png",
+        "large": "/drivers/m3-2-7-47/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-7-47/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-7-47",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.9\" BW",
+        "nl": "M3 2.9\" BW"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-9-bw-40/assets/images/small.png",
+        "large": "/drivers/m3-2-9-bw-40/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-9-bw-40/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-9-bw-40",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 2.9\" BWRY",
+        "nl": "M3 2.9\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-2-9-bwry-2b/assets/images/small.png",
+        "large": "/drivers/m3-2-9-bwry-2b/assets/images/large.png",
+        "xlarge": "/drivers/m3-2-9-bwry-2b/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-2-9-bwry-2b",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 3.0\" BWRY",
+        "nl": "M3 3.0\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-3-0-bwry-2a/assets/images/small.png",
+        "large": "/drivers/m3-3-0-bwry-2a/assets/images/large.png",
+        "xlarge": "/drivers/m3-3-0-bwry-2a/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-3-0-bwry-2a",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 3.5\" BWRY RTL",
+        "nl": "M3 3.5\" BWRY RTL"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-3-5-bwry-rtl-53/assets/images/small.png",
+        "large": "/drivers/m3-3-5-bwry-rtl-53/assets/images/large.png",
+        "xlarge": "/drivers/m3-3-5-bwry-rtl-53/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-3-5-bwry-rtl-53",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 4.2\"",
+        "nl": "M3 4.2\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-4-2-34/assets/images/small.png",
+        "large": "/drivers/m3-4-2-34/assets/images/large.png",
+        "xlarge": "/drivers/m3-4-2-34/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-4-2-34",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 4.2\" BWRY",
+        "nl": "M3 4.2\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-4-2-bwry-90/assets/images/small.png",
+        "large": "/drivers/m3-4-2-bwry-90/assets/images/large.png",
+        "xlarge": "/drivers/m3-4-2-bwry-90/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-4-2-bwry-90",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 4.2\" BWY",
+        "nl": "M3 4.2\" BWY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-4-2-bwy-3c/assets/images/small.png",
+        "large": "/drivers/m3-4-2-bwy-3c/assets/images/large.png",
+        "xlarge": "/drivers/m3-4-2-bwy-3c/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-4-2-bwy-3c",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 4.3\"",
+        "nl": "M3 4.3\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-4-3-2f/assets/images/small.png",
+        "large": "/drivers/m3-4-3-2f/assets/images/large.png",
+        "xlarge": "/drivers/m3-4-3-2f/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-4-3-2f",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 4.3\" BWRY",
+        "nl": "M3 4.3\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-4-3-bwry-2c/assets/images/small.png",
+        "large": "/drivers/m3-4-3-bwry-2c/assets/images/large.png",
+        "xlarge": "/drivers/m3-4-3-bwry-2c/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-4-3-bwry-2c",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 5.81\" BW",
+        "nl": "M3 5.81\" BW"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-5-81-bw-44/assets/images/small.png",
+        "large": "/drivers/m3-5-81-bw-44/assets/images/large.png",
+        "xlarge": "/drivers/m3-5-81-bw-44/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-5-81-bw-44",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 5.81\" BWR",
+        "nl": "M3 5.81\" BWR"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-5-81-bwr-48/assets/images/small.png",
+        "large": "/drivers/m3-5-81-bwr-48/assets/images/large.png",
+        "xlarge": "/drivers/m3-5-81-bwr-48/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-5-81-bwr-48",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 5.81\" V2 BWR",
+        "nl": "M3 5.81\" V2 BWR"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-5-81-v2-bwr-49/assets/images/small.png",
+        "large": "/drivers/m3-5-81-v2-bwr-49/assets/images/large.png",
+        "xlarge": "/drivers/m3-5-81-v2-bwr-49/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-5-81-v2-bwr-49",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 5.85\"",
+        "nl": "M3 5.85\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-5-85-41/assets/images/small.png",
+        "large": "/drivers/m3-5-85-41/assets/images/large.png",
+        "xlarge": "/drivers/m3-5-85-41/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-5-85-41",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 5.85\" BW",
+        "nl": "M3 5.85\" BW"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-5-85-bw-42/assets/images/small.png",
+        "large": "/drivers/m3-5-85-bw-42/assets/images/large.png",
+        "xlarge": "/drivers/m3-5-85-bw-42/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-5-85-bw-42",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 6.0\"",
+        "nl": "M3 6.0\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-6-0-35/assets/images/small.png",
+        "large": "/drivers/m3-6-0-35/assets/images/large.png",
+        "xlarge": "/drivers/m3-6-0-35/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-6-0-35",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 7.5\"",
+        "nl": "M3 7.5\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-7-5-36/assets/images/small.png",
+        "large": "/drivers/m3-7-5-36/assets/images/large.png",
+        "xlarge": "/drivers/m3-7-5-36/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-7-5-36",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 7.5\" BWRY",
+        "nl": "M3 7.5\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-7-5-bwry-4c/assets/images/small.png",
+        "large": "/drivers/m3-7-5-bwry-4c/assets/images/large.png",
+        "xlarge": "/drivers/m3-7-5-bwry-4c/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-7-5-bwry-4c",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 8.2\" BWRY",
+        "nl": "M3 8.2\" BWRY"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-8-2-bwry-38/assets/images/small.png",
+        "large": "/drivers/m3-8-2-bwry-38/assets/images/large.png",
+        "xlarge": "/drivers/m3-8-2-bwry-38/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-8-2-bwry-38",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "M3 9.7\"",
+        "nl": "M3 9.7\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/m3-9-7-2e/assets/images/small.png",
+        "large": "/drivers/m3-9-7-2e/assets/images/large.png",
+        "xlarge": "/drivers/m3-9-7-2e/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "m3-9-7-2e",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
         "en": "Newton M3 2.9",
         "nl": "Newton M3 2.9"
       },
@@ -761,6 +5009,230 @@
         }
       ],
       "id": "newton-m3-29",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Opticon 2.2\"",
+        "nl": "Opticon 2.2\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/opticon-2-2-06/assets/images/small.png",
+        "large": "/drivers/opticon-2-2-06/assets/images/large.png",
+        "xlarge": "/drivers/opticon-2-2-06/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "opticon-2-2-06",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Opticon 2.9\"",
+        "nl": "Opticon 2.9\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/opticon-2-9-07/assets/images/small.png",
+        "large": "/drivers/opticon-2-9-07/assets/images/large.png",
+        "xlarge": "/drivers/opticon-2-9-07/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "opticon-2-9-07",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Opticon 4.2\"",
+        "nl": "Opticon 4.2\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/opticon-4-2-08/assets/images/small.png",
+        "large": "/drivers/opticon-4-2-08/assets/images/large.png",
+        "xlarge": "/drivers/opticon-4-2-08/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "opticon-4-2-08",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Opticon 7.5\"",
+        "nl": "Opticon 7.5\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/opticon-7-5-09/assets/images/small.png",
+        "large": "/drivers/opticon-7-5-09/assets/images/large.png",
+        "xlarge": "/drivers/opticon-7-5-09/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "opticon-7-5-09",
       "settings": [
         {
           "id": "MACAddress",
@@ -928,6 +5400,620 @@
         }
       ],
       "id": "solum-42",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Spectra 7.3",
+        "nl": "Spectra 7.3"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/spectra-7-3-c2/assets/images/small.png",
+        "large": "/drivers/spectra-7-3-c2/assets/images/large.png",
+        "xlarge": "/drivers/spectra-7-3-c2/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "spectra-7-3-c2",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "ST-GM29MT1 2.9\"",
+        "nl": "ST-GM29MT1 2.9\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/st-gm29mt1-2-9-27/assets/images/small.png",
+        "large": "/drivers/st-gm29mt1-2-9-27/assets/images/large.png",
+        "xlarge": "/drivers/st-gm29mt1-2-9-27/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "st-gm29mt1-2-9-27",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "ST-GM29XXF 2.9\"",
+        "nl": "ST-GM29XXF 2.9\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/st-gm29xxf-2-9-21/assets/images/small.png",
+        "large": "/drivers/st-gm29xxf-2-9-21/assets/images/large.png",
+        "xlarge": "/drivers/st-gm29xxf-2-9-21/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "st-gm29xxf-2-9-21",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "TFT 160x80",
+        "nl": "TFT 160x80"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/tft-160x80-e1/assets/images/small.png",
+        "large": "/drivers/tft-160x80-e1/assets/images/large.png",
+        "xlarge": "/drivers/tft-160x80-e1/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "tft-160x80-e1",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "TFT 240x320",
+        "nl": "TFT 240x320"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/tft-240x320-e5/assets/images/small.png",
+        "large": "/drivers/tft-240x320-e5/assets/images/large.png",
+        "xlarge": "/drivers/tft-240x320-e5/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "tft-240x320-e5",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "TFT 320x172",
+        "nl": "TFT 320x172"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/tft-320x172-e0/assets/images/small.png",
+        "large": "/drivers/tft-320x172-e0/assets/images/large.png",
+        "xlarge": "/drivers/tft-320x172-e0/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "tft-320x172-e0",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "TLSR BW 2.13\" (58)",
+        "nl": "TLSR BW 2.13\" (58)"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/tlsr-bw-2-13-58/assets/images/small.png",
+        "large": "/drivers/tlsr-bw-2-13-58/assets/images/large.png",
+        "xlarge": "/drivers/tlsr-bw-2-13-58/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "tlsr-bw-2-13-58",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "TLSR BW 2.13\" (69)",
+        "nl": "TLSR BW 2.13\" (69)"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/tlsr-bw-2-13-69/assets/images/small.png",
+        "large": "/drivers/tlsr-bw-2-13-69/assets/images/large.png",
+        "xlarge": "/drivers/tlsr-bw-2-13-69/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "tlsr-bw-2-13-69",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "TLSR BWR 1.54\"",
+        "nl": "TLSR BWR 1.54\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/tlsr-bwr-1-54-57/assets/images/small.png",
+        "large": "/drivers/tlsr-bwr-1-54-57/assets/images/large.png",
+        "xlarge": "/drivers/tlsr-bwr-1-54-57/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "tlsr-bwr-1-54-57",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "TLSR BWR 2.13\"",
+        "nl": "TLSR BWR 2.13\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/tlsr-bwr-2-13-59/assets/images/small.png",
+        "large": "/drivers/tlsr-bwr-2-13-59/assets/images/large.png",
+        "xlarge": "/drivers/tlsr-bwr-2-13-59/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "tlsr-bwr-2-13-59",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "TLSR BWR 4.2\"",
+        "nl": "TLSR BWR 4.2\""
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450",
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/tlsr-bwr-4-2-63/assets/images/small.png",
+        "large": "/drivers/tlsr-bwr-4-2-63/assets/images/large.png",
+        "xlarge": "/drivers/tlsr-bwr-4-2-63/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "tlsr-bwr-4-2-63",
       "settings": [
         {
           "id": "MACAddress",
