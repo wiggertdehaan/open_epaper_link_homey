@@ -92,6 +92,21 @@ class MyApp extends Homey.App {
 
   }
 
+  /**
+   * onUninit is called when the app is destroyed (eg. on disable/update),
+   * so the websocket connection and any pending reconnect timer don't
+   * outlive the app instance.
+   */
+  async onUninit() {
+    this.uninitialized = true;
+    if (this.reconnectTimeout) {
+      clearTimeout(this.reconnectTimeout);
+    }
+    if (this.socket) {
+      this.socket.close();
+    }
+  }
+
 
   async fetchTags() {
     try {
@@ -129,6 +144,7 @@ WebSocketReader() {
   }
 
   const socket = new WebSocket('ws://'+this.homey.settings.get('gateway')+'/ws');
+  this.socket = socket;
 
   // socket.on('open', () => {
   //     this.log('websocket connected');
@@ -145,9 +161,8 @@ WebSocketReader() {
         {
           // call getTagTypeData async
           let tagType = await this.getTagTypeData(messageJSON.tags[0].hwType);
-          let homeyImage = await this.homey.images.createImage();
           let drivers = this.homey.drivers.getDrivers();
-          this.tagManager.updateTags(messageJSON.tags, drivers, tagType,homeyImage);
+          this.tagManager.updateTags(messageJSON.tags, drivers, tagType);
         }
         if (messageJSON.sys)
         {
@@ -163,7 +178,8 @@ WebSocketReader() {
 
   socket.on('close', () => {
       this.log('websocket disconnected, attempting to reconnect');
-      setTimeout(() => this.WebSocketReader(), 5000); // Aangepast om de functie correct opnieuw aan te roepen
+      if (this.uninitialized) return;
+      this.reconnectTimeout = setTimeout(() => this.WebSocketReader(), 5000); // Aangepast om de functie correct opnieuw aan te roepen
   });
 
   socket.on('error', (error) => {

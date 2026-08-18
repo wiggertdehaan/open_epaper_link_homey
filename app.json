@@ -674,7 +674,20 @@
           "template": "add_devices"
         }
       ],
-      "id": "m2-29-uc8151"
+      "id": "m2-29-uc8151",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -717,7 +730,20 @@
           "template": "add_devices"
         }
       ],
-      "id": "m2-74"
+      "id": "m2-74",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
     },
     {
       "name": {
