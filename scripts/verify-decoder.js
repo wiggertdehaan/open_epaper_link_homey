@@ -39,7 +39,7 @@ async function toJimp(decoded) {
     img.bitmap.data[p * 4 + 2] = decoded.rgb[p * 3 + 2];
     img.bitmap.data[p * 4 + 3] = 255;
   }
-  return decoded.rotated ? img.rotate(90) : img;
+  return decoded.rotateDegrees ? img.rotate(decoded.rotateDegrees) : img;
 }
 
 (async () => {
@@ -81,7 +81,7 @@ async function toJimp(decoded) {
       await img.writeAsync(file);
       console.log(`${label}  ${String(raw.buf.length).padStart(5)}B ${dec.container.padEnd(4)}`
         + ` buf=${dec.width}x${dec.height} planes=${dec.planes}`
-        + ` ${dec.rotated ? 'rotated' : '       '} -> ${img.bitmap.width}x${img.bitmap.height} OK`);
+        + ` rot=${String(dec.rotateDegrees).padStart(4)} -> ${img.bitmap.width}x${img.bitmap.height} OK`);
       ok++;
     } catch (err) {
       console.log(`${label}  ${String(raw.buf.length).padStart(5)}B  SKIPPED: ${err.message}`);

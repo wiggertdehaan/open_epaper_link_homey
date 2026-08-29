@@ -119,7 +119,7 @@ class TagManager {
 
             // Panels whose framebuffer is stored rotated need turning upright
             // before we hand the picture to Homey.
-            if (decoded.rotated) image = image.rotate(90);
+            if (decoded.rotateDegrees) image = image.rotate(decoded.rotateDegrees);
 
             const squareImage = this.createSquareImage(image);
             const path = device.getScreenshotPath();
