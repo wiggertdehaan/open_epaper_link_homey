@@ -1,6 +1,7 @@
 const Jimp = require('jimp');
 const axios = require('axios');
 const { Readable } = require('stream');
+const { decodeRawImage } = require('./lib/rawImage');
 
 class TagManager {
     // constructor
@@ -11,11 +12,27 @@ class TagManager {
         this.homey.log('TagManager constructor gateway: '+this.gateway);
     }
 
+    // The gateway address can be changed at any time from the app settings
+    // page, so it must be updatable in place rather than captured at boot.
+    setGateway(gateway)
+    {
+        this.gateway = gateway;
+    }
+
     // update tags
-    updateTags(tags, drivers, tagtype)
+    //
+    // resolveTagType is called per tag: a single websocket message can carry
+    // tags of different hardware types, so the type must be looked up for each
+    // one instead of reusing the first tag's type for the whole batch.
+    updateTags(tags, drivers, resolveTagType)
     {
         tags.forEach(tag => {
-            this.updateTag(tag, drivers, tagtype);
+            Promise.resolve()
+                .then(() => resolveTagType(tag.hwType))
+                .then((tagtype) => this.updateTag(tag, drivers, tagtype))
+                .catch((error) => {
+                    this.homey.log('Error resolving tag type for ' + tag.mac + ':', error);
+                });
         });
     }
 
@@ -61,53 +78,49 @@ class TagManager {
     }
 
     async UpdateTagImage(device, tag, tagType) {
-        let width = tagType.width;
-        let height = tagType.height;
-        let colorTable = tagType.colortable;
-        let simpleColorTable = {};
-        let bpp = tagType.bpp;
-        this.homey.log('Trying to convert raw image for tag:' + tag.mac + ' with hwType:' + tag.hwType + ' and bpp:' + bpp + ' and width:' + width + ' and height:' + height);
+        if (!tagType) {
+            this.homey.log('No tag type data for tag ' + tag.mac + ' (hwType ' + tag.hwType + '), skipping image update');
+            return;
+        }
 
-        if (bpp == 16) {
+        if (tagType.bpp == 16) {
             this.homey.log('bpp 16 tags are not supported for image rendering yet, skipping image update for tag:' + tag.mac);
             return;
         }
 
-        let colorIndex = 0;
-        for (const [key, value] of Object.entries(colorTable)) {
-            simpleColorTable[colorIndex] = value;
-            colorIndex++;
-        }
-
-        const image = new Jimp(height, width);
-        if (tagType.rotatebuffer) [image.width, image.height] = [image.height, image.width];
-
-        this.homey.log('Fetching raw image for tag: ' + tag.mac);
         const data = await this.downloadRawImage(tag);
-
         if (!data || data.length == 0) {
             return;
         }
 
-        const offsetRed = (data.length >= (width  * height  / 8) * 2) ? width  * height  / 8 : 0;
-
-        let pixelValue = 0;
-        for (let i = 0; i < data.length; i++) {
-            for (let j = 0; j < 8; j++) {
-                const pixelIndex = i * 8 + j;
-                if (offsetRed) {
-                    pixelValue = ((data[i] & (1 << (7 - j))) ? 1 : 0) | (((data[i + offsetRed] & (1 << (7 - j))) ? 1 : 0) << 1);
-                } else {
-                    pixelValue = ((data[i] & (1 << (7 - j))) ? 1 : 0);
-                }
-                image.bitmap.data[pixelIndex * 4] =  simpleColorTable[pixelValue][0];
-                image.bitmap.data[pixelIndex * 4 + 1] = simpleColorTable[pixelValue][1];
-                image.bitmap.data[pixelIndex * 4 + 2] = simpleColorTable[pixelValue][2];
-                image.bitmap.data[pixelIndex * 4 + 3] = 255;
-            }
+        let decoded;
+        try {
+            decoded = decodeRawImage(data, tagType);
+        } catch (error) {
+            // A buffer we cannot decode must not be rendered: unpacking it
+            // anyway produces black/white noise on the device tile, which is
+            // worse than simply keeping the previous image.
+            this.homey.log('Skipping image for tag ' + tag.mac + ': ' + error.message);
+            return;
         }
 
+        this.homey.log('Decoded raw image for tag ' + tag.mac
+            + ' (hwType ' + tag.hwType + ', ' + decoded.container + ', '
+            + decoded.width + 'x' + decoded.height + ', ' + decoded.planes + ' plane(s))');
+
         try {
+            let image = new Jimp(decoded.width, decoded.height, 0xffffffff);
+            for (let p = 0; p < decoded.width * decoded.height; p++) {
+                image.bitmap.data[p * 4] = decoded.rgb[p * 3];
+                image.bitmap.data[p * 4 + 1] = decoded.rgb[p * 3 + 1];
+                image.bitmap.data[p * 4 + 2] = decoded.rgb[p * 3 + 2];
+                image.bitmap.data[p * 4 + 3] = 255;
+            }
+
+            // Panels whose framebuffer is stored rotated need turning upright
+            // before we hand the picture to Homey.
+            if (decoded.rotated) image = image.rotate(90);
+
             const squareImage = this.createSquareImage(image);
             const path = device.getScreenshotPath();
 

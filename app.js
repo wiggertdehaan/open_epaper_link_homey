@@ -23,7 +23,21 @@ class MyApp extends Homey.App {
     this.APManager = new APManager(this,this.homey.settings.get('gateway'));
     this.cardManager = new CardManager(this,this.homey.settings.get('gateway'));
     this.tagTypeCache = {};
-    
+
+    // The gateway used to be read once here and never again, so entering or
+    // correcting the AP address in the settings page had no effect until the
+    // app was restarted. Re-read it whenever it changes and reconnect.
+    this.homey.settings.on('set', (key) => {
+      if (key !== 'gateway') return;
+      const gateway = this.homey.settings.get('gateway');
+      this.log('Gateway setting changed to:', gateway);
+      this.tagTypeCache = {};
+      if (this.tagManager) this.tagManager.setGateway(gateway);
+      if (this.APManager) this.APManager.gateway = gateway;
+      if (this.cardManager) this.cardManager.gateway = gateway;
+      this.WebSocketReader();
+    });
+
     this.WebSocketReader();
 
     const cardShowLocalJSON = this.homey.flow.getActionCard('show-local-json-template');
@@ -139,16 +153,33 @@ class MyApp extends Homey.App {
 
 
 WebSocketReader() {
-  if (this.socket) {
-    this.socket.close();  // Sluit de oude WebSocket-verbinding als die bestaat
+  if (this.reconnectTimeout) {
+    clearTimeout(this.reconnectTimeout);
+    this.reconnectTimeout = null;
   }
 
-  const socket = new WebSocket('ws://'+this.homey.settings.get('gateway')+'/ws');
+  if (this.socket) {
+    this.socket.removeAllListeners();
+    this.socket.close();  // Sluit de oude WebSocket-verbinding als die bestaat
+    this.socket = null;
+  }
+
+  const gateway = this.homey.settings.get('gateway');
+  if (!gateway) {
+    // Without an address there is nothing to connect to; retrying every few
+    // seconds against `ws://null/ws` just fills the log with ENOTFOUND.
+    this.log('Gateway has not been configured, not connecting. Set the AP address in the app settings.');
+    return;
+  }
+
+  const url = 'ws://' + gateway + '/ws';
+  this.log('Connecting to websocket:', url);
+  const socket = new WebSocket(url);
   this.socket = socket;
 
-  // socket.on('open', () => {
-  //     this.log('websocket connected');
-  // });
+  socket.on('open', () => {
+      this.log('websocket connected to', url);
+  });
 
   socket.on('message', async (data) => {
     const messageString = data.toString();
@@ -159,10 +190,10 @@ WebSocketReader() {
         // check if messageJSON starts with msg.tags
         if (messageJSON.tags)
         {
-          // call getTagTypeData async
-          let tagType = await this.getTagTypeData(messageJSON.tags[0].hwType);
+          // One message can contain tags of different hardware types, so the
+          // type is resolved per tag rather than taken from the first one.
           let drivers = this.homey.drivers.getDrivers();
-          this.tagManager.updateTags(messageJSON.tags, drivers, tagType);
+          this.tagManager.updateTags(messageJSON.tags, drivers, (hwType) => this.getTagTypeData(hwType));
         }
         if (messageJSON.sys)
         {
@@ -198,25 +229,21 @@ async getTagTypeData(hwtype) {
       return this.tagTypeCache[hwtype];
   }
 
+  const gateway = this.homey.settings.get('gateway');
+  if (!gateway) return null;
+
   // Data is not in the cache, fetch it from the gateway
+  const url = 'http://'+gateway+'/tagtypes/'+hwtype.toString(16).padStart(2, '0').toUpperCase()+'.json';
   try {
-      const url = 'http://'+this.homey.settings.get('gateway')+'/tagtypes/'+hwtype.toString(16).padStart(2, '0').toUpperCase()+'.json';
-      this.log('Fetching tagtype data from gateway:', url);
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-           throw new Error(`Error fetching tagtype data for hwtype ${hwtype}`);
-        }
-        const data = await response.json();
-        this.tagTypeCache[hwtype] = data;
-        return data;
-      } catch (error) {
-        console.error('Error while fetching tagtype data:', error);
-        throw error; // 
-      }
+    this.log('Fetching tagtype data from gateway:', url);
+    const response = await axios.get(url, { timeout: 10000 });
+    this.tagTypeCache[hwtype] = response.data;
+    return response.data;
   } catch (error) {
-      console.error(error);
-      // Optionally handle the error, e.g., return default values
+    // Returning null (instead of undefined via a swallowed throw) lets the
+    // caller skip this tag cleanly rather than crash on tagType.width.
+    this.log('Error while fetching tagtype data for hwType ' + hwtype + ':', error.message);
+    return null;
   }
 }
 
