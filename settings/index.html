@@ -44,7 +44,7 @@
         Homey.get("gateway", function (err, gatewayValue) {
         if (err) return Homey.alert(err);
         // Zet de waarde van het input-element
-        gatewayElement.value = gatewayValue;
+        gatewayElement.value = gatewayValue || "";
         });
 
 
@@ -54,12 +54,6 @@
           Homey.set("gateway", gatewayElement.value, function (err) {
             if (err) return Homey.alert(err);
           });
-
-        Homey.set("pollInterval", pollIntervalElement.value, function (err) {
-          if (err) return Homey.alert(err);
-        });
-
-
         });
       }
     </script>
