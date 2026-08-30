@@ -30,6 +30,15 @@
 
     <button id="save" class="homey-button-primary-full">Save changes</button>
 
+    <fieldset class="homey-form-fieldset">
+      <legend class="homey-form-legend">Storage</legend>
+
+      <p class="homey-subtitle" id="storage-status">Checking stored images&hellip;</p>
+      <p class="homey-text-small" id="storage-detail"></p>
+
+      <button id="cleanup" class="homey-button-small-full">Clean up leftover images</button>
+    </fieldset>
+
     <script type="text/javascript">
       // a method named 'onHomeyReady' must be present in your code
       function onHomeyReady(Homey) {
@@ -61,6 +70,61 @@
 
 
         });
+
+        // --- stored images ---------------------------------------------
+
+        var statusElement = document.getElementById("storage-status");
+        var detailElement = document.getElementById("storage-detail");
+        var cleanupElement = document.getElementById("cleanup");
+
+        function formatBytes(bytes) {
+          if (!bytes) return "0 B";
+          if (bytes < 1024) return bytes + " B";
+          if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+          return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+        }
+
+        function refreshStorage() {
+          Homey.api("GET", "/imageStorage", null, function (err, result) {
+            if (err) {
+              statusElement.textContent = "Could not read storage: " + err;
+              return;
+            }
+            statusElement.textContent =
+              result.files + " stored image(s), " + formatBytes(result.bytes) +
+              " \u2014 " + result.orphans + " leftover (" + formatBytes(result.orphanBytes) + ")";
+
+            var parts = [];
+            Object.keys(result.byDir || {}).forEach(function (dir) {
+              parts.push(dir + ": " + result.byDir[dir].files + " file(s), " +
+                formatBytes(result.byDir[dir].bytes));
+            });
+            parts.push(result.paired + " paired device(s)");
+            detailElement.textContent = parts.join(" \u00b7 ");
+
+            cleanupElement.disabled = result.orphans === 0;
+          });
+        }
+
+        cleanupElement.addEventListener("click", function () {
+          cleanupElement.disabled = true;
+          statusElement.textContent = "Cleaning up\u2026";
+          Homey.api("POST", "/cleanupImages", null, function (err, result) {
+            if (err) {
+              statusElement.textContent = "Cleanup failed: " + err;
+              cleanupElement.disabled = false;
+              return;
+            }
+            Homey.alert(
+              "Removed " + result.deleted + " leftover image(s), freed " +
+              formatBytes(result.bytes) + "." +
+              (result.failed ? " " + result.failed + " could not be removed." : "")
+            );
+            refreshStorage();
+          });
+        });
+
+        refreshStorage();
       }
     </script>
   </body>
