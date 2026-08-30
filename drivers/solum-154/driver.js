@@ -1,7 +1,7 @@
 'use strict';
 
 const { Driver } = require('homey');
-const axios = require('axios');
+const { fetchAllTags } = require('../../lib/apClient');
 
 class MyDriver extends Driver {
 
@@ -22,15 +22,9 @@ class MyDriver extends Driver {
         return []; // Retourneer een lege array als de gateway niet is geconfigureerd
       }
   
-      // Voer de GET-aanvraag uit
-      const response = await axios.get(`http://${gateway}/get_db?pos=<continu>`);
-  
-      if (response.data && response.data.tags) {
-        return response.data.tags;
-      } else {
-        this.homey.log('Geen tags gevonden in de respons');
-        return []; // Retourneer een lege array als er geen tags zijn gevonden
-      }
+      // The AP returns a page of tags at a time; walk them all so tags
+      // beyond the first page can be paired too.
+      return await fetchAllTags(gateway);
     } catch (error) {
       this.homey.log('Fout bij het ophalen van de tags:', error.message);
       return []; // Retourneer een lege array bij een fout

@@ -3,6 +3,7 @@
 const TagManager = require('./tagManager');
 const APManager = require('./apManager');
 const CardManager = require('./cardManager');
+const { fetchAllTags } = require('./lib/apClient');
 
 const Homey = require('homey');
 const axios = require('axios');
@@ -104,15 +105,10 @@ class MyApp extends Homey.App {
        return [];
       }
       try {
-        const response = await axios.get('http://'+gateway+'/get_db?pos=<continu>'); 
-
-        if (response.data && response.data.tags) {
-          return response.data.tags;
-        } else {
-          throw new Error('Geen tags gevonden in de respons');
-        }
+        // The AP returns a page of tags at a time; walk them all.
+        return await fetchAllTags(gateway);
       } catch (error) {
-        this.log('Geen tags gevonden in de respons');
+        this.log('Could not fetch the tag list:', error.message);
         return [];
       }
     } catch (error) {
