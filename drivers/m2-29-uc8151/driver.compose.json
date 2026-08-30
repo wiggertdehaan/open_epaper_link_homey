@@ -3,6 +3,7 @@
     "en": "M2 2.9\" (UC8151)",
     "nl": "M2 2.9\" (UC8151)"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

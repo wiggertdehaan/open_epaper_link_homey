@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="-20.001 -38.197 124.841 118.281" width="800px" height="757.963px" xmlns="http://www.w3.org/2000/svg">
+  <g class="layer">
+    <title>Layer 1</title>
+    <rect fill="#ffffff" height="41" id="svg_1" rx="2" ry="2" stroke="#000000" transform="matrix(1 0 0 1 0 0)" width="83" x="1" y="1"/>
+    <rect fill="#ffffff" height="30" id="svg_2" stroke="#000000" transform="matrix(1 0 0 1 0 0)" width="68" x="13" y="7"/>
+    <rect fill="#7f7f7f" height="30" id="svg_4" stroke="#000000" width="5" x="4.5" y="7"/>
+  </g>
+  <rect x="13.536" y="7.575" width="66.999" height="28.859" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);"/>
+  <rect x="5.007" y="7.522" width="4.13" height="29.02" style="stroke: rgb(0, 0, 0); fill: rgb(0, 0, 0); paint-order: fill;"/>
+  <rect x="4.792" y="7.414" width="4.452" height="28.806" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);"/>
+</svg>
