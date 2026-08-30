@@ -3,6 +3,7 @@
     "en": "GDEM1085Z51 10.85\"",
     "nl": "GDEM1085Z51 10.85\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

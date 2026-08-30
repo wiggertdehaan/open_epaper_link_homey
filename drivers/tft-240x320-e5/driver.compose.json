@@ -3,6 +3,7 @@
     "en": "TFT 240x320",
     "nl": "TFT 240x320"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

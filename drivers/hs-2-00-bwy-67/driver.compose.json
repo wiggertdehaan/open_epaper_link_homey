@@ -3,6 +3,7 @@
     "en": "HS 2.00\" BWY",
     "nl": "HS 2.00\" BWY"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

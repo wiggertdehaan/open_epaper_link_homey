@@ -3,6 +3,7 @@
     "en": "M3 2.2 Lite\"",
     "nl": "M3 2.2 Lite\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

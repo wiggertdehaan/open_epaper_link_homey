@@ -3,6 +3,7 @@
     "en": "Newton M3 2.9",
     "nl": "Newton M3 2.9"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

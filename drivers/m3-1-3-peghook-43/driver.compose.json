@@ -3,6 +3,7 @@
     "en": "M3 1.3\" Peghook",
     "nl": "M3 1.3\" Peghook"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

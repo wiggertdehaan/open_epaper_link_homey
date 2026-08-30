@@ -3,6 +3,7 @@
     "en": "M3 5.85\"",
     "nl": "M3 5.85\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

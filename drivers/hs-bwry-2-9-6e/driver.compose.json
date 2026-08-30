@@ -3,6 +3,7 @@
     "en": "HS BWRY 2,9\"",
     "nl": "HS BWRY 2,9\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

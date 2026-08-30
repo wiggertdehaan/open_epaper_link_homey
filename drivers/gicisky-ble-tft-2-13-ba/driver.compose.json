@@ -3,6 +3,7 @@
     "en": "Gicisky BLE TFT 2.13\"",
     "nl": "Gicisky BLE TFT 2.13\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

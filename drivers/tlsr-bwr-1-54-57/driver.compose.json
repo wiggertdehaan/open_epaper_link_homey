@@ -3,6 +3,7 @@
     "en": "TLSR BWR 1.54\"",
     "nl": "TLSR BWR 1.54\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

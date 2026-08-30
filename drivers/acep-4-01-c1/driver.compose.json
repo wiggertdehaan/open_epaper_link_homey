@@ -3,6 +3,7 @@
     "en": "ACeP 4.01",
     "nl": "ACeP 4.01"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

@@ -3,6 +3,7 @@
     "en": "Gicisky BLE EPD BWR 4.2\"",
     "nl": "Gicisky BLE EPD BWR 4.2\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

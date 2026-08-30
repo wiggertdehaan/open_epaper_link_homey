@@ -3,6 +3,7 @@
     "en": "HD150 5.83\" BWR",
     "nl": "HD150 5.83\" BWR"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

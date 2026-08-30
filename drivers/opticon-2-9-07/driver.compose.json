@@ -3,6 +3,7 @@
     "en": "Opticon 2.9\"",
     "nl": "Opticon 2.9\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

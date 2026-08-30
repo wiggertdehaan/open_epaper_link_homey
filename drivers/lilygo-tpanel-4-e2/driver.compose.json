@@ -3,6 +3,7 @@
     "en": "LILYGO TPANEL 4\"",
     "nl": "LILYGO TPANEL 4\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

@@ -3,6 +3,7 @@
     "en": "ST-GM29XXF 2.9\"",
     "nl": "ST-GM29XXF 2.9\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

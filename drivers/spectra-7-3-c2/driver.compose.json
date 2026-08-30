@@ -3,6 +3,7 @@
     "en": "Spectra 7.3",
     "nl": "Spectra 7.3"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

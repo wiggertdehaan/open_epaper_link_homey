@@ -3,6 +3,7 @@
     "en": "M2 2.6\"",
     "nl": "M2 2.6\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

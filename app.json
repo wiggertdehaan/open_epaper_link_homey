@@ -648,6 +648,7 @@
         "en": "ACeP 4.01",
         "nl": "ACeP 4.01"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -704,6 +705,7 @@
         "en": "BLE EPD BWR 2.9\" Silabs",
         "nl": "BLE EPD BWR 2.9\" Silabs"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -760,6 +762,7 @@
         "en": "BLE TFT 128x128",
         "nl": "BLE TFT 128x128"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -815,6 +818,7 @@
         "en": "BWRY example",
         "nl": "BWRY example"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -871,6 +875,7 @@
         "en": "Chroma 7.4\"",
         "nl": "Chroma 7.4\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -927,6 +932,7 @@
         "en": "Chroma Aeon 74 7.4\"",
         "nl": "Chroma Aeon 74 7.4\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -983,6 +989,7 @@
         "en": "Chroma29 2.9\"",
         "nl": "Chroma29 2.9\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1039,6 +1046,7 @@
         "en": "Chroma42 4.2\"",
         "nl": "Chroma42 4.2\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1095,6 +1103,7 @@
         "en": "GDEM1085Z51 10.85\"",
         "nl": "GDEM1085Z51 10.85\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1151,6 +1160,7 @@
         "en": "Gicisky BLE EPD BW 2.13\"",
         "nl": "Gicisky BLE EPD BW 2.13\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1207,6 +1217,7 @@
         "en": "Gicisky BLE EPD BW 2.9\"",
         "nl": "Gicisky BLE EPD BW 2.9\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1263,6 +1274,7 @@
         "en": "Gicisky BLE EPD BWR 2.13\"",
         "nl": "Gicisky BLE EPD BWR 2.13\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1319,6 +1331,7 @@
         "en": "Gicisky BLE EPD BWR 2.9\"",
         "nl": "Gicisky BLE EPD BWR 2.9\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1375,6 +1388,7 @@
         "en": "Gicisky BLE EPD BWR 4.2\"",
         "nl": "Gicisky BLE EPD BWR 4.2\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1431,6 +1445,7 @@
         "en": "Gicisky BLE TFT 2.13\"",
         "nl": "Gicisky BLE TFT 2.13\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1487,6 +1502,7 @@
         "en": "HD150 5.83\" BWR",
         "nl": "HD150 5.83\" BWR"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1543,6 +1559,7 @@
         "en": "HS 2.00\" BWY",
         "nl": "HS 2.00\" BWY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1598,6 +1615,7 @@
         "en": "HS 2.13\" BWR High Res",
         "nl": "HS 2.13\" BWR High Res"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1654,6 +1672,7 @@
         "en": "HS 2.9\" HighRes",
         "nl": "HS 2.9\" HighRes"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1710,6 +1729,7 @@
         "en": "HS BW 2.13\"",
         "nl": "HS BW 2.13\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1766,6 +1786,7 @@
         "en": "HS BW 2.13\" LowRes",
         "nl": "HS BW 2.13\" LowRes"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1822,6 +1843,7 @@
         "en": "HS BW 3.5\"",
         "nl": "HS BW 3.5\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1878,6 +1900,7 @@
         "en": "HS BWR 2.13\"",
         "nl": "HS BWR 2.13\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1934,6 +1957,7 @@
         "en": "HS BWR 2.66\"",
         "nl": "HS BWR 2.66\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -1990,6 +2014,7 @@
         "en": "HS BWR 3.5\"",
         "nl": "HS BWR 3.5\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2046,6 +2071,7 @@
         "en": "HS BWR 5,83\"",
         "nl": "HS BWR 5,83\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2102,6 +2128,7 @@
         "en": "HS BWRY 2,00\"",
         "nl": "HS BWRY 2,00\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2157,6 +2184,7 @@
         "en": "HS BWRY 2,60\"",
         "nl": "HS BWRY 2,60\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2213,6 +2241,7 @@
         "en": "HS BWRY 2,9\"",
         "nl": "HS BWRY 2,9\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2269,6 +2298,7 @@
         "en": "HS BWRY 3,5\"",
         "nl": "HS BWRY 3,5\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2325,6 +2355,7 @@
         "en": "HS BWRY 7,5\"",
         "nl": "HS BWRY 7,5\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2381,6 +2412,7 @@
         "en": "HS BWY 3.46\"",
         "nl": "HS BWY 3.46\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2437,6 +2469,7 @@
         "en": "HS BWY 3.5\"",
         "nl": "HS BWY 3.5\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2493,6 +2526,7 @@
         "en": "HS BWY 7,5\"",
         "nl": "HS BWY 7,5\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2549,6 +2583,7 @@
         "en": "LILYGO TPANEL 4\"",
         "nl": "LILYGO TPANEL 4\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2605,6 +2640,7 @@
         "en": "M2 2.2\"",
         "nl": "M2 2.2\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2661,6 +2697,7 @@
         "en": "M2 2.6\"",
         "nl": "M2 2.6\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2717,6 +2754,7 @@
         "en": "M2 2.7\"",
         "nl": "M2 2.7\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2773,6 +2811,7 @@
         "en": "M2 2.9\" (UC8151)",
         "nl": "M2 2.9\" (UC8151)"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2829,6 +2868,7 @@
         "en": "M2 4.2\" UC",
         "nl": "M2 4.2\" UC"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2885,6 +2925,7 @@
         "en": "M2 7.5\" BW",
         "nl": "M2 7.5\" BW"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2941,6 +2982,7 @@
         "en": "m2-74",
         "nl": "m2-74"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -2997,6 +3039,7 @@
         "en": "M3 1.3\" Peghook",
         "nl": "M3 1.3\" Peghook"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3052,6 +3095,7 @@
         "en": "M3 1.6\" 200px BWRY (4A)",
         "nl": "M3 1.6\" 200px BWRY (4A)"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3107,6 +3151,7 @@
         "en": "M3 1.6\" 200px BWRY (91)",
         "nl": "M3 1.6\" 200px BWRY (91)"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3162,6 +3207,7 @@
         "en": "M3 1.6\"",
         "nl": "M3 1.6\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3217,6 +3263,7 @@
         "en": "M3 1.6\" BWRY",
         "nl": "M3 1.6\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3272,6 +3319,7 @@
         "en": "M3 11.6\"",
         "nl": "M3 11.6\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3328,6 +3376,7 @@
         "en": "M3 11.6\" BWRY",
         "nl": "M3 11.6\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3384,6 +3433,7 @@
         "en": "M3 12.2\"",
         "nl": "M3 12.2\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3440,6 +3490,7 @@
         "en": "M3 2.2\"",
         "nl": "M3 2.2\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3496,6 +3547,7 @@
         "en": "M3 2.2\" BW",
         "nl": "M3 2.2\" BW"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3552,6 +3604,7 @@
         "en": "M3 2.2\" BWRY",
         "nl": "M3 2.2\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3608,6 +3661,7 @@
         "en": "M3 2.2 Lite\"",
         "nl": "M3 2.2 Lite\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3664,6 +3718,7 @@
         "en": "M3 2.4\" BWRY",
         "nl": "M3 2.4\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3720,6 +3775,7 @@
         "en": "M3 2.6\"",
         "nl": "M3 2.6\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3776,6 +3832,7 @@
         "en": "M3 2.6\" BW",
         "nl": "M3 2.6\" BW"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3832,6 +3889,7 @@
         "en": "M3 2.6\" BWRY",
         "nl": "M3 2.6\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3888,6 +3946,7 @@
         "en": "M3 2.7\"",
         "nl": "M3 2.7\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -3944,6 +4003,7 @@
         "en": "M3 2.9\" BW",
         "nl": "M3 2.9\" BW"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4000,6 +4060,7 @@
         "en": "M3 2.9\" BWRY",
         "nl": "M3 2.9\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4056,6 +4117,7 @@
         "en": "M3 3.0\" BWRY",
         "nl": "M3 3.0\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4112,6 +4174,7 @@
         "en": "M3 3.5\" BWRY RTL",
         "nl": "M3 3.5\" BWRY RTL"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4168,6 +4231,7 @@
         "en": "M3 4.2\"",
         "nl": "M3 4.2\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4224,6 +4288,7 @@
         "en": "M3 4.2\" BWRY",
         "nl": "M3 4.2\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4280,6 +4345,7 @@
         "en": "M3 4.2\" BWY",
         "nl": "M3 4.2\" BWY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4336,6 +4402,7 @@
         "en": "M3 4.3\"",
         "nl": "M3 4.3\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4392,6 +4459,7 @@
         "en": "M3 4.3\" BWRY",
         "nl": "M3 4.3\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4448,6 +4516,7 @@
         "en": "M3 5.81\" BW",
         "nl": "M3 5.81\" BW"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4504,6 +4573,7 @@
         "en": "M3 5.81\" BWR",
         "nl": "M3 5.81\" BWR"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4560,6 +4630,7 @@
         "en": "M3 5.81\" V2 BWR",
         "nl": "M3 5.81\" V2 BWR"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4616,6 +4687,7 @@
         "en": "M3 5.85\"",
         "nl": "M3 5.85\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4672,6 +4744,7 @@
         "en": "M3 5.85\" BW",
         "nl": "M3 5.85\" BW"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4728,6 +4801,7 @@
         "en": "M3 6.0\"",
         "nl": "M3 6.0\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4784,6 +4858,7 @@
         "en": "M3 7.5\"",
         "nl": "M3 7.5\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4840,6 +4915,7 @@
         "en": "M3 7.5\" BWRY",
         "nl": "M3 7.5\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4896,6 +4972,7 @@
         "en": "M3 8.2\" BWRY",
         "nl": "M3 8.2\" BWRY"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -4952,6 +5029,7 @@
         "en": "M3 9.7\"",
         "nl": "M3 9.7\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5008,6 +5086,7 @@
         "en": "Newton M3 2.9",
         "nl": "Newton M3 2.9"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5064,6 +5143,7 @@
         "en": "Opticon 2.2\"",
         "nl": "Opticon 2.2\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5120,6 +5200,7 @@
         "en": "Opticon 2.9\"",
         "nl": "Opticon 2.9\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5176,6 +5257,7 @@
         "en": "Opticon 4.2\"",
         "nl": "Opticon 4.2\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5232,6 +5314,7 @@
         "en": "Opticon 7.5\"",
         "nl": "Opticon 7.5\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5288,6 +5371,7 @@
         "en": "Solum 1.54",
         "nl": "Solum 1.54"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5343,6 +5427,7 @@
         "en": "Solum 2.9",
         "nl": "Solum 2.9"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5399,6 +5484,7 @@
         "en": "Solum 4.2",
         "nl": "Solum 4.2"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5455,6 +5541,7 @@
         "en": "Spectra 7.3",
         "nl": "Spectra 7.3"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5511,6 +5598,7 @@
         "en": "ST-GM29MT1 2.9\"",
         "nl": "ST-GM29MT1 2.9\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5567,6 +5655,7 @@
         "en": "ST-GM29XXF 2.9\"",
         "nl": "ST-GM29XXF 2.9\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5620,9 +5709,66 @@
     },
     {
       "name": {
+        "en": "OpenEPaperLink Tag",
+        "nl": "OpenEPaperLink Tag",
+        "sv": "OpenEPaperLink-tagg"
+      },
+      "class": "other",
+      "capabilities": [
+        "alarm_battery",
+        "measure_temperature",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "CR2450"
+        ]
+      },
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/tag/assets/images/small.png",
+        "large": "/drivers/tag/assets/images/large.png",
+        "xlarge": "/drivers/tag/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "tag",
+      "settings": [
+        {
+          "id": "MACAddress",
+          "type": "label",
+          "label": {
+            "en": "MAC address"
+          },
+          "value": "0000000000000000",
+          "hint": {
+            "en": "The MAC address of the device."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
         "en": "TFT 160x80",
         "nl": "TFT 160x80"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5678,6 +5824,7 @@
         "en": "TFT 240x320",
         "nl": "TFT 240x320"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5734,6 +5881,7 @@
         "en": "TFT 320x172",
         "nl": "TFT 320x172"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5790,6 +5938,7 @@
         "en": "TLSR BW 2.13\" (58)",
         "nl": "TLSR BW 2.13\" (58)"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5846,6 +5995,7 @@
         "en": "TLSR BW 2.13\" (69)",
         "nl": "TLSR BW 2.13\" (69)"
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5902,6 +6052,7 @@
         "en": "TLSR BWR 1.54\"",
         "nl": "TLSR BWR 1.54\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -5957,6 +6108,7 @@
         "en": "TLSR BWR 2.13\"",
         "nl": "TLSR BWR 2.13\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",
@@ -6013,6 +6165,7 @@
         "en": "TLSR BWR 4.2\"",
         "nl": "TLSR BWR 4.2\""
       },
+      "deprecated": true,
       "class": "other",
       "capabilities": [
         "alarm_battery",

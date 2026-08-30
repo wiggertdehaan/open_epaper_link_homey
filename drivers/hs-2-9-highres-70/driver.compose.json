@@ -3,6 +3,7 @@
     "en": "HS 2.9\" HighRes",
     "nl": "HS 2.9\" HighRes"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

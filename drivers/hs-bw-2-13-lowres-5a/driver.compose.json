@@ -3,6 +3,7 @@
     "en": "HS BW 2.13\" LowRes",
     "nl": "HS BW 2.13\" LowRes"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

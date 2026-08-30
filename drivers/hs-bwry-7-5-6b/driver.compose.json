@@ -3,6 +3,7 @@
     "en": "HS BWRY 7,5\"",
     "nl": "HS BWRY 7,5\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

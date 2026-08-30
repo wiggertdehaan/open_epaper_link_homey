@@ -3,6 +3,7 @@
     "en": "M3 4.2\" BWY",
     "nl": "M3 4.2\" BWY"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

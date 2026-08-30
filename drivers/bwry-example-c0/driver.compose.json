@@ -3,6 +3,7 @@
     "en": "BWRY example",
     "nl": "BWRY example"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

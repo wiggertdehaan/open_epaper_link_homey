@@ -3,6 +3,7 @@
     "en": "Chroma 7.4\"",
     "nl": "Chroma 7.4\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

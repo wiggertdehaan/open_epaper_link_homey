@@ -3,6 +3,7 @@
     "en": "Solum 4.2",
     "nl": "Solum 4.2"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

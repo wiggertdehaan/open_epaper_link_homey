@@ -3,6 +3,7 @@
     "en": "HS BWR 2.66\"",
     "nl": "HS BWR 2.66\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

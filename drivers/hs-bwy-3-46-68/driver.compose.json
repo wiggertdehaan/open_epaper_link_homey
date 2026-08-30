@@ -3,6 +3,7 @@
     "en": "HS BWY 3.46\"",
     "nl": "HS BWY 3.46\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

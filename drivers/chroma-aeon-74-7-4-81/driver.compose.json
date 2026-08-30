@@ -3,6 +3,7 @@
     "en": "Chroma Aeon 74 7.4\"",
     "nl": "Chroma Aeon 74 7.4\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

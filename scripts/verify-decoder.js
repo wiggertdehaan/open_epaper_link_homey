@@ -15,6 +15,7 @@ const path = require('path');
 const Jimp = require('jimp');
 
 const { decodeRawImage } = require('../lib/rawImage');
+const { fetchAllTags } = require('../lib/apClient');
 
 const AP = process.argv[2] || '192.168.111.179';
 const OUT = process.argv[3] || path.join(__dirname, '..', '.tmp-decode');
@@ -45,12 +46,14 @@ async function toJimp(decoded) {
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
 
-  const db = await get('/get_db?pos=%3Ccontinu%3E');
-  if (db.status !== 200) {
-    console.error(`Cannot reach AP at ${AP} (status ${db.status})`);
+  let tags;
+  try {
+    // Paginated: the AP hands out ten tags per page.
+    tags = await fetchAllTags(AP);
+  } catch (err) {
+    console.error(`Cannot reach AP at ${AP}: ${err.message}`);
     process.exit(1);
   }
-  const tags = JSON.parse(db.buf.toString('utf8')).tags || [];
   console.log(`AP ${AP}: ${tags.length} tags\n`);
 
   const typeCache = {};

@@ -3,6 +3,7 @@
     "en": "HS BW 3.5\"",
     "nl": "HS BW 3.5\""
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

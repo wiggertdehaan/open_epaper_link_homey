@@ -3,6 +3,7 @@
     "en": "HS 2.13\" BWR High Res",
     "nl": "HS 2.13\" BWR High Res"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

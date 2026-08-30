@@ -3,6 +3,7 @@
     "en": "M3 2.6\" BW",
     "nl": "M3 2.6\" BW"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

@@ -3,6 +3,7 @@
     "en": "BLE EPD BWR 2.9\" Silabs",
     "nl": "BLE EPD BWR 2.9\" Silabs"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

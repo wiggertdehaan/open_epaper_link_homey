@@ -3,6 +3,7 @@
     "en": "M2 4.2\" UC",
     "nl": "M2 4.2\" UC"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

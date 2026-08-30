@@ -3,6 +3,7 @@
     "en": "M3 1.6\" 200px BWRY (4A)",
     "nl": "M3 1.6\" 200px BWRY (4A)"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

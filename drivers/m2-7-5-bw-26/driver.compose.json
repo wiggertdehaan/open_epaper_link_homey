@@ -3,6 +3,7 @@
     "en": "M2 7.5\" BW",
     "nl": "M2 7.5\" BW"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",
