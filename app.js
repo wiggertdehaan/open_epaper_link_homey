@@ -38,6 +38,11 @@ class MyApp extends Homey.App {
     const cardShowQRCode = this.homey.flow.getActionCard('show-qr-code');
     const cardShowImage = this.homey.flow.getActionCard('show-image');
     const cardHW01Show3Lines = this.homey.flow.getActionCard('hw01-show-3Lines');
+    const cardLedFlash = this.homey.flow.getActionCard('led-flash');
+
+    // Held on the app so TagManager can fire it when a tag reports that a
+    // button press is what woke it up.
+    this.buttonPressedTrigger = this.homey.flow.getDeviceTriggerCard('button-pressed');
 
 
     cardShowCurrentDate.registerRunListener(async (args, state)=>{
@@ -87,6 +92,10 @@ class MyApp extends Homey.App {
 
     cardShowLocalJSON.registerRunListener(async (args, state)=>{
       this.cardManager.cardShowLocalJSON(args, state);
+    })
+
+    cardLedFlash.registerRunListener(async (args, state)=>{
+      this.cardManager.cardLedFlash(args, state);
     })
 
 

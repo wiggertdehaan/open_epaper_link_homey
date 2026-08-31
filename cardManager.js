@@ -597,6 +597,96 @@ class CardManager {
 
 
 
+    // Tags whose type lists the "led" option carry an RGB LED. The AP drives it
+    // with a twelve byte pattern documented at
+    // https://github.com/OpenEPaperLink/OpenEPaperLink/wiki/Led-control
+    //
+    //   byte 0   low nibble  mode, 1 = sequence, 0 = off
+    //            high nibble flash length in ms; above 3 ms costs battery
+    //                        without being noticeably brighter
+    //   byte 1   colour of group 1 as RGB332
+    //   byte 2   high nibble flash speed in units of 100 ms
+    //            low nibble  number of flashes
+    //   byte 3   pause after the group in units of 100 ms
+    //   bytes 4-9  groups 2 and 3, same layout, left at zero here
+    //   byte 10  how many times to repeat the sequence
+    //   byte 11  spare, always zero
+    //
+    // Only one group is used, which is enough for "blink n times, wait, repeat"
+    // and keeps the card's settings understandable.
+    static LED_COLOURS = {
+      red: 0xE0,
+      green: 0x1C,
+      blue: 0x03,
+      yellow: 0xFC,
+      magenta: 0xE3,
+      cyan: 0x1F,
+      white: 0xFF,
+    };
+
+    static ledPattern({
+      colour, flashes, intervalSeconds, minutes,
+    }) {
+      const hex = (n) => Number(n).toString(16).toUpperCase().padStart(2, '0');
+      // mode 0 in the first byte means "sequence off"
+      if (!minutes) return '000000000000000000000000';
+
+      // the wiki's recommended compromise between visibility and battery
+      const FLASH_MS = 2;
+      // 200 ms between the flashes within one burst
+      const SPEED_UNITS = 2;
+      const count = Math.min(15, Math.max(1, Math.round(flashes)));
+      // one pause unit is 100 ms and the field is a single byte
+      const pause = Math.min(255, Math.max(1, Math.round(intervalSeconds * 10)));
+
+      const burstMs = count * SPEED_UNITS * 100;
+      const cycleMs = burstMs + pause * 100;
+      const repeats = Math.min(255, Math.max(1, Math.round((minutes * 60000) / cycleMs)));
+
+      return [
+        hex((FLASH_MS << 4) | 1),
+        hex(CardManager.LED_COLOURS[colour] ?? CardManager.LED_COLOURS.red),
+        hex((SPEED_UNITS << 4) | count),
+        hex(pause),
+        '00', '00', '00',
+        '00', '00', '00',
+        hex(repeats),
+        '00',
+      ].join('');
+    }
+
+    async cardLedFlash(args, state) {
+      this.homey.log('CardManager: cardLedFlash');
+      const { gateway } = this;
+      if (!gateway) {
+        this.homey.log('Gateway has not been configured.');
+        return;
+      }
+
+      const mac = args.Id.getData().id;
+      const pattern = CardManager.ledPattern({
+        colour: args.Colour,
+        flashes: args.Flashes,
+        intervalSeconds: args.Interval,
+        minutes: args.Minutes,
+      });
+
+      try {
+        // Drop anything still queued for this tag first. A start and a stop can
+        // otherwise both be waiting, and the tag would run the old pattern the
+        // moment it wakes up.
+        await axios.post(`http://${gateway}/tag_cmd`, qs.stringify({ mac, cmd: 'clear' }), {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        });
+        const response = await axios.get(`http://${gateway}/led_flash`, {
+          params: { mac, pattern },
+        });
+        this.homey.log(`CardManager: cardLedFlash ${mac} ${pattern}: ${response.data}`);
+      } catch (error) {
+        this.homey.log('CardManager: cardLedFlash failed:', error.message);
+      }
+    }
+
     async SaveJSON(data) {
       this.homey.log('CardManager: SaveJSON');
       const gateway = this.gateway;
