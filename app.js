@@ -5,6 +5,7 @@ const APManager = require('./apManager');
 const CardManager = require('./cardManager');
 const { fetchAllTags } = require('./lib/apClient');
 const imageStore = require('./lib/imageStore');
+const tagTimeout = require('./lib/tagTimeout');
 
 const Homey = require('homey');
 const axios = require('axios');
@@ -75,6 +76,15 @@ class MyApp extends Homey.App {
 
     // Start WebSocket lezer
     this.WebSocketReader();
+
+    // A tag that stops reporting produces no websocket message - that is what
+    // going quiet means - so the only way to notice is to ask the AP for its
+    // tag list on a timer and compare against the clock.
+    this.timedOutTags = new Set();
+    this.tagTimeoutTrigger = this.homey.flow.getDeviceTriggerCard('tag-timed-out');
+    this.timeoutInterval = this.homey.setInterval(() => {
+      this.checkTagTimeouts().catch((error) => this.error('Tag timeout check failed:', error));
+    }, 5 * 60 * 1000);
 
     // A device removed while the app was not running never gets its onDeleted
     // hook, so its screenshot survives. Sweep those shortly after boot and
@@ -155,11 +165,83 @@ class MyApp extends Homey.App {
    * onUninit is called when the app is destroyed (eg. on disable/update).
    */
   async onUninit() {
+    if (this.timeoutInterval) {
+      this.homey.clearInterval(this.timeoutInterval);
+      this.timeoutInterval = null;
+    }
+
     if (this.cleanupTimeout) {
       this.homey.clearTimeout(this.cleanupTimeout);
     }
     if (this.cleanupInterval) {
       this.homey.clearInterval(this.cleanupInterval);
+    }
+  }
+
+  /**
+   * Every paired device, keyed by the MAC it was paired with.
+   */
+  pairedDevicesByMac() {
+    const byMac = new Map();
+    const drivers = this.homey.drivers.getDrivers();
+
+    for (const driverId of Object.keys(drivers)) {
+      const devices = drivers[driverId].getDevices();
+      for (const key of Object.keys(devices)) {
+        const device = devices[key];
+        const data = device.getData();
+        if (data && data.id) byMac.set(String(data.id).toUpperCase(), device);
+      }
+    }
+
+    return byMac;
+  }
+
+  /**
+   * Asks the AP for its tag list and fires the timeout trigger for paired tags
+   * that have gone quiet past their grace period.
+   *
+   * State is held so the card fires on the transition rather than every five
+   * minutes for as long as a tag stays away, and so a tag that comes back can
+   * trigger again if it goes quiet a second time.
+   */
+  async checkTagTimeouts() {
+    const gateway = this.homey.settings.get('gateway');
+    if (!gateway) return;
+
+    let tags;
+    try {
+      tags = await fetchAllTags(gateway);
+    } catch (error) {
+      // The AP being unreachable is not the same as a tag going quiet, and
+      // reporting every tag as timed out because of it would be worse than
+      // saying nothing.
+      this.log('Timeout check skipped, could not reach the AP:', error.message);
+      return;
+    }
+
+    const devices = this.pairedDevicesByMac();
+    const now = Date.now();
+
+    for (const tag of tags) {
+      const mac = String(tag.mac || '').toUpperCase();
+      const device = devices.get(mac);
+      if (!device) continue;
+
+      const timedOut = tagTimeout.isTimedOut(tag, now);
+      const wasTimedOut = this.timedOutTags.has(mac);
+
+      if (timedOut && !wasTimedOut) {
+        this.timedOutTags.add(mac);
+        const overdue = tagTimeout.overdueMinutes(tag, now);
+        this.log(`Tag ${mac} has not checked in, ${overdue} minute(s) past due`);
+        this.tagTimeoutTrigger.trigger(device, { overdue }).catch((error) => {
+          this.log('Could not fire the timeout trigger for ' + mac + ':', error.message);
+        });
+      } else if (!timedOut && wasTimedOut) {
+        this.timedOutTags.delete(mac);
+        this.log(`Tag ${mac} is checking in again`);
+      }
     }
   }
 

@@ -20,22 +20,6 @@
     "en": "OpenEPaperLink",
     "nl": "OpenEPaperLink"
   },
-  "settings": [
-    {
-      "id": "serverAddress",
-      "type": "text",
-      "label": {
-        "en": "Server Address"
-      },
-      "title": {
-        "en": "Server Address"
-      },
-      "hint": {
-        "en": "Enter the server address here"
-      },
-      "value": "192.168.0.16"
-    }
-  ],
   "description": {
     "en": "Effortlessly Customize Your Space with E-Paper Magic",
     "nl": "Pas eenvoudig jouw huis aan met E-Paper Magic"

@@ -1,0 +1,35 @@
+{
+  "title": {
+    "en": "A tag stopped checking in",
+    "nl": "Een tag checkt niet meer in"
+  },
+  "titleFormatted": {
+    "en": "[[Id]] stopped checking in",
+    "nl": "[[Id]] checkt niet meer in"
+  },
+  "hint": {
+    "en": "Fires once when the access point has not heard from a tag well past the moment it expected to. Tags sleep between check-ins, so a grace period of at least 15 minutes, or half the tag's own interval if that is longer, is allowed first. It fires again only after the tag has reported in and gone quiet a second time.",
+    "nl": "Gaat één keer af wanneer het access point ruim na het verwachte moment nog niets van een tag heeft gehoord. Tags slapen tussen check-ins door, dus er geldt eerst een marge van minimaal 15 minuten, of de helft van het eigen interval als dat langer is. Hij gaat pas opnieuw af nadat de tag zich heeft gemeld en daarna weer stilvalt."
+  },
+  "tokens": [
+    {
+      "name": "overdue",
+      "type": "number",
+      "title": {
+        "en": "Minutes overdue",
+        "nl": "Minuten te laat"
+      },
+      "example": 42
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "Id",
+      "placeholder": {
+        "en": "The tag that went quiet",
+        "nl": "De tag die stilviel"
+      }
+    }
+  ]
+}
