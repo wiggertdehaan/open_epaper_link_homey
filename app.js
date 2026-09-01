@@ -41,7 +41,7 @@ class MyApp extends Homey.App {
     
     // Initialiseer of reset de cache
     this.tagTypeCache = {};
-    
+
     // Configureer garbage collection hint (indien beschikbaar in Node.js)
     try {
       if (global.gc) {
@@ -58,7 +58,21 @@ class MyApp extends Homey.App {
     } catch (e) {
       this.log('Garbage collection is not available');
     }
-    
+
+    // The gateway used to be read once here and never again, so entering or
+    // correcting the AP address in the settings page had no effect until the
+    // app was restarted. Re-read it whenever it changes and reconnect.
+    this.homey.settings.on('set', (key) => {
+      if (key !== 'gateway') return;
+      const gateway = this.homey.settings.get('gateway');
+      this.log('Gateway setting changed to:', gateway);
+      this.tagTypeCache = {};
+      if (this.tagManager) this.tagManager.setGateway(gateway);
+      if (this.APManager) this.APManager.gateway = gateway;
+      if (this.cardManager) this.cardManager.gateway = gateway;
+      this.WebSocketReader();
+    });
+
     // Start WebSocket lezer
     this.WebSocketReader();
 
@@ -106,6 +120,21 @@ class MyApp extends Homey.App {
     });
   }
 
+  /**
+   * onUninit is called when the app is destroyed (eg. on disable/update), so
+   * the websocket connection and any pending reconnect timer do not outlive
+   * the app instance.
+   */
+  async onUninit() {
+    this.uninitialized = true;
+    if (this.reconnectTimeout) {
+      clearTimeout(this.reconnectTimeout);
+    }
+    if (this.socket) {
+      this.socket.close();
+    }
+  }
+
   async fetchTags() {
     try {
       const gateway = this.homey.settings.get('gateway');
@@ -131,77 +160,69 @@ class MyApp extends Homey.App {
   }
 
   WebSocketReader() {
+    if (this.reconnectTimeout) {
+      clearTimeout(this.reconnectTimeout);
+      this.reconnectTimeout = null;
+    }
+
     if (this.socket) {
-      try {
-        this.socket.terminate(); // Gebruik terminate in plaats van close voor directe afsluiting
-        this.socket = null;
-      } catch (error) {
-        this.log('Error closing existing WebSocket connection:', error);
-      }
+      // removeAllListeners before closing: the old socket's 'close' handler
+      // would otherwise schedule a second reconnect and they would stack up.
+      this.socket.removeAllListeners();
+      this.socket.close();
+      this.socket = null;
     }
 
     const gateway = this.homey.settings.get('gateway');
     if (!gateway) {
-      this.log('WebSocketReader: Gateway is not configured, retrying in 30 seconds');
-      setTimeout(() => this.WebSocketReader(), 30000);
+      // Without an address there is nothing to connect to; retrying every few
+      // seconds against `ws://null/ws` only fills the log with ENOTFOUND. The
+      // settings listener in onInit reconnects once an address is set.
+      this.log('Gateway has not been configured, not connecting. Set the AP address in the app settings.');
       return;
     }
 
-    try {
-      this.socket = new WebSocket('ws://' + gateway + '/ws');
+    const url = 'ws://' + gateway + '/ws';
+    this.log('Connecting to websocket:', url);
+    const socket = new WebSocket(url);
+    this.socket = socket;
 
-      this.socket.on('open', () => {
-        this.log('WebSocket connected to gateway');
-      });
+    socket.on('open', () => {
+      this.log('websocket connected to', url);
+    });
 
-      this.socket.on('message', async (data) => {
-        try {
-          const messageString = data.toString();
-          const messageJSON = JSON.parse(messageString);
-          
-          // Beperken van aantal tags in geheugen
-          if (messageJSON.tags && Array.isArray(messageJSON.tags)) {
-            const tagLimit = 10; // Verwerk maximaal 10 tags tegelijk
-            const tagsToProcess = messageJSON.tags.slice(0, tagLimit);
-            
-            if (tagsToProcess.length > 0) {
-              try {
-                let tagType = await this.getTagTypeData(tagsToProcess[0].hwType);
-                let homeyImage = await this.homey.images.createImage();
-                let drivers = this.homey.drivers.getDrivers();
-                this.tagManager.updateTags(tagsToProcess, drivers, tagType, homeyImage);
-              } catch (innerError) {
-                this.log('Error processing tags:', innerError);
-              }
-            }
-          }
-          
-          if (messageJSON.sys) {
-            try {
-              this.APManager.updateAPs(messageJSON.sys);
-            } catch (innerError) {
-              this.log('Error updating APs:', innerError);
-            }
-          }
-        } catch (error) {
-          this.log('Error processing WebSocket message:', error);
+    socket.on('message', async (data) => {
+      const messageString = data.toString();
+
+      try {
+        const messageJSON = JSON.parse(messageString);
+
+        if (messageJSON.tags) {
+          // One message can contain tags of different hardware types, so the
+          // type is resolved per tag rather than taken from the first one.
+          const drivers = this.homey.drivers.getDrivers();
+          this.tagManager.updateTags(messageJSON.tags, drivers, (hwType) => this.getTagTypeData(hwType));
         }
-      });
 
-      this.socket.on('close', (code, reason) => {
-        this.log(`WebSocket connection closed with code ${code}, reason: ${reason || 'unknown'}, reconnecting in 5 seconds`);
-        this.socket = null;
-        setTimeout(() => this.WebSocketReader(), 5000);
-      });
+        if (messageJSON.sys) {
+          this.APManager.updateAPs(messageJSON.sys);
+        }
+      } catch (error) {
+        this.log('Error parsing JSON:', error);
+        this.log('Received data:', messageString);
+      }
+    });
 
-      this.socket.on('error', (error) => {
-        this.log('WebSocket error:', error);
-        // Laat de 'close' event handler de reconnect doen
-      });
-    } catch (error) {
-      this.log('Error setting up WebSocket connection:', error);
-      setTimeout(() => this.WebSocketReader(), 10000);
-    }
+    socket.on('close', () => {
+      this.log('websocket disconnected, attempting to reconnect');
+      if (this.uninitialized) return;
+      this.reconnectTimeout = setTimeout(() => this.WebSocketReader(), 5000);
+    });
+
+    socket.on('error', (error) => {
+      this.log('WebSocket error:', error);
+      // Laat de 'close' event handler de reconnect doen
+    });
   }
 
   async getTagTypeData(hwtype) {
@@ -225,73 +246,64 @@ class MyApp extends Homey.App {
       this.log('Cache limit reached, oldest item removed: ' + oldestKey);
     }
 
-    try {
-      // Try to load the tagtype from disk first: a copy written by an earlier
-      // fetch, otherwise one of the definitions shipped with the app.
-      const hwtypeHex = hwtype.toString(16).padStart(2, '0').toUpperCase();
-      const cachedFilePath = path.join(TAGTYPE_CACHE_DIR, `${hwtypeHex}.json`);
-      const bundledFilePath = path.join(__dirname, 'assets', 'tagtypes', `${hwtypeHex}.json`);
+    // Try to load the tagtype from disk first: a copy written by an earlier
+    // fetch, otherwise one of the definitions shipped with the app.
+    const hwtypeHex = hwtype.toString(16).padStart(2, '0').toUpperCase();
+    const cachedFilePath = path.join(TAGTYPE_CACHE_DIR, `${hwtypeHex}.json`);
+    const bundledFilePath = path.join(__dirname, 'assets', 'tagtypes', `${hwtypeHex}.json`);
 
-      for (const filePath of [cachedFilePath, bundledFilePath]) {
-        if (!fs.existsSync(filePath)) continue;
+    for (const filePath of [cachedFilePath, bundledFilePath]) {
+      if (!fs.existsSync(filePath)) continue;
 
-        try {
-          const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-          this.tagTypeCache[hwtype] = data;
-          this.log('Using local tagtype data for hwtype ' + hwtype + ': ' + filePath);
-          return data;
-        } catch (err) {
-          this.log('Error reading local tagtype file ' + filePath + ':', err.message);
-          // Fall through to the next location, and to the gateway.
-        }
-      }
-
-      // Nothing usable on disk, fetch it from the gateway
-      const gateway = this.homey.settings.get('gateway');
-      if (!gateway) {
-        this.log('Gateway is not configured for retrieving tagtype data');
-        return null;
-      }
-
-      const url = 'http://' + gateway + '/tagtypes/' + hwtypeHex + '.json';
-      this.log('Fetching tagtype data from gateway:', url);
-      
       try {
-        const response = await fetch(url, { 
-          method: 'GET',
-          timeout: 5000 // Timeout na 5 seconden om hanging requests te voorkomen
-        });
-        
-        if (!response.ok) {
-          throw new Error(`Error fetching tagtype data for hwtype ${hwtype}: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        // Alleen opslaan in cache als het een geldig JSON-object is
-        if (data && typeof data === 'object') {
-          this.tagTypeCache[hwtype] = data;
-          
-          // Keep a copy so the gateway is not needed for this tag type again
-          try {
-            fs.mkdirSync(TAGTYPE_CACHE_DIR, { recursive: true });
-            fs.writeFileSync(cachedFilePath, JSON.stringify(data, null, 2), 'utf8');
-            this.log('Saved tagtype data to:', cachedFilePath);
-          } catch (err) {
-            this.log('Error saving tagtype data to local file:', err.message);
-          }
-          
-          return data;
-        } else {
-          throw new Error('Invalid format for tagtype data');
-        }
-      } catch (error) {
-        this.log('Error fetching tagtype data:', error.message);
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+        this.tagTypeCache[hwtype] = data;
+        this.log('Using local tagtype data for hwtype ' + hwtype + ': ' + filePath);
+        return data;
+      } catch (err) {
+        this.log('Error reading local tagtype file ' + filePath + ':', err.message);
+        // Fall through to the next location, and to the gateway.
+      }
+    }
+
+    // Nothing usable on disk, fetch it from the gateway
+    const gateway = this.homey.settings.get('gateway');
+    if (!gateway) {
+      this.log('Gateway is not configured for retrieving tagtype data');
+      return null;
+    }
+
+    const url = 'http://' + gateway + '/tagtypes/' + hwtypeHex + '.json';
+    try {
+      this.log('Fetching tagtype data from gateway:', url);
+
+      // axios, not global fetch: fetch ignores a `timeout` option, so the
+      // 5 second timeout that used to be passed here never applied.
+      const response = await axios.get(url, { timeout: 10000 });
+      const data = response.data;
+
+      if (!data || typeof data !== 'object') {
+        this.log('Invalid format for tagtype data for hwType ' + hwtype);
         return null;
       }
+
+      this.tagTypeCache[hwtype] = data;
+
+      // Keep a copy so the gateway is not needed for this tag type again
+      try {
+        fs.mkdirSync(TAGTYPE_CACHE_DIR, { recursive: true });
+        fs.writeFileSync(cachedFilePath, JSON.stringify(data, null, 2), 'utf8');
+        this.log('Saved tagtype data to:', cachedFilePath);
+      } catch (err) {
+        this.log('Error saving tagtype data to local file:', err.message);
+      }
+
+      return data;
     } catch (error) {
-      this.log('Error processing tagtype request:', error.message);
+      // Returning null (instead of undefined via a swallowed throw) lets the
+      // caller skip this tag cleanly rather than crash on tagType.width.
+      this.log('Error while fetching tagtype data for hwType ' + hwtype + ':', error.message);
       return null;
     }
   }
@@ -301,27 +313,36 @@ class MyApp extends Homey.App {
    */
   async onUninit() {
     this.log('MyApp is shutting down');
-    
+
+    // Stops the socket's 'close' handler from scheduling another reconnect.
+    this.uninitialized = true;
+
+    if (this.reconnectTimeout) {
+      clearTimeout(this.reconnectTimeout);
+      this.reconnectTimeout = null;
+    }
+
     // Stop de WebSocket verbinding
     if (this.socket) {
       try {
-        this.socket.terminate();
+        this.socket.removeAllListeners();
+        this.socket.close();
         this.socket = null;
-        this.log('WebSocket connection terminated');
+        this.log('WebSocket connection closed');
       } catch (error) {
         this.log('Error closing WebSocket connection:', error);
       }
     }
-    
+
     // Stop de garbage collection interval
     if (this.gcInterval) {
       clearInterval(this.gcInterval);
       this.log('Garbage collection interval stopped');
     }
-    
+
     // Wis caches
     this.tagTypeCache = {};
-    
+
     // Voer een laatste garbage collection uit indien mogelijk
     try {
       if (global.gc) {
