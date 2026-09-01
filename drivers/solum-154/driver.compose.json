@@ -38,5 +38,10 @@
       "id": "add_devices",
       "template": "add_devices"
     }
-  ]
+  ],
+  "capabilitiesOptions": {
+    "measure_temperature": {
+      "decimals": 1
+    }
+  }
 }

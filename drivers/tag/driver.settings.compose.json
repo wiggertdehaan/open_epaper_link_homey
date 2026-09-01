@@ -1,7 +1,57 @@
-[{
+[
+  {
     "id": "MACAddress",
     "type": "label",
-    "label": { "en": "MAC address" },
+    "label": {
+      "en": "MAC address",
+      "nl": "MAC-adres"
+    },
     "value": "0000000000000000",
-    "hint": { "en": "The MAC address of the device." }
-  }]
+    "hint": {
+      "en": "The MAC address of the device.",
+      "nl": "Het MAC-adres van dit apparaat."
+    }
+  },
+  {
+    "id": "lastSeen",
+    "type": "label",
+    "label": {
+      "en": "Last seen",
+      "nl": "Laatst gezien"
+    },
+    "value": "-",
+    "hint": {
+      "en": "When the access point last heard from this tag. Tags check in on their own schedule, so this can be hours old without anything being wrong.",
+      "nl": "Wanneer het access point deze tag voor het laatst hoorde. Tags checken op hun eigen schema in, dus dit mag uren oud zijn zonder dat er iets mis is."
+    }
+  },
+  {
+    "id": "temperatureOffset",
+    "type": "number",
+    "label": {
+      "en": "Temperature offset (°C)",
+      "nl": "Temperatuurcorrectie (°C)"
+    },
+    "value": 0,
+    "min": -20,
+    "max": 20,
+    "step": 0.1,
+    "hint": {
+      "en": "Added to the temperature the tag reports. Tags sitting side by side can read several degrees apart, because the sensor sits behind the panel and is warmed by it.",
+      "nl": "Wordt opgeteld bij de temperatuur die de tag meldt. Tags die naast elkaar liggen kunnen enkele graden verschillen, doordat de sensor achter het paneel zit en daardoor opwarmt."
+    }
+  },
+  {
+    "id": "renderImage",
+    "type": "checkbox",
+    "label": {
+      "en": "Render the tag image in Homey",
+      "nl": "Tagafbeelding in Homey tonen"
+    },
+    "value": true,
+    "hint": {
+      "en": "Downloads and decodes the tag's framebuffer so its picture shows on the device tile. Decoding costs seconds of CPU per update; turn this off if you do not need the preview.",
+      "nl": "Haalt de framebuffer van de tag op en decodeert die, zodat de afbeelding op de tegel verschijnt. Decoderen kost seconden CPU per update; zet dit uit als je de preview niet nodig hebt."
+    }
+  }
+]

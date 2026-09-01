@@ -79,16 +79,64 @@ class TagManager {
             await device.syncFeatureCapabilities(tagtype);
         }
 
-        this.updateDeviceCapability(device, "measure_temperature", tag.temperature);
+        const settings = device.getSettings() || {};
+
+        // Tags lying side by side can read several degrees apart: the sensor
+        // sits behind the panel and is warmed by it, by a different amount per
+        // model and mounting. The offset is per device for that reason.
+        const offset = Number(settings.temperatureOffset) || 0;
+        this.updateDeviceCapability(device, "measure_temperature", tag.temperature + offset);
+
         this.updateDeviceCapability(device, "measure_voltage", (tag.batteryMv / 1000));
         let alarm_battery = tag.batteryMv <= 2400 || tag.batteryMv == 0 || tag.batteryMv == 1337;
         this.updateDeviceCapability(device, "alarm_battery", alarm_battery);
 
-        await this.UpdateTagImage(device, tag, tagtype);
+        // Decoding a framebuffer costs seconds of CPU on a Homey, so a user
+        // who does not look at the preview can switch it off per device.
+        if (settings.renderImage !== false) {
+            await this.UpdateTagImage(device, tag, tagtype);
+        }
 
-        await device.setSettings({
+        await this.updateInfoSettings(device, tag, settings);
+    }
+
+    /**
+     * Writes the read-only informational settings, and only when one of them
+     * actually changed.
+     *
+     * setSettings is not free and this runs on every check-in of every tag, so
+     * writing unconditionally would undo the point of skipping unchanged
+     * images.
+     */
+    async updateInfoSettings(device, tag, settings) {
+        const next = {
             MACAddress: tag.mac,
-        });
+            lastSeen: this.formatTimestamp(tag.lastseen),
+        };
+
+        const changed = Object.keys(next).filter((key) => settings[key] !== next[key]);
+        if (changed.length === 0) return;
+
+        try {
+            await device.setSettings(next);
+        } catch (error) {
+            this.homey.log('Could not update settings for tag ' + tag.mac + ':', error.message || error);
+        }
+    }
+
+    /** A unix timestamp as something readable in the user's own timezone. */
+    formatTimestamp(seconds) {
+        if (!seconds || seconds <= 0) return '-';
+
+        const date = new Date(seconds * 1000);
+        try {
+            // this.homey is the app; the Homey instance hangs off it.
+            const timeZone = this.homey.homey.clock.getTimezone();
+            return date.toLocaleString('en-GB', { timeZone, hour12: false });
+        } catch (error) {
+            // No clock manager available (tests), fall back to ISO.
+            return date.toISOString().replace('T', ' ').slice(0, 19);
+        }
     }
 
     // Fires the button trigger when a tag reports that a press is what woke it.
