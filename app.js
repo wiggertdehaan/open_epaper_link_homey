@@ -10,6 +10,12 @@ const WebSocket = require('ws');
 const Jimp = require('jimp');
 const qs = require('qs');
 const { Readable } = require('stream'); 
+const fs = require('fs');
+const path = require('path');
+
+// Downloaded tag type definitions are cached here. The app directory itself
+// is read-only on Homey, so this has to live under /userdata.
+const TAGTYPE_CACHE_DIR = '/userdata/tagtypes';
 
 class MyApp extends Homey.App {
 
@@ -225,15 +231,35 @@ class MyApp extends Homey.App {
       this.log('Cache limit reached, oldest item removed: ' + oldestKey);
     }
 
-    // Data is not in the cache, fetch it from the gateway
     try {
+      // Try to load the tagtype from disk first: a copy written by an earlier
+      // fetch, otherwise one of the definitions shipped with the app.
+      const hwtypeHex = hwtype.toString(16).padStart(2, '0').toUpperCase();
+      const cachedFilePath = path.join(TAGTYPE_CACHE_DIR, `${hwtypeHex}.json`);
+      const bundledFilePath = path.join(__dirname, 'assets', 'tagtypes', `${hwtypeHex}.json`);
+
+      for (const filePath of [cachedFilePath, bundledFilePath]) {
+        if (!fs.existsSync(filePath)) continue;
+
+        try {
+          const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+          this.tagTypeCache[hwtype] = data;
+          this.log('Using local tagtype data for hwtype ' + hwtype + ': ' + filePath);
+          return data;
+        } catch (err) {
+          this.log('Error reading local tagtype file ' + filePath + ':', err.message);
+          // Fall through to the next location, and to the gateway.
+        }
+      }
+
+      // Nothing usable on disk, fetch it from the gateway
       const gateway = this.homey.settings.get('gateway');
       if (!gateway) {
         this.log('Gateway is not configured for retrieving tagtype data');
         return null;
       }
 
-      const hwtypeHex = hwtype.toString(16).padStart(2, '0').toUpperCase();
       const url = 'http://' + gateway + '/tagtypes/' + hwtypeHex + '.json';
       this.log('Fetching tagtype data from gateway:', url);
       
@@ -252,6 +278,16 @@ class MyApp extends Homey.App {
         // Alleen opslaan in cache als het een geldig JSON-object is
         if (data && typeof data === 'object') {
           this.tagTypeCache[hwtype] = data;
+          
+          // Keep a copy so the gateway is not needed for this tag type again
+          try {
+            fs.mkdirSync(TAGTYPE_CACHE_DIR, { recursive: true });
+            fs.writeFileSync(cachedFilePath, JSON.stringify(data, null, 2), 'utf8');
+            this.log('Saved tagtype data to:', cachedFilePath);
+          } catch (err) {
+            this.log('Error saving tagtype data to local file:', err.message);
+          }
+          
           return data;
         } else {
           throw new Error('Invalid format for tagtype data');
