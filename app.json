@@ -7,6 +7,16 @@
   "platforms": [
     "local"
   ],
+  "api": {
+    "getImageStorage": {
+      "method": "GET",
+      "path": "/imageStorage"
+    },
+    "cleanupImages": {
+      "method": "POST",
+      "path": "/cleanupImages"
+    }
+  },
   "name": {
     "en": "OpenEPaperLink",
     "nl": "OpenEPaperLink"

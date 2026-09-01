@@ -4,6 +4,7 @@ const TagManager = require('./tagManager');
 const APManager = require('./apManager');
 const CardManager = require('./cardManager');
 const { fetchAllTags } = require('./lib/apClient');
+const imageStore = require('./lib/imageStore');
 
 const Homey = require('homey');
 const axios = require('axios');
@@ -76,6 +77,16 @@ class MyApp extends Homey.App {
     // Start WebSocket lezer
     this.WebSocketReader();
 
+    // A device removed while the app was not running never gets its onDeleted
+    // hook, so its screenshot survives. Sweep those shortly after boot and
+    // once a day after that.
+    this.cleanupTimeout = this.homey.setTimeout(() => {
+      this.cleanupImages().catch((error) => this.error('Initial image cleanup failed:', error));
+    }, 60 * 1000);
+    this.cleanupInterval = this.homey.setInterval(() => {
+      this.cleanupImages().catch((error) => this.error('Scheduled image cleanup failed:', error));
+    }, 24 * 60 * 60 * 1000);
+
     // Initialiseer alle action cards
     this.initActionCards();
   }
@@ -133,6 +144,48 @@ class MyApp extends Homey.App {
     if (this.socket) {
       this.socket.close();
     }
+  }
+
+  /**
+   * onUninit is called when the app is destroyed (eg. on disable/update).
+   */
+  async onUninit() {
+    if (this.cleanupTimeout) {
+      this.homey.clearTimeout(this.cleanupTimeout);
+    }
+    if (this.cleanupInterval) {
+      this.homey.clearInterval(this.cleanupInterval);
+    }
+  }
+
+  /**
+   * What the app's screenshot files look like on disk. Used by the settings
+   * page so the numbers shown are the real ones.
+   */
+  async getImageStorageReport() {
+    return imageStore.report(this.homey);
+  }
+
+  /**
+   * Deletes screenshots that no paired device owns. See lib/imageStore.js for
+   * the rules; in short, only `scr_<mac>.png` files in the app's own
+   * directories are considered, files belonging to a paired device are always
+   * kept, and files touched in the last hour are always kept.
+   */
+  async cleanupImages(options = {}) {
+    const before = imageStore.report(this.homey);
+    const result = imageStore.cleanup(this.homey, options);
+
+    // Logged unconditionally: it runs at boot and then once a day, so it is
+    // not noisy, and it is the only way to see what the store looks like.
+    this.log(`Image cleanup${options.dryRun ? ' (dry run)' : ''}:`
+      + ` found ${before.files} screenshot(s) / ${before.bytes} bytes`
+      + ` across ${JSON.stringify(before.byDir)}`
+      + `, ${before.paired} paired device(s)`
+      + ` -> removed ${result.deleted} (${result.bytes} bytes),`
+      + ` kept ${result.kept}, failed ${result.failed}`);
+
+    return { ...result, before };
   }
 
   async fetchTags() {
