@@ -9,7 +9,6 @@ const imageStore = require('./lib/imageStore');
 const Homey = require('homey');
 const axios = require('axios');
 const WebSocket = require('ws');
-const Jimp = require('jimp');
 const qs = require('qs');
 const { Readable } = require('stream'); 
 const fs = require('fs');

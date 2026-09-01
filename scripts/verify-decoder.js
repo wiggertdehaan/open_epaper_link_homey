@@ -14,7 +14,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const Jimp = require('jimp');
+const { Jimp } = require('jimp');
 
 const { decodeRawImage } = require('../lib/rawImage');
 
@@ -60,7 +60,7 @@ async function fetchAllTags() {
 }
 
 async function toJimp(decoded) {
-  const img = new Jimp(decoded.width, decoded.height, 0xffffffff);
+  const img = new Jimp({ width: decoded.width, height: decoded.height, color: 0xffffffff });
   for (let p = 0; p < decoded.width * decoded.height; p++) {
     img.bitmap.data[p * 4] = decoded.rgb[p * 3];
     img.bitmap.data[p * 4 + 1] = decoded.rgb[p * 3 + 1];
@@ -111,7 +111,7 @@ async function toJimp(decoded) {
       // eslint-disable-next-line no-await-in-loop
       const img = await toJimp(dec);
       // eslint-disable-next-line no-await-in-loop
-      await img.writeAsync(path.join(OUT, `${tag.mac}.png`));
+      await img.write(path.join(OUT, `${tag.mac}.png`));
       console.log(`${label}  ${String(raw.buf.length).padStart(5)}B ${dec.container.padEnd(5)}`
         + ` buf=${dec.width}x${dec.height} planes=${dec.planes}`
         + ` rot=${String(dec.rotateDegrees).padStart(4)} -> ${img.bitmap.width}x${img.bitmap.height} OK`);

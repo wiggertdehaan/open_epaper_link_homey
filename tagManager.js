@@ -1,4 +1,4 @@
-const Jimp = require('jimp');
+const { Jimp } = require('jimp');
 const axios = require('axios');
 const { Readable } = require('stream');
 const { decodeRawImage } = require('./lib/rawImage');
@@ -144,7 +144,7 @@ class TagManager {
             + decoded.width + 'x' + decoded.height + ', ' + decoded.planes + ' plane(s))');
 
         try {
-            let image = new Jimp(decoded.width, decoded.height, 0xffffffff);
+            let image = new Jimp({ width: decoded.width, height: decoded.height, color: 0xffffffff });
             for (let p = 0; p < decoded.width * decoded.height; p++) {
                 image.bitmap.data[p * 4] = decoded.rgb[p * 3];
                 image.bitmap.data[p * 4 + 1] = decoded.rgb[p * 3 + 1];
@@ -162,7 +162,7 @@ class TagManager {
             // Wait for the file to actually be on disk before pointing
             // Homey's camera Image at it, otherwise Homey can read a
             // half-written (or not-yet-existing) file.
-            await squareImage.writeAsync(path);
+            await squareImage.write(path);
 
             // Reuses the device's own registered Image (created once,
             // cached on the device) instead of registering a new one on
@@ -187,7 +187,7 @@ class TagManager {
 
         const squareSize = Math.max(width, height);
 
-        const squareImage = new Jimp(squareSize, squareSize, 0x00000000);
+        const squareImage = new Jimp({ width: squareSize, height: squareSize, color: 0x00000000 });
 
         const x = (squareSize - width) / 2;
         const y = (squareSize - height) / 2;
