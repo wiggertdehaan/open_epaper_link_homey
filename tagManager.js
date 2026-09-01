@@ -1,3 +1,4 @@
+const fs = require('fs');
 const { Jimp } = require('jimp');
 const axios = require('axios');
 const { Readable } = require('stream');
@@ -18,6 +19,9 @@ class TagManager {
         // last wake-up reason seen per tag, so a press is reported once rather
         // than on every websocket broadcast that repeats the same check-in
         this.lastWakeup = new Map();
+        // hash of the framebuffer last rendered per tag, so an unchanged image
+        // is not downloaded and decoded again on every websocket reconnect
+        this.lastRendered = new Map();
         this.homey.log('TagManager constructor gateway: '+this.gateway);
     }
 
@@ -123,6 +127,27 @@ class TagManager {
             return;
         }
 
+        // The AP re-announces every tag it knows whenever the websocket
+        // reconnects, which it does on its own every minute or two. Without
+        // this check each of those re-announcements downloads the framebuffer
+        // again, decodes it and rewrites the PNG - work that produced exactly
+        // the same picture, since `hash` is the AP's own digest of the
+        // framebuffer and had not changed.
+        //
+        // The all-zero hash means the AP has no digest for this tag, so it
+        // says nothing about whether the content changed; those always render.
+        const hash = tag.hash && tag.hash !== '00000000000000000000000000000000' ? tag.hash : null;
+        if (hash && this.lastRendered.get(tag.mac) === hash) {
+            try {
+                if (fs.existsSync(device.getScreenshotPath())) {
+                    this.homey.log('Image for tag ' + tag.mac + ' is unchanged (hash ' + hash + '), skipping');
+                    return;
+                }
+            } catch (error) {
+                // Cannot tell whether the file is there; fall through and render.
+            }
+        }
+
         const data = await this.downloadRawImage(tag);
         if (!data || data.length == 0) {
             return;
@@ -168,6 +193,8 @@ class TagManager {
             // cached on the device) instead of registering a new one on
             // every update.
             await device.updateCameraImage(path);
+
+            if (hash) this.lastRendered.set(tag.mac, hash);
 
             this.homey.log('Image updated for tag:', tag.mac);
         } catch (error) {
