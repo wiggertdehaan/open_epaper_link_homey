@@ -6,6 +6,7 @@ const CardManager = require('./cardManager');
 const { fetchAllTags } = require('./lib/apClient');
 const imageStore = require('./lib/imageStore');
 const tagTimeout = require('./lib/tagTimeout');
+const apDiscovery = require('./lib/apDiscovery');
 
 const Homey = require('homey');
 const axios = require('axios');
@@ -176,6 +177,29 @@ class MyApp extends Homey.App {
     if (this.cleanupInterval) {
       this.homey.clearInterval(this.cleanupInterval);
     }
+  }
+
+  /**
+   * Looks for an OpenEPaperLink AP on the same network as this Homey.
+   *
+   * Typing the AP's address by hand means finding it first, which is the whole
+   * of issue #18 and a fair part of the confusion in #28. There is no mDNS
+   * record to look up, so this sweeps the Homey's own /24; see
+   * lib/apDiscovery.js for how it narrows that down.
+   *
+   * @returns {Promise<{subnet:string|null, found:Array<object>}>}
+   */
+  async discoverGateway() {
+    const localAddress = await this.homey.cloud.getLocalAddress();
+    this.log('Looking for an AP from', localAddress);
+
+    const found = await apDiscovery.discover(localAddress, { log: (message) => this.log(message) });
+
+    if (found.length === 0) {
+      this.log('No AP found on this network');
+    }
+
+    return { subnet: apDiscovery.subnetOf(localAddress), found };
   }
 
   /**

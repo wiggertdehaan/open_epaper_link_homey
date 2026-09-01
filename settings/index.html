@@ -26,6 +26,9 @@
         <label class="homey-form-label" for="gateway">ip gateway (do not include http:// or https://)</label>
         <input class="homey-form-input" id="gateway" type="text" value="" />
       </div>
+
+      <button id="discover" class="homey-button-small-full">Search my network for the AP</button>
+      <p class="homey-text-small" id="discover-status"></p>
     </fieldset>
 
     <button id="save" class="homey-button-primary-full">Save changes</button>
@@ -48,6 +51,53 @@
         var gatewayElement = document.getElementById("gateway");
 
         var saveElement = document.getElementById("save");
+
+        // Finding the AP by hand means knowing its address; this asks the app
+        // to sweep the Homey's own subnet for one instead.
+        var discoverElement = document.getElementById("discover");
+        var discoverStatus = document.getElementById("discover-status");
+
+        discoverElement.addEventListener("click", function (e) {
+          e.preventDefault();
+          discoverElement.disabled = true;
+          discoverStatus.textContent = "Searching the network, this takes a moment…";
+
+          Homey.api("GET", "/discoverGateway", null, function (err, result) {
+            discoverElement.disabled = false;
+
+            if (err) {
+              discoverStatus.textContent = "Search failed: " + err;
+              return;
+            }
+
+            var found = (result && result.found) || [];
+
+            if (found.length === 0) {
+              discoverStatus.textContent = "No access point found on "
+                + ((result && result.subnet) || "this network")
+                + ".x. Check that it is powered on and on the same network as Homey.";
+              return;
+            }
+
+            // Fill the field in but leave saving to the user, so an address
+            // that is theirs to choose is never changed behind their back.
+            gatewayElement.value = found[0].address;
+
+            var describe = function (ap) {
+              return ap.address + (ap.alias ? " (" + ap.alias + ")" : "");
+            };
+
+            if (found.length === 1) {
+              discoverStatus.textContent = "Found " + describe(found[0])
+                + ", firmware " + (found[0].buildversion || "unknown")
+                + ". Press Save changes to use it.";
+            } else {
+              discoverStatus.textContent = "Found " + found.length + " access points: "
+                + found.map(describe).join(", ")
+                + ". Filled in the first one; edit it if you want another, then press Save changes.";
+            }
+          });
+        });
 
         // Ophalen van de opgeslagen waarde van 'gateway'
         Homey.get("gateway", function (err, gatewayValue) {

@@ -15,6 +15,10 @@
     "cleanupImages": {
       "method": "POST",
       "path": "/cleanupImages"
+    },
+    "discoverGateway": {
+      "method": "GET",
+      "path": "/discoverGateway"
     }
   },
   "name": {

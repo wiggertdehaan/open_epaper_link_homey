@@ -5,6 +5,15 @@
  */
 module.exports = {
 
+  /**
+   * Sweeps the local network for an OpenEPaperLink AP, so the address does not
+   * have to be typed from memory. Takes some seconds; the settings page says
+   * so while it runs.
+   */
+  async discoverGateway({ homey }) {
+    return homey.app.discoverGateway();
+  },
+
   /** Current on-disk screenshot usage, and how much of it is orphaned. */
   async getImageStorage({ homey }) {
     return homey.app.getImageStorageReport();
