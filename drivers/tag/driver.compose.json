@@ -1,9 +1,9 @@
 {
   "name": {
-    "en": "Solum 2.9",
-    "nl": "Solum 2.9"
+    "en": "OpenEPaperLink Tag",
+    "nl": "OpenEPaperLink Tag",
+    "sv": "OpenEPaperLink-tagg"
   },
-  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",
@@ -15,7 +15,6 @@
   ],
   "energy": {
     "batteries": [
-      "CR2450",
       "CR2450"
     ]
   },

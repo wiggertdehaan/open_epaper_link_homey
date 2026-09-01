@@ -3,6 +3,7 @@
     "en": "m2-74",
     "nl": "m2-74"
   },
+  "deprecated": true,
   "class": "other",
   "capabilities": [
     "alarm_battery",

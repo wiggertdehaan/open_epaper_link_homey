@@ -69,6 +69,12 @@ class TagManager {
     }
 
     async processTagUpdate(device, tag, tagtype) {
+        // Keeps the led/button marker capabilities in step with the tag type,
+        // which is what the flow cards filter on.
+        if (typeof device.syncFeatureCapabilities === 'function') {
+            await device.syncFeatureCapabilities(tagtype);
+        }
+
         this.updateDeviceCapability(device, "measure_temperature", tag.temperature);
         this.updateDeviceCapability(device, "measure_voltage", (tag.batteryMv / 1000));
         let alarm_battery = tag.batteryMv <= 2400 || tag.batteryMv == 0 || tag.batteryMv == 1337;

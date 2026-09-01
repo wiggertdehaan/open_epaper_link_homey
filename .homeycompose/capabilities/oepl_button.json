@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Has buttons",
+    "nl": "Heeft knoppen"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": null
+}

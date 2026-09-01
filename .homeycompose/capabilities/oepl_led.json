@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Has an LED",
+    "nl": "Heeft een LED"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": null
+}

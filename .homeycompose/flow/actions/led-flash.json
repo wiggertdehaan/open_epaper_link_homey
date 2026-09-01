@@ -4,8 +4,8 @@
     "nl": "Laat de LED knipperen"
   },
   "titleFormatted": {
-    "en": "Flash the LED [[Colour]], [[Flashes]] time(s) every [[Interval]] seconds for [[Minutes]] minutes",
-    "nl": "Laat de LED [[Colour]] knipperen, [[Flashes]] keer per [[Interval]] seconden gedurende [[Minutes]] minuten"
+    "en": "Flash the LED on [[Id]] [[Colour]], [[Flashes]] time(s) every [[Interval]] seconds for [[Minutes]] minutes",
+    "nl": "Laat de LED op [[Id]] [[Colour]] knipperen, [[Flashes]] keer per [[Interval]] seconden gedurende [[Minutes]] minuten"
   },
   "hint": {
     "en": "Only tags whose type lists the 'led' option have one; on the others this card does nothing. The tag receives the command at its next check-in, which can take as long as the AP's maximum sleep time, so treat this as a calm indicator rather than an instant alert. Set the duration to 0 to switch the LED off.",
@@ -15,7 +15,7 @@
     {
       "type": "device",
       "name": "Id",
-      "filter": "driver_id=newton-m3-29",
+      "filter": "capabilities=oepl_led",
       "placeholder": {
         "en": "The tag whose LED should flash",
         "nl": "De tag waarvan de LED moet knipperen"
