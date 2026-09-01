@@ -105,6 +105,11 @@ class MyApp extends Homey.App {
     const cardShowQRCode = this.homey.flow.getActionCard('show-qr-code');
     const cardShowImage = this.homey.flow.getActionCard('show-image');
     const cardHW01Show3Lines = this.homey.flow.getActionCard('hw01-show-3Lines');
+    const cardLedFlash = this.homey.flow.getActionCard('led-flash');
+
+    // Held on the app so TagManager can fire it when a tag reports that a
+    // button press is what woke it up.
+    this.buttonPressedTrigger = this.homey.flow.getDeviceTriggerCard('button-pressed');
 
     // Registreer action card handlers met try-catch blokken
     this.registerActionCardHandler(cardShowCurrentDate, this.cardManager.cardShowCurrentDate.bind(this.cardManager));
@@ -118,6 +123,7 @@ class MyApp extends Homey.App {
     this.registerActionCardHandler(cardHW01Show3Lines, this.cardManager.cardHW01Show3Lines.bind(this.cardManager));
     this.registerActionCardHandler(cardShowRemoteJSON, this.cardManager.cardShowRemoteJSON.bind(this.cardManager));
     this.registerActionCardHandler(cardShowLocalJSON, this.cardManager.cardShowLocalJSON.bind(this.cardManager));
+    this.registerActionCardHandler(cardLedFlash, this.cardManager.cardLedFlash.bind(this.cardManager));
   }
 
   // Helper methode om action card handlers te registreren met foutafhandeling

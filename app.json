@@ -77,6 +77,45 @@
   },
   "brandColor": "#9b9b9b",
   "flow": {
+    "triggers": [
+      {
+        "title": {
+          "en": "A button on the tag was pressed",
+          "nl": "Er is op een knop van de tag gedrukt"
+        },
+        "titleFormatted": {
+          "en": "A button on the tag was pressed",
+          "nl": "Er is op een knop van de tag gedrukt"
+        },
+        "hint": {
+          "en": "Only tags whose type lists the 'button' option have buttons. Pressing one wakes the tag, so it checks in straight away and reports which button it was; this is the one path that is not delayed by the tag's sleep schedule.",
+          "nl": "Alleen tags waarvan het type de optie 'button' heeft, hebben knoppen. Een druk wekt de tag, waardoor die meteen incheckt en meldt welke knop het was."
+        },
+        "tokens": [
+          {
+            "name": "button",
+            "type": "number",
+            "title": {
+              "en": "Button",
+              "nl": "Knop"
+            },
+            "example": 1
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "filter": "driver_id=m2-29-uc8151|newton-m3-29|solum-154|solum-29|solum-42",
+            "placeholder": {
+              "en": "The tag with the button",
+              "nl": "De tag met de knop"
+            }
+          }
+        ],
+        "id": "button-pressed"
+      }
+    ],
     "actions": [
       {
         "title": {
@@ -159,6 +198,127 @@
           }
         ],
         "id": "hw01-show-3Lines"
+      },
+      {
+        "title": {
+          "en": "Flash the LED",
+          "nl": "Laat de LED knipperen"
+        },
+        "titleFormatted": {
+          "en": "Flash the LED [[Colour]], [[Flashes]] time(s) every [[Interval]] seconds for [[Minutes]] minutes",
+          "nl": "Laat de LED [[Colour]] knipperen, [[Flashes]] keer per [[Interval]] seconden gedurende [[Minutes]] minuten"
+        },
+        "hint": {
+          "en": "Only tags whose type lists the 'led' option have one; on the others this card does nothing. The tag receives the command at its next check-in, which can take as long as the AP's maximum sleep time, so treat this as a calm indicator rather than an instant alert. Set the duration to 0 to switch the LED off.",
+          "nl": "Alleen tags waarvan het type de optie 'led' heeft, hebben er een; op de andere doet deze kaart niets. De tag ontvangt het commando bij de volgende check-in, dus zie dit als een rustige indicator. Zet de duur op 0 om de LED uit te schakelen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "Id",
+            "filter": "driver_id=newton-m3-29",
+            "placeholder": {
+              "en": "The tag whose LED should flash",
+              "nl": "De tag waarvan de LED moet knipperen"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "Colour",
+            "title": {
+              "en": "Colour",
+              "nl": "Kleur"
+            },
+            "values": [
+              {
+                "id": "red",
+                "title": {
+                  "en": "Red",
+                  "nl": "Rood"
+                }
+              },
+              {
+                "id": "green",
+                "title": {
+                  "en": "Green",
+                  "nl": "Groen"
+                }
+              },
+              {
+                "id": "blue",
+                "title": {
+                  "en": "Blue",
+                  "nl": "Blauw"
+                }
+              },
+              {
+                "id": "yellow",
+                "title": {
+                  "en": "Yellow",
+                  "nl": "Geel"
+                }
+              },
+              {
+                "id": "magenta",
+                "title": {
+                  "en": "Magenta",
+                  "nl": "Magenta"
+                }
+              },
+              {
+                "id": "cyan",
+                "title": {
+                  "en": "Cyan",
+                  "nl": "Cyaan"
+                }
+              },
+              {
+                "id": "white",
+                "title": {
+                  "en": "White",
+                  "nl": "Wit"
+                }
+              }
+            ]
+          },
+          {
+            "type": "number",
+            "name": "Flashes",
+            "title": {
+              "en": "Flashes per burst",
+              "nl": "Knipperingen per reeks"
+            },
+            "min": 1,
+            "max": 15,
+            "step": 1,
+            "value": 2
+          },
+          {
+            "type": "number",
+            "name": "Interval",
+            "title": {
+              "en": "Seconds between bursts",
+              "nl": "Seconden tussen reeksen"
+            },
+            "min": 1,
+            "max": 25,
+            "step": 1,
+            "value": 25
+          },
+          {
+            "type": "number",
+            "name": "Minutes",
+            "title": {
+              "en": "Minutes to keep flashing (0 turns the LED off)",
+              "nl": "Minuten blijven knipperen (0 schakelt de LED uit)"
+            },
+            "min": 0,
+            "max": 110,
+            "step": 1,
+            "value": 110
+          }
+        ],
+        "id": "led-flash"
       },
       {
         "title": {

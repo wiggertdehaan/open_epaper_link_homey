@@ -3,12 +3,21 @@ const axios = require('axios');
 const { Readable } = require('stream');
 const { decodeRawImage } = require('./lib/rawImage');
 
+// A tag reports why it woke up on every check-in. Pressing a button is one of
+// the reasons, which is how a press reaches the AP at all: the tag has no
+// separate channel, it simply wakes and checks in early with this field set.
+// See oepl-proto.h, struct AvailDataReq.
+const WAKEUP_REASON_BUTTON = { 4: 1, 5: 2, 6: 3 };
+
 class TagManager {
     // constructor
     constructor(homey,gateway)
     {
         this.homey = homey;
         this.gateway = gateway;
+        // last wake-up reason seen per tag, so a press is reported once rather
+        // than on every websocket broadcast that repeats the same check-in
+        this.lastWakeup = new Map();
         this.homey.log('TagManager constructor gateway: '+this.gateway);
     }
 
@@ -46,6 +55,8 @@ class TagManager {
                 let device = devices[deviceKey];
                 let { id: deviceId } = device.getData();
                 if (tag.mac == deviceId) {
+                    this.triggerButton(device, tag);
+
                     // Each device is updated independently so one device's
                     // failure (eg. a rejected setSettings call) can't be
                     // left as an unhandled rejection or block the others.
@@ -67,6 +78,24 @@ class TagManager {
 
         await device.setSettings({
             MACAddress: tag.mac,
+        });
+    }
+
+    // Fires the button trigger when a tag reports that a press is what woke it.
+    // The same check-in can be broadcast more than once, so the reason alone is
+    // not enough; it only counts as a new press when the check-in itself is new.
+    triggerButton(device, tag) {
+        const button = WAKEUP_REASON_BUTTON[tag.wakeupReason];
+        const previous = this.lastWakeup.get(tag.mac);
+        this.lastWakeup.set(tag.mac, { reason: tag.wakeupReason, lastseen: tag.lastseen });
+        if (!button) return;
+        if (previous && previous.reason === tag.wakeupReason && previous.lastseen === tag.lastseen) return;
+
+        const card = this.homey.buttonPressedTrigger;
+        if (!card) return;
+        this.homey.log('Tag ' + tag.mac + ' reports button ' + button + ' was pressed');
+        card.trigger(device, { button }).catch((error) => {
+            this.homey.log('Error firing the button trigger for ' + tag.mac + ':', error);
         });
     }
 
