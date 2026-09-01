@@ -3,6 +3,7 @@
 const TagManager = require('./tagManager');
 const APManager = require('./apManager');
 const CardManager = require('./cardManager');
+const { fetchAllTags } = require('./lib/apClient');
 
 const Homey = require('homey');
 const axios = require('axios');
@@ -115,19 +116,12 @@ class MyApp extends Homey.App {
       }
       
       try {
-        // Verbeterde URL: parameter 'pos' verwijderd, was <continu> wat niet juist lijkt
-        // Eventueel een limiet toevoegen met ?limit=50 als dat door de API wordt ondersteund
-        const response = await axios.get('http://' + gateway + '/get_db');
-
-        if (response.data && response.data.tags) {
-          // Return maximaal 100 tags om geheugengebruik te beperken
-          return response.data.tags.slice(0, 100);
-        } else {
-          this.log('No tags found in response');
-          return [];
-        }
+        // The AP returns a page of tags at a time; walk them all. This
+        // replaces an earlier cap of 100 tags, which was a memory workaround
+        // for a call that could only ever see the first page anyway.
+        return await fetchAllTags(gateway);
       } catch (error) {
-        this.log('Error fetching tags: ' + error.message);
+        this.log('Could not fetch the tag list:', error.message);
         return [];
       }
     } catch (error) {
