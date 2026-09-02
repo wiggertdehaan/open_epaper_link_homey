@@ -1,0 +1,10 @@
+{
+  "type": "number",
+  "title": { "en": "Uptime", "nl": "Bedrijfstijd" },
+  "units": { "en": "h", "nl": "u" },
+  "decimals": 1,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true
+}

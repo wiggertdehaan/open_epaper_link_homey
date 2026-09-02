@@ -1,0 +1,52 @@
+[
+  {
+    "id": "address",
+    "type": "label",
+    "label": { "en": "Address", "nl": "Adres" },
+    "value": "-",
+    "hint": {
+      "en": "The address this app talks to, taken from the app settings. Change it there rather than here.",
+      "nl": "Het adres waar deze app mee praat, uit de app-instellingen. Wijzig het daar, niet hier."
+    }
+  },
+  {
+    "id": "firmware",
+    "type": "label",
+    "label": { "en": "Firmware", "nl": "Firmware" },
+    "value": "-",
+    "hint": {
+      "en": "Build version reported by the access point.",
+      "nl": "Buildversie zoals het access point die meldt."
+    }
+  },
+  {
+    "id": "board",
+    "type": "label",
+    "label": { "en": "Board", "nl": "Board" },
+    "value": "-",
+    "hint": {
+      "en": "The hardware the firmware was built for.",
+      "nl": "De hardware waarvoor de firmware is gebouwd."
+    }
+  },
+  {
+    "id": "apVersion",
+    "type": "label",
+    "label": { "en": "AP protocol version", "nl": "AP-protocolversie" },
+    "value": "-",
+    "hint": {
+      "en": "Which revision of the tag protocol this access point speaks.",
+      "nl": "Welke revisie van het tagprotocol dit access point spreekt."
+    }
+  },
+  {
+    "id": "wifiSsid",
+    "type": "label",
+    "label": { "en": "Wi-Fi network", "nl": "Wifi-netwerk" },
+    "value": "-",
+    "hint": {
+      "en": "The network the access point is joined to.",
+      "nl": "Het netwerk waarop het access point is aangesloten."
+    }
+  }
+]

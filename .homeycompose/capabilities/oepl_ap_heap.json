@@ -1,0 +1,10 @@
+{
+  "type": "number",
+  "title": { "en": "Free memory", "nl": "Vrij geheugen" },
+  "units": { "en": "kB", "nl": "kB" },
+  "decimals": 0,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true
+}

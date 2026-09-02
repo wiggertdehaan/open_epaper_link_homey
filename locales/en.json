@@ -6,6 +6,8 @@
   "pair": {
     "noGateway": "No OpenEPaperLink AP address configured yet. Open the app settings and enter the IP address of your AP, then try again.",
     "unreachable": "Could not reach the OpenEPaperLink AP at __gateway__: __error__. Check that the address in the app settings is correct and that the AP is powered on.",
-    "badResponse": "The AP at __gateway__ answered, but not with a tag list. Check that the address points at an OpenEPaperLink AP."
+    "badResponse": "The AP at __gateway__ answered, but not with a tag list. Check that the address points at an OpenEPaperLink AP.",
+    "apAlreadyAdded": "The access point has already been added. This app talks to one access point at a time, so there is nothing more to add.",
+    "apNotFound": "No OpenEPaperLink access point found. Check that it is powered on and on the same network as Homey, or set its address in the app settings first."
   }
 }

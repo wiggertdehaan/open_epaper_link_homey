@@ -829,6 +829,124 @@
   "drivers": [
     {
       "name": {
+        "en": "OpenEPaperLink Access Point",
+        "nl": "OpenEPaperLink Access Point"
+      },
+      "class": "other",
+      "capabilities": [
+        "measure_signal_strength",
+        "oepl_ap_tags",
+        "oepl_ap_uptime",
+        "oepl_ap_heap"
+      ],
+      "capabilitiesOptions": {
+        "measure_signal_strength": {
+          "title": {
+            "en": "Wi-Fi signal",
+            "nl": "Wifi-signaal"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "energy": {
+        "approximation": {
+          "usageConstant": 2
+        }
+      },
+      "images": {
+        "small": "/drivers/ap/assets/images/small.png",
+        "large": "/drivers/ap/assets/images/large.png",
+        "xlarge": "/drivers/ap/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "ap",
+      "settings": [
+        {
+          "id": "address",
+          "type": "label",
+          "label": {
+            "en": "Address",
+            "nl": "Adres"
+          },
+          "value": "-",
+          "hint": {
+            "en": "The address this app talks to, taken from the app settings. Change it there rather than here.",
+            "nl": "Het adres waar deze app mee praat, uit de app-instellingen. Wijzig het daar, niet hier."
+          }
+        },
+        {
+          "id": "firmware",
+          "type": "label",
+          "label": {
+            "en": "Firmware",
+            "nl": "Firmware"
+          },
+          "value": "-",
+          "hint": {
+            "en": "Build version reported by the access point.",
+            "nl": "Buildversie zoals het access point die meldt."
+          }
+        },
+        {
+          "id": "board",
+          "type": "label",
+          "label": {
+            "en": "Board",
+            "nl": "Board"
+          },
+          "value": "-",
+          "hint": {
+            "en": "The hardware the firmware was built for.",
+            "nl": "De hardware waarvoor de firmware is gebouwd."
+          }
+        },
+        {
+          "id": "apVersion",
+          "type": "label",
+          "label": {
+            "en": "AP protocol version",
+            "nl": "AP-protocolversie"
+          },
+          "value": "-",
+          "hint": {
+            "en": "Which revision of the tag protocol this access point speaks.",
+            "nl": "Welke revisie van het tagprotocol dit access point spreekt."
+          }
+        },
+        {
+          "id": "wifiSsid",
+          "type": "label",
+          "label": {
+            "en": "Wi-Fi network",
+            "nl": "Wifi-netwerk"
+          },
+          "value": "-",
+          "hint": {
+            "en": "The network the access point is joined to.",
+            "nl": "Het netwerk waarop het access point is aangesloten."
+          }
+        }
+      ]
+    },
+    {
+      "name": {
         "en": "M2 2.9\" (UC8151)",
         "nl": "M2 2.9\" (UC8151)"
       },
@@ -1569,6 +1687,54 @@
     }
   ],
   "capabilities": {
+    "oepl_ap_heap": {
+      "type": "number",
+      "title": {
+        "en": "Free memory",
+        "nl": "Vrij geheugen"
+      },
+      "units": {
+        "en": "kB",
+        "nl": "kB"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    },
+    "oepl_ap_tags": {
+      "type": "number",
+      "title": {
+        "en": "Tags known",
+        "nl": "Bekende tags"
+      },
+      "units": {
+        "en": "tags",
+        "nl": "tags"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    },
+    "oepl_ap_uptime": {
+      "type": "number",
+      "title": {
+        "en": "Uptime",
+        "nl": "Bedrijfstijd"
+      },
+      "units": {
+        "en": "h",
+        "nl": "u"
+      },
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    },
     "oepl_button": {
       "type": "boolean",
       "title": {
