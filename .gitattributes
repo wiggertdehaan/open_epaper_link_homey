@@ -1,0 +1,15 @@
+# The repo is authored on Windows but eslint-config-athom requires LF, which
+# produced roughly 2500 linebreak-style errors and a permanent phantom "M" on
+# app.json after every `homey app validate`. Normalise on the way in.
+* text=auto eol=lf
+
+# Anything below is byte-for-byte, never touched.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.zip binary
+*.raw binary
