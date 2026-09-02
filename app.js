@@ -1,5 +1,10 @@
 'use strict';
 
+const Homey = require('homey');
+const axios = require('axios');
+const WebSocket = require('ws');
+const fs = require('fs');
+const path = require('path');
 const TagManager = require('./tagManager');
 const APManager = require('./apManager');
 const CardManager = require('./cardManager');
@@ -7,14 +12,6 @@ const { fetchAllTags } = require('./lib/apClient');
 const imageStore = require('./lib/imageStore');
 const tagTimeout = require('./lib/tagTimeout');
 const apDiscovery = require('./lib/apDiscovery');
-
-const Homey = require('homey');
-const axios = require('axios');
-const WebSocket = require('ws');
-const qs = require('qs');
-const { Readable } = require('stream'); 
-const fs = require('fs');
-const path = require('path');
 
 // Downloaded tag type definitions are cached here. The app directory itself
 // is read-only on Homey, so this has to live under /userdata.
@@ -27,20 +24,20 @@ class MyApp extends Homey.App {
    */
   async onInit() {
     this.log('MyApp is being initialized');
-    
+
     // Controleer of de gateway is ingesteld
     const gateway = this.homey.settings.get('gateway');
     if (!gateway) {
       this.log('Warning: Gateway is not configured. Some functionality will not work.');
     } else {
-      this.log('Gateway is configured at: ' + gateway);
+      this.log(`Gateway is configured at: ${gateway}`);
     }
-    
+
     // Initialiseer de managers
     this.tagManager = new TagManager(this, gateway);
     this.APManager = new APManager(this, gateway);
     this.cardManager = new CardManager(this, gateway);
-    
+
     // Initialiseer of reset de cache
     this.tagTypeCache = {};
 
@@ -48,7 +45,7 @@ class MyApp extends Homey.App {
     try {
       if (global.gc) {
         // Plan periodieke garbage collection
-        this.gcInterval = setInterval(() => {
+        this.gcInterval = this.homey.setInterval(() => {
           try {
             global.gc();
             this.log('Manual garbage collection executed');
@@ -57,7 +54,7 @@ class MyApp extends Homey.App {
           }
         }, 300000); // Elke 5 minuten
       }
-    } catch (e) {
+    } catch {
       this.log('Garbage collection is not available');
     }
 
@@ -111,7 +108,7 @@ class MyApp extends Homey.App {
     const cardShowCurrentWeather = this.homey.flow.getActionCard('show-current-weather');
     const cardShowWeatherForecast = this.homey.flow.getActionCard('show-weather-forecast');
     const cardShowBuienradar = this.homey.flow.getActionCard('show-buienradar');
-    //const cardShowRSSFeed = this.homey.flow.getActionCard('show-rss-feed');
+    // const cardShowRSSFeed = this.homey.flow.getActionCard('show-rss-feed');
     const cardShowQRCode = this.homey.flow.getActionCard('show-qr-code');
     const cardShowImage = this.homey.flow.getActionCard('show-image');
     const cardHW01Show3Lines = this.homey.flow.getActionCard('hw01-show-3Lines');
@@ -152,33 +149,6 @@ class MyApp extends Homey.App {
    * the websocket connection and any pending reconnect timer do not outlive
    * the app instance.
    */
-  async onUninit() {
-    this.uninitialized = true;
-    if (this.reconnectTimeout) {
-      clearTimeout(this.reconnectTimeout);
-    }
-    if (this.socket) {
-      this.socket.close();
-    }
-  }
-
-  /**
-   * onUninit is called when the app is destroyed (eg. on disable/update).
-   */
-  async onUninit() {
-    if (this.timeoutInterval) {
-      this.homey.clearInterval(this.timeoutInterval);
-      this.timeoutInterval = null;
-    }
-
-    if (this.cleanupTimeout) {
-      this.homey.clearTimeout(this.cleanupTimeout);
-    }
-    if (this.cleanupInterval) {
-      this.homey.clearInterval(this.cleanupInterval);
-    }
-  }
-
   /**
    * Looks for an OpenEPaperLink AP on the same network as this Homey.
    *
@@ -260,7 +230,7 @@ class MyApp extends Homey.App {
         const overdue = tagTimeout.overdueMinutes(tag, now);
         this.log(`Tag ${mac} has not checked in, ${overdue} minute(s) past due`);
         this.tagTimeoutTrigger.trigger(device, { overdue }).catch((error) => {
-          this.log('Could not fire the timeout trigger for ' + mac + ':', error.message);
+          this.log(`Could not fire the timeout trigger for ${mac}:`, error.message);
         });
       } else if (!timedOut && wasTimedOut) {
         this.timedOutTags.delete(mac);
@@ -302,12 +272,12 @@ class MyApp extends Homey.App {
   async fetchTags() {
     try {
       const gateway = this.homey.settings.get('gateway');
-      this.log('Fetching tags from gateway: ' + gateway);
+      this.log(`Fetching tags from gateway: ${gateway}`);
       if (!gateway) {
         this.log('Gateway is not configured.');
         return [];
       }
-      
+
       try {
         // The AP returns a page of tags at a time; walk them all. This
         // replaces an earlier cap of 100 tags, which was a memory workaround
@@ -346,7 +316,7 @@ class MyApp extends Homey.App {
       return;
     }
 
-    const url = 'ws://' + gateway + '/ws';
+    const url = `ws://${gateway}/ws`;
     this.log('Connecting to websocket:', url);
     const socket = new WebSocket(url);
     this.socket = socket;
@@ -380,7 +350,7 @@ class MyApp extends Homey.App {
     socket.on('close', () => {
       this.log('websocket disconnected, attempting to reconnect');
       if (this.uninitialized) return;
-      this.reconnectTimeout = setTimeout(() => this.WebSocketReader(), 5000);
+      this.reconnectTimeout = this.homey.setTimeout(() => this.WebSocketReader(), 5000);
     });
 
     socket.on('error', (error) => {
@@ -407,7 +377,7 @@ class MyApp extends Homey.App {
       // Verwijder de oudste item uit de cache
       const oldestKey = Object.keys(this.tagTypeCache)[0];
       delete this.tagTypeCache[oldestKey];
-      this.log('Cache limit reached, oldest item removed: ' + oldestKey);
+      this.log(`Cache limit reached, oldest item removed: ${oldestKey}`);
     }
 
     // Try to load the tagtype from disk first: a copy written by an earlier
@@ -423,10 +393,10 @@ class MyApp extends Homey.App {
         const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
         this.tagTypeCache[hwtype] = data;
-        this.log('Using local tagtype data for hwtype ' + hwtype + ': ' + filePath);
+        this.log(`Using local tagtype data for hwtype ${hwtype}: ${filePath}`);
         return data;
       } catch (err) {
-        this.log('Error reading local tagtype file ' + filePath + ':', err.message);
+        this.log(`Error reading local tagtype file ${filePath}:`, err.message);
         // Fall through to the next location, and to the gateway.
       }
     }
@@ -438,17 +408,17 @@ class MyApp extends Homey.App {
       return null;
     }
 
-    const url = 'http://' + gateway + '/tagtypes/' + hwtypeHex + '.json';
+    const url = `http://${gateway}/tagtypes/${hwtypeHex}.json`;
     try {
       this.log('Fetching tagtype data from gateway:', url);
 
       // axios, not global fetch: fetch ignores a `timeout` option, so the
       // 5 second timeout that used to be passed here never applied.
       const response = await axios.get(url, { timeout: 10000 });
-      const data = response.data;
+      const { data } = response;
 
       if (!data || typeof data !== 'object') {
-        this.log('Invalid format for tagtype data for hwType ' + hwtype);
+        this.log(`Invalid format for tagtype data for hwType ${hwtype}`);
         return null;
       }
 
@@ -467,7 +437,7 @@ class MyApp extends Homey.App {
     } catch (error) {
       // Returning null (instead of undefined via a swallowed throw) lets the
       // caller skip this tag cleanly rather than crash on tagType.width.
-      this.log('Error while fetching tagtype data for hwType ' + hwtype + ':', error.message);
+      this.log(`Error while fetching tagtype data for hwType ${hwtype}:`, error.message);
       return null;
     }
   }
@@ -482,8 +452,24 @@ class MyApp extends Homey.App {
     this.uninitialized = true;
 
     if (this.reconnectTimeout) {
-      clearTimeout(this.reconnectTimeout);
+      this.homey.clearTimeout(this.reconnectTimeout);
       this.reconnectTimeout = null;
+    }
+
+    // Poll that looks for tags which stopped checking in
+    if (this.timeoutInterval) {
+      this.homey.clearInterval(this.timeoutInterval);
+      this.timeoutInterval = null;
+    }
+
+    // Screenshot sweep, both the delayed first run and the daily one
+    if (this.cleanupTimeout) {
+      this.homey.clearTimeout(this.cleanupTimeout);
+      this.cleanupTimeout = null;
+    }
+    if (this.cleanupInterval) {
+      this.homey.clearInterval(this.cleanupInterval);
+      this.cleanupInterval = null;
     }
 
     // Stop de WebSocket verbinding
@@ -500,7 +486,8 @@ class MyApp extends Homey.App {
 
     // Stop de garbage collection interval
     if (this.gcInterval) {
-      clearInterval(this.gcInterval);
+      this.homey.clearInterval(this.gcInterval);
+      this.gcInterval = null;
       this.log('Garbage collection interval stopped');
     }
 
@@ -520,5 +507,3 @@ class MyApp extends Homey.App {
 }
 
 module.exports = MyApp;
-
-

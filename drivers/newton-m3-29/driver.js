@@ -3,7 +3,6 @@
 const { Driver } = require('homey');
 const { fetchAllTags } = require('../../lib/apClient');
 
-
 class MyDriver extends Driver {
 
   /**
@@ -17,12 +16,12 @@ class MyDriver extends Driver {
   async fetchTags() {
     try {
       const gateway = this.homey.settings.get('gateway');
-  
+
       if (!gateway) {
         this.homey.log('Gateway has not been configured.');
         return []; // Retourneer een lege array als de gateway niet is geconfigureerd
       }
-  
+
       // The AP returns a page of tags at a time; walk them all so tags
       // beyond the first page can be paired too.
       return await fetchAllTags(gateway);
@@ -31,23 +30,21 @@ class MyDriver extends Driver {
       return []; // Retourneer een lege array bij een fout
     }
   }
-  
-
 
   async filterAndFormatDevices(tags) {
     // Geen JSON.parse nodig omdat 'tags' al een object is
-  
+
     // Filter de data om alleen objecten met hwType 1 te behouden
-    let filteredDevices = tags.filter(device => device.hwType === 51);
-  
+    const filteredDevices = tags.filter((device) => device.hwType === 51);
+
     // Formatteer de overgebleven objecten
-    let formattedDevices = filteredDevices.map(device => ({
-        name: `${device.alias}`,
-        data: {
-            id: device.mac,
-        }
+    const formattedDevices = filteredDevices.map((device) => ({
+      name: `${device.alias}`,
+      data: {
+        id: device.mac,
+      },
     }));
-  
+
     return formattedDevices;
   }
 

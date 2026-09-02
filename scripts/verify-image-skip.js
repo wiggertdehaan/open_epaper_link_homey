@@ -48,14 +48,18 @@ let cameraUpdates = 0;
 
 const device = {
   getScreenshotPath: () => screenshot,
-  updateCameraImage: async () => { cameraUpdates++; },
+  updateCameraImage: async () => {
+    cameraUpdates++;
+  },
 };
 
 const manager = Object.create(TagManager.prototype);
 manager.homey = { log: () => {} };
 manager.gateway = '127.0.0.1';
 manager.lastRendered = new Map();
-manager.downloadRawImage = async () => { downloads++; return FRAME; };
+manager.downloadRawImage = async () => {
+  downloads++; return FRAME;
+};
 
 const tagAt = (hash) => ({ mac: 'AABBCCDDEEFF0001', hwType: 1, hash });
 

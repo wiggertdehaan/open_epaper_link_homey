@@ -63,7 +63,7 @@ class TagDriver extends Driver {
       try {
         const tagType = await app.getTagTypeData(hwType);
         if (tagType && tagType.name) return tagType.name;
-      } catch (error) {
+      } catch {
         // fall through
       }
     }

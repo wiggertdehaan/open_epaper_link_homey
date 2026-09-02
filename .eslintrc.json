@@ -1,3 +1,23 @@
 {
-  "extends": "athom/homey-app"
+  "extends": "athom/homey-app",
+  "rules": {
+    "@typescript-eslint/no-require-imports": "off",
+    "@typescript-eslint/no-misused-promises": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "scripts/**/*.js"
+      ],
+      "rules": {
+        "max-classes-per-file": "off",
+        "no-console": "off",
+        "no-empty-function": "off",
+        "global-require": "off",
+        "homey-app/global-timers": "off",
+        "no-promise-executor-return": "off",
+        "@typescript-eslint/no-floating-promises": "off"
+      }
+    }
+  ]
 }

@@ -58,7 +58,7 @@ async function main() {
       // eslint-disable-next-line no-await-in-loop
       const tt = JSON.parse((await get(`/tagtypes/${hex}.json`)).toString('utf8'));
       options[hw] = { name: tt.name, options: tt.options || [] };
-    } catch (e) {
+    } catch {
       options[hw] = { name: '(unreadable)', options: [] };
     }
   }

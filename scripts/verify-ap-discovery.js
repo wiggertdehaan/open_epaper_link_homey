@@ -52,7 +52,7 @@ for (const [label, ok] of checks) {
   if (from) {
     console.log(`\nSweeping the network ${from} is on:`);
     const started = Date.now();
-    const found = await discover(from, { log: (m) => console.log('  ' + m) });
+    const found = await discover(from, { log: (m) => console.log(`  ${m}`) });
     const seconds = ((Date.now() - started) / 1000).toFixed(1);
     console.log(`  took ${seconds}s, found ${found.length}`);
     for (const ap of found) {

@@ -52,7 +52,9 @@ function makeDevice(settings = {}) {
     device.settingWrites++;
     Object.assign(device.settings, values);
   };
-  device.setCapabilityValue = async (cap, value) => { device.capabilities[cap] = value; };
+  device.setCapabilityValue = async (cap, value) => {
+    device.capabilities[cap] = value;
+  };
   return device;
 }
 
@@ -87,7 +89,7 @@ function makeDevice(settings = {}) {
     await junk.applySysFrame(null);
     await junk.applySysFrame('nonsense');
     await junk.applySysFrame({ rssi: 'loud', uptime: null, heap: undefined });
-  } catch (error) {
+  } catch {
     threw = true;
   }
   checks.push(['a malformed frame does not throw', !threw]);
@@ -95,11 +97,20 @@ function makeDevice(settings = {}) {
 
   // APManager stays quiet when no AP is paired.
   const manager = Object.create(APManager.prototype);
-  manager.homey = { log: () => {}, homey: { drivers: { getDriver: () => { throw new Error('not ready'); } } } };
+  manager.homey = {
+    log: () => {},
+    homey: {
+      drivers: {
+        getDriver: () => {
+          throw new Error('not ready');
+        },
+      },
+    },
+  };
   let managerThrew = false;
   try {
     manager.updateAPs(SYS);
-  } catch (error) {
+  } catch {
     managerThrew = true;
   }
   checks.push(['APManager survives the driver not being ready', !managerThrew]);

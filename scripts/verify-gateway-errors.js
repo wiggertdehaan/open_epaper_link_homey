@@ -58,7 +58,7 @@ async function driverFetchSurvives(gateway) {
     let threw = false;
     try {
       await fetchAllTags(gateway, { timeout: 3000 });
-    } catch (error) {
+    } catch {
       threw = true;
     }
     checks.push([`apClient reports ${label} by throwing`, threw]);
@@ -70,7 +70,7 @@ async function driverFetchSurvives(gateway) {
     let threw = false;
     try {
       result = await driverFetchSurvives(gateway);
-    } catch (error) {
+    } catch {
       threw = true;
     }
     checks.push([`a driver survives ${label}`, !threw && Array.isArray(result) && result.length === 0]);
@@ -119,7 +119,7 @@ async function driverFetchSurvives(gateway) {
   let rawThrew = false;
   try {
     raw = await manager.downloadRawImage({ mac: 'AABBCCDDEEFF0001', hash: 'x' });
-  } catch (error) {
+  } catch {
     rawThrew = true;
   }
   checks.push(['downloadRawImage returns null instead of throwing', !rawThrew && raw === null]);
@@ -138,7 +138,7 @@ async function driverFetchSurvives(gateway) {
     await manager.processTagUpdate(device, {
       mac: 'AABBCCDDEEFF0001', temperature: 20, batteryMv: 2900, lastseen: 1, hash: 'x',
     }, null);
-  } catch (error) {
+  } catch {
     updateThrew = true;
   }
   checks.push(['a tag update with no tag type does not throw', !updateThrew]);
@@ -149,7 +149,7 @@ async function driverFetchSurvives(gateway) {
     let wrongThrew = false;
     try {
       wrongResult = await driverFetchSurvives(WRONG_DEVICE);
-    } catch (error) {
+    } catch {
       wrongThrew = true;
     }
     checks.push([`a driver survives ${WRONG_DEVICE} not being an AP`,

@@ -20,20 +20,32 @@ Module._load = function stubbed(request) {
 
 const TagManager = require('../tagManager');
 
-const TAG_TYPE = { name: 'Test', width: 296, height: 128, bpp: 2, options: [] };
+const TAG_TYPE = {
+  name: 'Test', width: 296, height: 128, bpp: 2, options: [],
+};
 
 function makeDevice(settings) {
   return {
     settings: { ...settings },
     capabilities: {},
     settingWrites: 0,
-    getSettings() { return this.settings; },
-    async setSettings(values) { this.settingWrites++; Object.assign(this.settings, values); },
-    setCapabilityValue(cap, value) { this.capabilities[cap] = value; return Promise.resolve(); },
-    hasCapability() { return false; },
+    getSettings() {
+      return this.settings;
+    },
+    async setSettings(values) {
+      this.settingWrites++; Object.assign(this.settings, values);
+    },
+    setCapabilityValue(cap, value) {
+      this.capabilities[cap] = value; return Promise.resolve();
+    },
+    hasCapability() {
+      return false;
+    },
     async addCapability() {},
     async removeCapability() {},
-    getScreenshotPath() { return '/tmp/never-written.png'; },
+    getScreenshotPath() {
+      return '/tmp/never-written.png';
+    },
     async updateCameraImage() {},
   };
 }
@@ -44,13 +56,20 @@ function makeManager() {
   m.lastRendered = new Map();
   m.lastWakeup = new Map();
   m.renders = 0;
-  m.UpdateTagImage = async () => { m.renders++; };
+  m.UpdateTagImage = async () => {
+    m.renders++;
+  };
   return m;
 }
 
 const tag = (over = {}) => ({
-  mac: 'AABBCCDDEEFF0001', hwType: 1, temperature: 21, batteryMv: 2900,
-  lastseen: 1788291029, hash: 'abc', ...over,
+  mac: 'AABBCCDDEEFF0001',
+  hwType: 1,
+  temperature: 21,
+  batteryMv: 2900,
+  lastseen: 1788291029,
+  hash: 'abc',
+  ...over,
 });
 
 (async () => {
