@@ -22,5 +22,9 @@
   },
   "1.5.0": {
     "en": "Small fix to get more tags"
+  },
+  "2.0.0": {
+    "en": "Tag images now render properly instead of noise, and every tag your access point knows shows up when pairing rather than just the first page. Adding a display no longer means picking the right model from a list: one pairing screen covers every tag type. Your access point can now be added as a device too, showing its Wi-Fi signal, uptime and how many tags it knows. New flow cards flash a tag's LED, react to its buttons, and fire when a tag stops checking in. Per tag you can now correct the temperature reading, see when it was last heard from, and turn the image preview off. Homey also has a lot less to do: an image that has not changed is no longer downloaded and decoded again. Needs Homey firmware 12.4.0 or newer.",
+    "nl": "Tagafbeeldingen worden nu goed weergegeven in plaats van ruis, en alle tags die je access point kent verschijnen bij het koppelen, niet alleen de eerste pagina. Een display toevoegen vereist niet langer dat je het juiste model uit een lijst kiest: één koppelscherm dekt elk tagtype. Je access point kun je nu ook als apparaat toevoegen, met wifi-signaal, bedrijfstijd en het aantal bekende tags. Nieuwe flowkaarten laten de LED van een tag knipperen, reageren op de knoppen, en gaan af als een tag zich niet meer meldt. Per tag kun je nu de temperatuurmeting corrigeren, zien wanneer hij voor het laatst gehoord is, en de afbeeldingspreview uitzetten. Homey heeft ook veel minder te doen: een afbeelding die niet veranderd is wordt niet opnieuw opgehaald en gedecodeerd. Vereist Homey-firmware 12.4.0 of nieuwer."
   }
 }

@@ -8,3 +8,17 @@ Thumbs.db
 .git/
 coverage/
 dist/
+
+# Verification harnesses. They run against a live AP from a workstation and
+# nothing loads them at runtime, so they belong in the repo, not on a Homey.
+scripts/
+
+# Scratch output from those scripts.
+.tmp-decode/
+.tmp-bare/
+.tmp-square/
+
+# Tooling config, of no use once installed.
+.eslintrc.json
+.gitattributes
+.homeychangelog.json
