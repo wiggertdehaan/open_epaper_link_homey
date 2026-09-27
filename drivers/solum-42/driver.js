@@ -2,6 +2,8 @@
 
 const { Driver } = require('homey');
 const { fetchAllTags } = require('../../lib/apClient');
+const { readGateway } = require('../../lib/gateway');
+const { pairedMacs, normalizeMac } = require('../../lib/devices');
 
 class MyDriver extends Driver {
 
@@ -15,29 +17,32 @@ class MyDriver extends Driver {
 
   async fetchTags() {
     try {
-      const gateway = this.homey.settings.get('gateway');
+      const gateway = readGateway(this.homey);
 
       if (!gateway) {
         this.homey.log('Gateway has not been configured.');
-        return []; // Retourneer een lege array als de gateway niet is geconfigureerd
+        return []; // nothing to list without an AP address
       }
 
       // The AP returns a page of tags at a time; walk them all so tags
       // beyond the first page can be paired too.
       return await fetchAllTags(gateway);
     } catch (error) {
-      this.homey.log('Fout bij het ophalen van de tags:', error.message);
-      return []; // Retourneer een lege array bij een fout
+      this.homey.log('Could not fetch the tag list:', error.message);
+      return []; // an empty list rather than a failed pairing screen
     }
   }
 
   async filterAndFormatDevices(tags) {
-    // Geen JSON.parse nodig omdat 'tags' al een object is
+    // Tags already paired, on this driver or any other, are left out. Homey
+    // only refuses a duplicate within one driver, and the same tag paired on
+    // two drivers ends up with two devices fighting over one screenshot.
+    const paired = pairedMacs(this.homey);
 
-    // Filter de data om alleen objecten met hwType 1 te behouden
-    const filteredDevices = tags.filter((device) => device.hwType === 2);
+    // This driver is for one hardware type only.
+    const filteredDevices = tags.filter((device) => device.hwType === 2
+      && !paired.has(normalizeMac(device.mac)));
 
-    // Formatteer de overgebleven objecten
     const formattedDevices = filteredDevices.map((device) => ({
       name: `${device.alias}`,
       data: {
@@ -57,10 +62,10 @@ class MyDriver extends Driver {
     try {
       const tags = await this.fetchTags();
       const result = await this.filterAndFormatDevices(tags);
-      this.log('Gefilterde en geformatteerde apparaten:', result);
+      this.log('Tags available for pairing:', result);
       return result;
     } catch (error) {
-      this.log('Fout bij het verwerken van de tags:', error);
+      this.log('Could not list the tags:', error);
       return [];
     }
 

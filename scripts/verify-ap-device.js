@@ -76,6 +76,34 @@ function makeDevice(settings = {}) {
   await device.applySysFrame(SYS);
   checks.push(['an identical frame writes no settings', device.settingWrites === writesAfterFirst]);
 
+  // Frames arrive every few seconds; capabilities are written at most once a
+  // minute, except for the changes a flow might react to.
+  const throttled = makeDevice();
+  let capabilityWrites = 0;
+  const write = throttled.setCapabilityValue;
+  throttled.setCapabilityValue = async (cap, value) => {
+    capabilityWrites++;
+    return write(cap, value);
+  };
+  await throttled.applySysFrame(SYS);
+  const afterFirstFrame = capabilityWrites;
+  await throttled.applySysFrame({ ...SYS, heap: 100000, uptime: SYS.uptime + 5 });
+  checks.push(['a frame seconds later writes nothing', capabilityWrites === afterFirstFrame
+    && throttled.capabilities.oepl_ap_heap === 188]);
+
+  await throttled.applySysFrame({ ...SYS, recordcount: 5, uptime: SYS.uptime + 10 });
+  checks.push(['a change in the tag count is written at once', throttled.capabilities.oepl_ap_tags === 5]);
+
+  await throttled.applySysFrame({ ...SYS, recordcount: 5, uptime: 12 });
+  checks.push(['an AP restart is written at once', throttled.capabilities.oepl_ap_uptime === 0]);
+
+  throttled.lastSysWrite -= ApDevice.SYS_WRITE_INTERVAL_MS;
+  await throttled.applySysFrame({
+    ...SYS, recordcount: 5, uptime: 3600, heap: 100000,
+  });
+  checks.push(['a minute later the frame is written', throttled.capabilities.oepl_ap_heap === 98
+    && throttled.capabilities.oepl_ap_uptime === 1]);
+
   // Partial and malformed frames must not throw or write rubbish.
   const partial = makeDevice();
   await partial.applySysFrame({ rssi: -50 });

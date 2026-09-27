@@ -3,6 +3,8 @@
 const { Driver } = require('homey');
 
 const { fetchAllTags } = require('../../lib/apClient');
+const { readGateway } = require('../../lib/gateway');
+const devices = require('../../lib/devices');
 
 /**
  * One driver for pairing any OpenEPaperLink tag.
@@ -23,20 +25,11 @@ class TagDriver extends Driver {
    * added twice - including tags sitting on the older per-model drivers.
    */
   pairedMacs() {
-    const macs = new Set();
-    const drivers = this.homey.drivers.getDrivers();
-    for (const driverId of Object.keys(drivers)) {
-      const devices = drivers[driverId].getDevices();
-      for (const key of Object.keys(devices)) {
-        const data = devices[key].getData();
-        if (data && data.id) macs.add(String(data.id).toUpperCase());
-      }
-    }
-    return macs;
+    return devices.pairedMacs(this.homey);
   }
 
   async fetchTags() {
-    const gateway = this.homey.settings.get('gateway');
+    const gateway = readGateway(this.homey);
     if (!gateway) {
       throw new Error(this.homey.__('pair.noGateway'));
     }
@@ -81,7 +74,10 @@ class TagDriver extends Driver {
       parts.push(`${tag.temperature} °C`);
     }
     if (typeof tag.lastseen === 'number' && tag.lastseen > 0) {
-      const seconds = Math.max(0, Math.floor(Date.now() / 1000) - tag.lastseen);
+      // lastseen is on the AP's clock, so compare it against that.
+      const { app } = this.homey;
+      const now = app && typeof app.apNow === 'function' ? app.apNow() : Date.now();
+      const seconds = Math.max(0, Math.floor(now / 1000) - tag.lastseen);
       if (seconds < 90) parts.push('seen just now');
       else if (seconds < 3600) parts.push(`seen ${Math.round(seconds / 60)} min ago`);
       else if (seconds < 86400) parts.push(`seen ${Math.round(seconds / 3600)} h ago`);
@@ -95,10 +91,10 @@ class TagDriver extends Driver {
     const tags = await this.fetchTags();
     const paired = this.pairedMacs();
 
-    const available = tags.filter((tag) => tag.mac && !paired.has(String(tag.mac).toUpperCase()));
+    const available = tags.filter((tag) => tag.mac && !paired.has(devices.normalizeMac(tag.mac)));
     this.log(`Pairing: ${tags.length} tag(s) known to the AP, ${tags.length - available.length} already paired`);
 
-    const devices = [];
+    const list = [];
     for (const tag of available) {
       const hwType = Number(tag.hwType);
       // eslint-disable-next-line no-await-in-loop
@@ -111,7 +107,7 @@ class TagDriver extends Driver {
       // alias for keep that alias, since it becomes the device name in Homey.
       const shortMac = String(tag.mac).slice(-4).toUpperCase();
 
-      devices.push({
+      list.push({
         name: alias || `${model} ${shortMac}`,
         data: {
           // Same shape the per-model drivers use, so nothing downstream needs
@@ -134,13 +130,13 @@ class TagDriver extends Driver {
     // is not unique gets the full MAC appended - otherwise the list shows two
     // identical rows and there is no way to tell which is which.
     const counts = {};
-    for (const d of devices) counts[d.name] = (counts[d.name] || 0) + 1;
-    for (const d of devices) {
+    for (const d of list) counts[d.name] = (counts[d.name] || 0) + 1;
+    for (const d of list) {
       if (counts[d.name] > 1) d.name = `${d.name} (${d.data.id})`;
     }
 
-    devices.sort((a, b) => a.name.localeCompare(b.name));
-    return devices;
+    list.sort((a, b) => a.name.localeCompare(b.name));
+    return list;
   }
 
 }

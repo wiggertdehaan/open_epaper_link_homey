@@ -18,6 +18,10 @@
     "discoverGateway": {
       "method": "GET",
       "path": "/discoverGateway"
+    },
+    "setGateway": {
+      "method": "PUT",
+      "path": "/gateway"
     }
   },
   "name": {

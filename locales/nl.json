@@ -1,0 +1,23 @@
+{
+  "settings": {
+    "title": "Instellingen",
+    "gateway": "."
+  },
+  "pair": {
+    "noGateway": "Er is nog geen adres van een OpenEPaperLink AP ingesteld. Open de app-instellingen, vul het IP-adres van je AP in en probeer het opnieuw.",
+    "unreachable": "Kon de OpenEPaperLink AP op __gateway__ niet bereiken: __error__. Controleer of het adres in de app-instellingen klopt en of de AP aan staat.",
+    "badResponse": "De AP op __gateway__ antwoordde, maar niet met een lijst van tags. Controleer of het adres naar een OpenEPaperLink AP wijst.",
+    "apAlreadyAdded": "Het access point is al toegevoegd. Deze app praat met één access point tegelijk, dus er valt niets meer toe te voegen.",
+    "apNotFound": "Geen OpenEPaperLink access point gevonden. Controleer of het aan staat en op hetzelfde netwerk zit als Homey, of stel eerst het adres in bij de app-instellingen."
+  },
+  "errors": {
+    "noGateway": "Er is geen adres van een OpenEPaperLink AP ingesteld. Stel het in bij de app-instellingen.",
+    "invalidGateway": "\"__value__\" is geen bruikbaar adres. Vul het IP-adres of de hostnaam van de AP in, bijvoorbeeld 192.168.1.10.",
+    "unreachable": "Kon de OpenEPaperLink AP op __gateway__ niet bereiken: __error__",
+    "tagUnknown": "De AP op __gateway__ kent tag __mac__ niet. Controleer of de tag nog bij deze AP geregistreerd is.",
+    "requestFailed": "De AP op __gateway__ accepteerde de wijziging niet: __error__",
+    "invalidJson": "Het sjabloon is geen geldige JSON: __error__",
+    "notATemplate": "Een sjabloon moet een JSON-lijst met tekenopdrachten zijn, die begint met [ en eindigt met ].",
+    "remoteFetch": "Kon het sjabloon niet ophalen van __url__: __error__"
+  }
+}

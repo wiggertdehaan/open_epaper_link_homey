@@ -3,6 +3,7 @@
 const { Driver } = require('homey');
 
 const apDiscovery = require('../../lib/apDiscovery');
+const { readGateway } = require('../../lib/gateway');
 
 /**
  * Pairing the access point itself as a device.
@@ -38,7 +39,7 @@ class ApDriver extends Driver {
       throw new Error(this.homey.__('pair.apAlreadyAdded'));
     }
 
-    const configured = this.homey.settings.get('gateway');
+    const configured = readGateway(this.homey);
     const found = [];
 
     if (configured) {

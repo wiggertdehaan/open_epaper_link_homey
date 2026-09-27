@@ -32,6 +32,7 @@
     </fieldset>
 
     <button id="save" class="homey-button-primary-full">Save changes</button>
+    <p class="homey-text-small" id="save-status"></p>
 
     <fieldset class="homey-form-fieldset">
       <legend class="homey-form-legend">Storage</legend>
@@ -99,19 +100,34 @@
           });
         });
 
-        // Ophalen van de opgeslagen waarde van 'gateway'
+        // Show the stored address
         Homey.get("gateway", function (err, gatewayValue) {
-        if (err) return Homey.alert(err);
-        // Zet de waarde van het input-element
-        gatewayElement.value = gatewayValue || "";
+          if (err) return Homey.alert(err);
+          gatewayElement.value = gatewayValue || "";
         });
 
-
-
+        // Saved through the app, which checks the address and tidies it up
+        // (a pasted "http://192.168.1.10/" is stored as "192.168.1.10").
+        var saveStatus = document.getElementById("save-status");
 
         saveElement.addEventListener("click", function (e) {
-          Homey.set("gateway", gatewayElement.value, function (err) {
-            if (err) return Homey.alert(err);
+          e.preventDefault();
+          saveElement.disabled = true;
+          saveStatus.textContent = "Saving\u2026";
+
+          Homey.api("PUT", "/gateway", { gateway: gatewayElement.value }, function (err, result) {
+            saveElement.disabled = false;
+
+            if (err) {
+              saveStatus.textContent = "";
+              return Homey.alert(err.message || String(err));
+            }
+
+            var gateway = result && result.gateway;
+            gatewayElement.value = gateway || "";
+            saveStatus.textContent = gateway
+              ? "Saved. Connecting to the AP at " + gateway + "."
+              : "Saved. No AP address is set, so the app is not connecting.";
           });
         });
 

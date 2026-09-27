@@ -53,10 +53,7 @@ const device = {
   },
 };
 
-const manager = Object.create(TagManager.prototype);
-manager.homey = { log: () => {} };
-manager.gateway = '127.0.0.1';
-manager.lastRendered = new Map();
+const manager = new TagManager({ log: () => {}, getGateway: () => '127.0.0.1' });
 manager.downloadRawImage = async () => {
   downloads++; return FRAME;
 };

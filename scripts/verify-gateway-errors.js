@@ -109,11 +109,7 @@ async function driverFetchSurvives(gateway) {
   checks.push(['the generic driver explains a missing address', /settings/i.test(noGatewayMessage)]);
 
   // 4. Downloading an image from a dead AP yields null, not an exception.
-  const manager = Object.create(TagManager.prototype);
-  manager.homey = { log: () => {} };
-  manager.gateway = UNREACHABLE;
-  manager.lastRendered = new Map();
-  manager.lastWakeup = new Map();
+  const manager = new TagManager({ log: () => {}, getGateway: () => UNREACHABLE });
 
   let raw = 'unset';
   let rawThrew = false;

@@ -9,5 +9,15 @@
     "badResponse": "The AP at __gateway__ answered, but not with a tag list. Check that the address points at an OpenEPaperLink AP.",
     "apAlreadyAdded": "The access point has already been added. This app talks to one access point at a time, so there is nothing more to add.",
     "apNotFound": "No OpenEPaperLink access point found. Check that it is powered on and on the same network as Homey, or set its address in the app settings first."
+  },
+  "errors": {
+    "noGateway": "No OpenEPaperLink AP address is configured. Set it in the app settings.",
+    "invalidGateway": "\"__value__\" is not a usable address. Enter the AP's IP address or host name, for example 192.168.1.10.",
+    "unreachable": "Could not reach the OpenEPaperLink AP at __gateway__: __error__",
+    "tagUnknown": "The AP at __gateway__ does not know tag __mac__. Check that the tag is still registered with this AP.",
+    "requestFailed": "The AP at __gateway__ did not accept the update: __error__",
+    "invalidJson": "The template is not valid JSON: __error__",
+    "notATemplate": "A template must be a JSON list of drawing commands, starting with [ and ending with ].",
+    "remoteFetch": "Could not fetch the template from __url__: __error__"
   }
 }

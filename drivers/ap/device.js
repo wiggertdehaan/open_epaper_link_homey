@@ -3,6 +3,12 @@
 const { Device } = require('homey');
 
 const apDiscovery = require('../../lib/apDiscovery');
+const { readGateway } = require('../../lib/gateway');
+
+// The AP sends a `sys` frame every few seconds. Uptime and free heap change in
+// every one of them, so writing each frame through would log a point to
+// Insights every few seconds for numbers nobody reads that closely.
+const SYS_WRITE_INTERVAL_MS = 60 * 1000;
 
 /**
  * The access point as a Homey device.
@@ -42,7 +48,7 @@ class ApDevice extends Device {
    * itself correctly once the user updates the app setting.
    */
   async refreshDescription() {
-    const address = this.homey.settings.get('gateway');
+    const address = readGateway(this.homey);
     if (!address) return;
 
     const ap = await apDiscovery.probe(address, 8000);
@@ -82,13 +88,32 @@ class ApDevice extends Device {
   /**
    * Applies one `sys` frame from the AP's websocket.
    *
+   * At most once every SYS_WRITE_INTERVAL_MS, except that a change in the
+   * number of tags or an AP restart (uptime going backwards) is written at
+   * once, since those are the changes a flow might want to react to.
+   *
    * @param {object} sys
    */
   async applySysFrame(sys) {
     if (!sys || typeof sys !== 'object') return;
 
+    const now = Date.now();
+    const tags = typeof sys.recordcount === 'number' ? sys.recordcount : undefined;
+    const uptime = typeof sys.uptime === 'number' ? sys.uptime : undefined;
+
+    const urgent = this.lastSysWrite === undefined
+      || (tags !== undefined && tags !== this.lastSysTags)
+      || (uptime !== undefined && this.lastSysUptime !== undefined && uptime < this.lastSysUptime);
+
+    if (tags !== undefined) this.lastSysTags = tags;
+    if (uptime !== undefined) this.lastSysUptime = uptime;
+
+    if (!urgent && now - this.lastSysWrite < SYS_WRITE_INTERVAL_MS) return;
+    this.lastSysWrite = now;
+
     const set = async (capability, value) => {
       if (value === null || value === undefined || Number.isNaN(value)) return;
+      if (typeof this.getCapabilityValue === 'function' && this.getCapabilityValue(capability) === value) return;
       try {
         await this.setCapabilityValue(capability, value);
       } catch (error) {
@@ -113,5 +138,7 @@ class ApDevice extends Device {
   }
 
 }
+
+ApDevice.SYS_WRITE_INTERVAL_MS = SYS_WRITE_INTERVAL_MS;
 
 module.exports = ApDevice;

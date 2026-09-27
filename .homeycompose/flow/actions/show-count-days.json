@@ -4,7 +4,7 @@
     "nl": "Toon dagen teller"
   },
   "titleFormatted": {
-    "en": "Display counter starting with [[Counter]] with a treshold on [[Threshold]] days.",
+    "en": "Display counter starting with [[Counter]] with a threshold of [[Threshold]] days.",
     "nl": "Toon teller die start met [[Counter]] met een drempelwaarde van [[Threshold]] dagen."
   },
   "hint": {
@@ -44,8 +44,8 @@
       "type": "number",
       "name": "Threshold",
       "title": {
-        "en": "Red below",
-        "nl": "Rood onder"
+        "en": "Red above",
+        "nl": "Rood boven"
       },
       "placeholder": {
         "en": "Threshold to show the number in red",

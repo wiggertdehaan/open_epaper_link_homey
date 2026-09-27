@@ -1,14 +1,15 @@
 'use strict';
 
 const Homey = require('homey');
-const axios = require('axios');
 const WebSocket = require('ws');
-const fs = require('fs');
 const path = require('path');
 const TagManager = require('./tagManager');
 const APManager = require('./apManager');
 const CardManager = require('./cardManager');
 const { fetchAllTags } = require('./lib/apClient');
+const { normalizeGateway, readGateway } = require('./lib/gateway');
+const { devicesByMac, normalizeMac } = require('./lib/devices');
+const { TagTypeStore } = require('./lib/tagTypes');
 const imageStore = require('./lib/imageStore');
 const tagTimeout = require('./lib/tagTimeout');
 const apDiscovery = require('./lib/apDiscovery');
@@ -16,6 +17,21 @@ const apDiscovery = require('./lib/apDiscovery');
 // Downloaded tag type definitions are cached here. The app directory itself
 // is read-only on Homey, so this has to live under /userdata.
 const TAGTYPE_CACHE_DIR = '/userdata/tagtypes';
+
+// The AP sends a `sys` frame every few seconds, so a connection that has been
+// silent this long is dead even if TCP has not noticed: an AP that loses power
+// or Wi-Fi never closes the connection, and without this the app would wait
+// on it forever while every tag stopped updating.
+const WS_IDLE_TIMEOUT_MS = 60 * 1000;
+// Silent for this long, ping it; the pong counts as a sign of life.
+const WS_PING_AFTER_MS = 20 * 1000;
+const WS_WATCHDOG_INTERVAL_MS = 10 * 1000;
+const WS_HANDSHAKE_TIMEOUT_MS = 15 * 1000;
+
+// Reconnect delay: starts short, doubles on each failure, resets once a
+// connection opens. An AP that is off for a day is not asked every 5 seconds.
+const WS_RECONNECT_MIN_MS = 5 * 1000;
+const WS_RECONNECT_MAX_MS = 5 * 60 * 1000;
 
 class MyApp extends Homey.App {
 
@@ -25,26 +41,27 @@ class MyApp extends Homey.App {
   async onInit() {
     this.log('MyApp is being initialized');
 
-    // Controleer of de gateway is ingesteld
-    const gateway = this.homey.settings.get('gateway');
+    const gateway = this.getGateway();
     if (!gateway) {
       this.log('Warning: Gateway is not configured. Some functionality will not work.');
     } else {
       this.log(`Gateway is configured at: ${gateway}`);
     }
 
-    // Initialiseer de managers
-    this.tagManager = new TagManager(this, gateway);
-    this.APManager = new APManager(this, gateway);
-    this.cardManager = new CardManager(this, gateway);
+    this.tagTypes = new TagTypeStore({
+      cacheDir: TAGTYPE_CACHE_DIR,
+      bundledDir: path.join(__dirname, 'assets', 'tagtypes'),
+      getGateway: () => this.getGateway(),
+      log: (...args) => this.log(...args),
+    });
 
-    // Initialiseer of reset de cache
-    this.tagTypeCache = {};
+    this.tagManager = new TagManager(this);
+    this.APManager = new APManager(this);
+    this.cardManager = new CardManager(this);
 
-    // Configureer garbage collection hint (indien beschikbaar in Node.js)
+    // Hint periodic garbage collection, where the runtime exposes it
     try {
       if (global.gc) {
-        // Plan periodieke garbage collection
         this.gcInterval = this.homey.setInterval(() => {
           try {
             global.gc();
@@ -52,7 +69,7 @@ class MyApp extends Homey.App {
           } catch (e) {
             this.log('Error during garbage collection:', e);
           }
-        }, 300000); // Elke 5 minuten
+        }, 300000); // every 5 minutes
       }
     } catch {
       this.log('Garbage collection is not available');
@@ -61,24 +78,30 @@ class MyApp extends Homey.App {
     // The gateway used to be read once here and never again, so entering or
     // correcting the AP address in the settings page had no effect until the
     // app was restarted. Re-read it whenever it changes and reconnect.
-    this.homey.settings.on('set', (key) => {
+    const onGatewayChanged = (key) => {
       if (key !== 'gateway') return;
-      const gateway = this.homey.settings.get('gateway');
-      this.log('Gateway setting changed to:', gateway);
-      this.tagTypeCache = {};
-      if (this.tagManager) this.tagManager.setGateway(gateway);
-      if (this.APManager) this.APManager.gateway = gateway;
-      if (this.cardManager) this.cardManager.gateway = gateway;
+      this.log('Gateway setting changed to:', this.getGateway());
+      this.tagTypes.clear();
+      this.reconnectDelayMs = WS_RECONNECT_MIN_MS;
       this.WebSocketReader();
-    });
+    };
+    this.homey.settings.on('set', onGatewayChanged);
+    this.homey.settings.on('unset', onGatewayChanged);
 
-    // Start WebSocket lezer
+    this.reconnectDelayMs = WS_RECONNECT_MIN_MS;
+    this.wsIdleTimeoutMs = WS_IDLE_TIMEOUT_MS;
+    this.wsPingAfterMs = WS_PING_AFTER_MS;
+    this.wsWatchdog = this.homey.setInterval(() => this.checkSocket(), WS_WATCHDOG_INTERVAL_MS);
+
+    // Registered before the websocket starts, so the button trigger exists by
+    // the time the first frame arrives.
+    this.initActionCards();
+
     this.WebSocketReader();
 
     // A tag that stops reporting produces no websocket message - that is what
     // going quiet means - so the only way to notice is to ask the AP for its
     // tag list on a timer and compare against the clock.
-    this.timedOutTags = new Set();
     this.tagTimeoutTrigger = this.homey.flow.getDeviceTriggerCard('tag-timed-out');
     this.timeoutInterval = this.homey.setInterval(() => {
       this.checkTagTimeouts().catch((error) => this.error('Tag timeout check failed:', error));
@@ -93,12 +116,44 @@ class MyApp extends Homey.App {
     this.cleanupInterval = this.homey.setInterval(() => {
       this.cleanupImages().catch((error) => this.error('Scheduled image cleanup failed:', error));
     }, 24 * 60 * 60 * 1000);
-
-    // Initialiseer alle action cards
-    this.initActionCards();
   }
 
-  // Nieuwe methode om action cards te initialiseren (zorgt voor betere organisatie)
+  /**
+   * The AP address to talk to, normalised, or null if none is usable. The one
+   * place every part of the app reads it from, so none can hold a stale copy.
+   */
+  getGateway() {
+    return readGateway(this.homey);
+  }
+
+  /**
+   * Stores a new AP address, from the settings page.
+   *
+   * @param {string} value  as typed; empty clears it
+   * @returns {string|null} the address as stored
+   * @throws when the value is not an address at all
+   */
+  setGateway(value) {
+    const raw = typeof value === 'string' ? value.trim() : '';
+    if (!raw) {
+      this.homey.settings.unset('gateway');
+      return null;
+    }
+
+    const gateway = normalizeGateway(raw);
+    if (!gateway) {
+      throw new Error(this.homey.__('errors.invalidGateway', { value: raw }));
+    }
+    this.homey.settings.set('gateway', gateway);
+    return gateway;
+  }
+
+  /** Now, on the AP's clock. Tag timestamps from the AP are on that clock. */
+  apNow() {
+    return this.APManager ? this.APManager.apNow() : Date.now();
+  }
+
+  // Registers every action card's handler
   initActionCards() {
     const cardShowLocalJSON = this.homey.flow.getActionCard('show-local-json-template');
     const cardShowRemoteJSON = this.homey.flow.getActionCard('show-remote-jsontemplate');
@@ -118,7 +173,6 @@ class MyApp extends Homey.App {
     // button press is what woke it up.
     this.buttonPressedTrigger = this.homey.flow.getDeviceTriggerCard('button-pressed');
 
-    // Registreer action card handlers met try-catch blokken
     this.registerActionCardHandler(cardShowCurrentDate, this.cardManager.cardShowCurrentDate.bind(this.cardManager));
     this.registerActionCardHandler(cardShowCountDays, this.cardManager.cardShowCountDays.bind(this.cardManager));
     this.registerActionCardHandler(cardShowCountHours, this.cardManager.cardShowCountHours.bind(this.cardManager));
@@ -133,22 +187,20 @@ class MyApp extends Homey.App {
     this.registerActionCardHandler(cardLedFlash, this.cardManager.cardLedFlash.bind(this.cardManager));
   }
 
-  // Helper methode om action card handlers te registreren met foutafhandeling
+  // Logs a failing card and passes the error on, so Homey marks the flow
+  // card as failed and shows the message; swallowing it made every card
+  // look successful.
   registerActionCardHandler(card, handlerFunction) {
     card.registerRunListener(async (args, state) => {
       try {
-        await handlerFunction(args, state);
+        return await handlerFunction(args, state);
       } catch (error) {
-        this.log(`Error executing action card: ${error.message}`);
+        this.log(`Error executing action card ${card.id || ''}: ${error.message}`);
+        throw error;
       }
     });
   }
 
-  /**
-   * onUninit is called when the app is destroyed (eg. on disable/update), so
-   * the websocket connection and any pending reconnect timer do not outlive
-   * the app instance.
-   */
   /**
    * Looks for an OpenEPaperLink AP on the same network as this Homey.
    *
@@ -173,34 +225,17 @@ class MyApp extends Homey.App {
   }
 
   /**
-   * Every paired device, keyed by the MAC it was paired with.
-   */
-  pairedDevicesByMac() {
-    const byMac = new Map();
-    const drivers = this.homey.drivers.getDrivers();
-
-    for (const driverId of Object.keys(drivers)) {
-      const devices = drivers[driverId].getDevices();
-      for (const key of Object.keys(devices)) {
-        const device = devices[key];
-        const data = device.getData();
-        if (data && data.id) byMac.set(String(data.id).toUpperCase(), device);
-      }
-    }
-
-    return byMac;
-  }
-
-  /**
    * Asks the AP for its tag list and fires the timeout trigger for paired tags
    * that have gone quiet past their grace period.
    *
    * State is held so the card fires on the transition rather than every five
    * minutes for as long as a tag stays away, and so a tag that comes back can
-   * trigger again if it goes quiet a second time.
+   * trigger again if it goes quiet a second time. It is kept in the device
+   * store, not in memory, so an app restart does not fire it again for a tag
+   * that was already reported.
    */
   async checkTagTimeouts() {
-    const gateway = this.homey.settings.get('gateway');
+    const gateway = this.getGateway();
     if (!gateway) return;
 
     let tags;
@@ -214,29 +249,40 @@ class MyApp extends Homey.App {
       return;
     }
 
-    const devices = this.pairedDevicesByMac();
-    const now = Date.now();
+    const devices = devicesByMac(this.homey);
+    // The AP's timestamps are on its own clock; compare them against that.
+    const now = this.apNow();
 
     for (const tag of tags) {
-      const mac = String(tag.mac || '').toUpperCase();
-      const device = devices.get(mac);
-      if (!device) continue;
-
-      const timedOut = tagTimeout.isTimedOut(tag, now);
-      const wasTimedOut = this.timedOutTags.has(mac);
-
-      if (timedOut && !wasTimedOut) {
-        this.timedOutTags.add(mac);
-        const overdue = tagTimeout.overdueMinutes(tag, now);
-        this.log(`Tag ${mac} has not checked in, ${overdue} minute(s) past due`);
-        this.tagTimeoutTrigger.trigger(device, { overdue }).catch((error) => {
-          this.log(`Could not fire the timeout trigger for ${mac}:`, error.message);
-        });
-      } else if (!timedOut && wasTimedOut) {
-        this.timedOutTags.delete(mac);
-        this.log(`Tag ${mac} is checking in again`);
+      const mac = normalizeMac(tag.mac);
+      for (const device of devices.get(mac) || []) {
+        // eslint-disable-next-line no-await-in-loop
+        await this.applyTagTimeout(device, tag, now);
       }
     }
+  }
+
+  async applyTagTimeout(device, tag, now) {
+    const timedOut = tagTimeout.isTimedOut(tag, now);
+    const wasTimedOut = device.getStoreValue('timedOut') === true;
+    if (timedOut === wasTimedOut) return;
+
+    try {
+      await device.setStoreValue('timedOut', timedOut);
+    } catch (error) {
+      this.log(`Could not store the timeout state for ${tag.mac}:`, error.message);
+    }
+
+    if (!timedOut) {
+      this.log(`Tag ${tag.mac} is checking in again`);
+      return;
+    }
+
+    const overdue = tagTimeout.overdueMinutes(tag, now);
+    this.log(`Tag ${tag.mac} has not checked in, ${overdue} minute(s) past due`);
+    this.tagTimeoutTrigger.trigger(device, { overdue }).catch((error) => {
+      this.log(`Could not fire the timeout trigger for ${tag.mac}:`, error.message);
+    });
   }
 
   /**
@@ -270,44 +316,96 @@ class MyApp extends Homey.App {
   }
 
   async fetchTags() {
-    try {
-      const gateway = this.homey.settings.get('gateway');
-      this.log(`Fetching tags from gateway: ${gateway}`);
-      if (!gateway) {
-        this.log('Gateway is not configured.');
-        return [];
-      }
-
-      try {
-        // The AP returns a page of tags at a time; walk them all. This
-        // replaces an earlier cap of 100 tags, which was a memory workaround
-        // for a call that could only ever see the first page anyway.
-        return await fetchAllTags(gateway);
-      } catch (error) {
-        this.log('Could not fetch the tag list:', error.message);
-        return [];
-      }
-    } catch (error) {
-      this.log('Error fetching tags:', error);
+    const gateway = this.getGateway();
+    this.log(`Fetching tags from gateway: ${gateway}`);
+    if (!gateway) {
+      this.log('Gateway is not configured.');
       return [];
+    }
+
+    try {
+      // The AP returns a page of tags at a time; walk them all. This
+      // replaces an earlier cap of 100 tags, which was a memory workaround
+      // for a call that could only ever see the first page anyway.
+      return await fetchAllTags(gateway);
+    } catch (error) {
+      this.log('Could not fetch the tag list:', error.message);
+      return [];
+    }
+  }
+
+  /**
+   * Drops the current socket, if any, without letting it do anything else.
+   */
+  closeSocket() {
+    const { socket } = this;
+    if (!socket) return;
+    this.socket = null;
+
+    // removeAllListeners first: the old socket's 'close' handler would
+    // otherwise schedule a reconnect of its own.
+    socket.removeAllListeners();
+    // A socket torn down mid-handshake still emits 'error' ("closed before
+    // the connection was established") on the next tick. With no listener
+    // left that is an uncaught exception, which takes the whole app down -
+    // and mid-handshake is exactly where it sits when the configured address
+    // is wrong and the user is correcting it.
+    socket.on('error', () => {});
+    try {
+      socket.terminate();
+    } catch (error) {
+      this.log('Error closing WebSocket connection:', error.message);
+    }
+  }
+
+  scheduleReconnect() {
+    if (this.uninitialized || this.reconnectTimeout) return;
+
+    const delay = this.reconnectDelayMs;
+    this.reconnectDelayMs = Math.min(WS_RECONNECT_MAX_MS, delay * 2);
+    this.log(`Reconnecting to the websocket in ${Math.round(delay / 1000)} s`);
+
+    this.reconnectTimeout = this.homey.setTimeout(() => {
+      this.reconnectTimeout = null;
+      this.WebSocketReader();
+    }, delay);
+  }
+
+  /**
+   * Called on a timer: pings a quiet connection and drops a dead one, which
+   * then reconnects through the usual 'close' path.
+   */
+  checkSocket() {
+    const { socket } = this;
+    if (!socket || socket.readyState !== WebSocket.OPEN) return;
+
+    const idle = Date.now() - this.lastSocketActivity;
+    if (idle > this.wsIdleTimeoutMs) {
+      this.log(`No word from the AP for ${Math.round(idle / 1000)} s, dropping the connection`);
+      socket.terminate();
+      return;
+    }
+
+    if (idle > this.wsPingAfterMs) {
+      try {
+        socket.ping();
+      } catch {
+        // the idle timeout will deal with it
+      }
     }
   }
 
   WebSocketReader() {
     if (this.reconnectTimeout) {
-      clearTimeout(this.reconnectTimeout);
+      this.homey.clearTimeout(this.reconnectTimeout);
       this.reconnectTimeout = null;
     }
 
-    if (this.socket) {
-      // removeAllListeners before closing: the old socket's 'close' handler
-      // would otherwise schedule a second reconnect and they would stack up.
-      this.socket.removeAllListeners();
-      this.socket.close();
-      this.socket = null;
-    }
+    this.closeSocket();
 
-    const gateway = this.homey.settings.get('gateway');
+    if (this.uninitialized) return;
+
+    const gateway = this.getGateway();
     if (!gateway) {
       // Without an address there is nothing to connect to; retrying every few
       // seconds against `ws://null/ws` only fills the log with ENOTFOUND. The
@@ -318,28 +416,41 @@ class MyApp extends Homey.App {
 
     const url = `ws://${gateway}/ws`;
     this.log('Connecting to websocket:', url);
-    const socket = new WebSocket(url);
+    const socket = new WebSocket(url, { handshakeTimeout: WS_HANDSHAKE_TIMEOUT_MS });
     this.socket = socket;
+    this.lastSocketActivity = Date.now();
+
+    const alive = () => {
+      this.lastSocketActivity = Date.now();
+    };
 
     socket.on('open', () => {
+      alive();
+      this.reconnectDelayMs = WS_RECONNECT_MIN_MS;
       this.log('websocket connected to', url);
     });
 
-    socket.on('message', async (data) => {
+    socket.on('pong', alive);
+
+    socket.on('message', (data) => {
+      alive();
       const messageString = data.toString();
 
       try {
         const messageJSON = JSON.parse(messageString);
 
+        if (messageJSON.sys) {
+          // First, so the AP's clock is known before tag timestamps from the
+          // same frame are compared against it.
+          this.APManager.updateAPs(messageJSON.sys);
+        }
+
         if (messageJSON.tags) {
           // One message can contain tags of different hardware types, so the
           // type is resolved per tag rather than taken from the first one.
           const drivers = this.homey.drivers.getDrivers();
-          this.tagManager.updateTags(messageJSON.tags, drivers, (hwType) => this.getTagTypeData(hwType));
-        }
-
-        if (messageJSON.sys) {
-          this.APManager.updateAPs(messageJSON.sys);
+          this.tagManager.updateTags(messageJSON.tags, drivers, (hwType) => this.getTagTypeData(hwType))
+            .catch((error) => this.log('Error processing tag update:', error));
         }
       } catch (error) {
         this.log('Error parsing JSON:', error);
@@ -348,102 +459,29 @@ class MyApp extends Homey.App {
     });
 
     socket.on('close', () => {
-      this.log('websocket disconnected, attempting to reconnect');
-      if (this.uninitialized) return;
-      this.reconnectTimeout = this.homey.setTimeout(() => this.WebSocketReader(), 5000);
+      if (this.socket !== socket) return;
+      this.socket = null;
+      this.log('websocket disconnected');
+      this.scheduleReconnect();
     });
 
     socket.on('error', (error) => {
-      this.log('WebSocket error:', error);
-      // Laat de 'close' event handler de reconnect doen
+      this.log('WebSocket error:', error.message || error);
+      // The 'close' event that follows does the reconnect
     });
   }
 
+  /**
+   * The tag type definition for a hardware type, or null when none can be
+   * found. See lib/tagTypes.js for where it comes from.
+   */
   async getTagTypeData(hwtype) {
-    // Check if hwtype is valid
-    if (hwtype === undefined || hwtype === null) {
-      this.log('Invalid hwtype: ', hwtype);
-      return null;
-    }
-
-    // Check if the data is already in the cache
-    if (this.tagTypeCache[hwtype]) {
-      return this.tagTypeCache[hwtype];
-    }
-
-    // Beperk de grootte van de cache om geheugengebruik te beheren
-    const maxCacheSize = 20;
-    if (Object.keys(this.tagTypeCache).length >= maxCacheSize) {
-      // Verwijder de oudste item uit de cache
-      const oldestKey = Object.keys(this.tagTypeCache)[0];
-      delete this.tagTypeCache[oldestKey];
-      this.log(`Cache limit reached, oldest item removed: ${oldestKey}`);
-    }
-
-    // Try to load the tagtype from disk first: a copy written by an earlier
-    // fetch, otherwise one of the definitions shipped with the app.
-    const hwtypeHex = hwtype.toString(16).padStart(2, '0').toUpperCase();
-    const cachedFilePath = path.join(TAGTYPE_CACHE_DIR, `${hwtypeHex}.json`);
-    const bundledFilePath = path.join(__dirname, 'assets', 'tagtypes', `${hwtypeHex}.json`);
-
-    for (const filePath of [cachedFilePath, bundledFilePath]) {
-      if (!fs.existsSync(filePath)) continue;
-
-      try {
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-        this.tagTypeCache[hwtype] = data;
-        this.log(`Using local tagtype data for hwtype ${hwtype}: ${filePath}`);
-        return data;
-      } catch (err) {
-        this.log(`Error reading local tagtype file ${filePath}:`, err.message);
-        // Fall through to the next location, and to the gateway.
-      }
-    }
-
-    // Nothing usable on disk, fetch it from the gateway
-    const gateway = this.homey.settings.get('gateway');
-    if (!gateway) {
-      this.log('Gateway is not configured for retrieving tagtype data');
-      return null;
-    }
-
-    const url = `http://${gateway}/tagtypes/${hwtypeHex}.json`;
-    try {
-      this.log('Fetching tagtype data from gateway:', url);
-
-      // axios, not global fetch: fetch ignores a `timeout` option, so the
-      // 5 second timeout that used to be passed here never applied.
-      const response = await axios.get(url, { timeout: 10000 });
-      const { data } = response;
-
-      if (!data || typeof data !== 'object') {
-        this.log(`Invalid format for tagtype data for hwType ${hwtype}`);
-        return null;
-      }
-
-      this.tagTypeCache[hwtype] = data;
-
-      // Keep a copy so the gateway is not needed for this tag type again
-      try {
-        fs.mkdirSync(TAGTYPE_CACHE_DIR, { recursive: true });
-        fs.writeFileSync(cachedFilePath, JSON.stringify(data, null, 2), 'utf8');
-        this.log('Saved tagtype data to:', cachedFilePath);
-      } catch (err) {
-        this.log('Error saving tagtype data to local file:', err.message);
-      }
-
-      return data;
-    } catch (error) {
-      // Returning null (instead of undefined via a swallowed throw) lets the
-      // caller skip this tag cleanly rather than crash on tagType.width.
-      this.log(`Error while fetching tagtype data for hwType ${hwtype}:`, error.message);
-      return null;
-    }
+    return this.tagTypes.get(hwtype);
   }
 
   /**
-   * onUninit wordt aangeroepen wanneer de app wordt gestopt.
+   * onUninit is called when the app is destroyed (eg. on disable/update), so
+   * the websocket connection and every timer stop with it.
    */
   async onUninit() {
     this.log('MyApp is shutting down');
@@ -454,6 +492,11 @@ class MyApp extends Homey.App {
     if (this.reconnectTimeout) {
       this.homey.clearTimeout(this.reconnectTimeout);
       this.reconnectTimeout = null;
+    }
+
+    if (this.wsWatchdog) {
+      this.homey.clearInterval(this.wsWatchdog);
+      this.wsWatchdog = null;
     }
 
     // Poll that looks for tags which stopped checking in
@@ -472,29 +515,19 @@ class MyApp extends Homey.App {
       this.cleanupInterval = null;
     }
 
-    // Stop de WebSocket verbinding
-    if (this.socket) {
-      try {
-        this.socket.removeAllListeners();
-        this.socket.close();
-        this.socket = null;
-        this.log('WebSocket connection closed');
-      } catch (error) {
-        this.log('Error closing WebSocket connection:', error);
-      }
-    }
+    this.closeSocket();
+    this.log('WebSocket connection closed');
 
-    // Stop de garbage collection interval
+    // Stop the garbage collection interval
     if (this.gcInterval) {
       this.homey.clearInterval(this.gcInterval);
       this.gcInterval = null;
       this.log('Garbage collection interval stopped');
     }
 
-    // Wis caches
-    this.tagTypeCache = {};
+    if (this.tagTypes) this.tagTypes.clear();
 
-    // Voer een laatste garbage collection uit indien mogelijk
+    // One last garbage collection, where available
     try {
       if (global.gc) {
         global.gc();
@@ -504,6 +537,10 @@ class MyApp extends Homey.App {
       this.log('Error during final garbage collection:', e);
     }
   }
+
 }
+
+MyApp.WS_RECONNECT_MIN_MS = WS_RECONNECT_MIN_MS;
+MyApp.WS_RECONNECT_MAX_MS = WS_RECONNECT_MAX_MS;
 
 module.exports = MyApp;

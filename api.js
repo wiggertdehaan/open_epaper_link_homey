@@ -14,6 +14,17 @@ module.exports = {
     return homey.app.discoverGateway();
   },
 
+  /**
+   * Stores the AP address typed on the settings page. Goes through the app
+   * rather than Homey.set() so the address is checked and tidied first: a
+   * pasted `http://192.168.1.10/` becomes `192.168.1.10`, and something that
+   * is not an address at all is refused with a message saying so.
+   */
+  async setGateway({ homey, body }) {
+    const gateway = homey.app.setGateway(body && body.gateway);
+    return { gateway };
+  },
+
   /** Current on-disk screenshot usage, and how much of it is orphaned. */
   async getImageStorage({ homey }) {
     return homey.app.getImageStorageReport();
